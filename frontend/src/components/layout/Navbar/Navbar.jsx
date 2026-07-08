@@ -1,81 +1,57 @@
 import { Link, NavLink } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
-import { useState } from "react";
 import Container from "../Container/Container";
-
+import navigation from "../../../constants/navigation";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Logo } from "../../common";
+import { Button } from "../../ui";
 
 function Navbar() {
 
+    const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
 
-        <nav className="navbar">
+        <nav className={scrolled ? "navbar navbar-scrolled" : "navbar"}>
 
 <Container>
 
  <div className="navbar-container">
 
-                <Logo/>
+<Logo/>
 
-                <ul className={menuOpen ? "nav-links active" : "nav-links"}>
+<ul className={menuOpen ? "nav-links active" : "nav-links"}>
 
-                    <li>
+    {navigation.map((item) => (
 
-                        <NavLink to="/">
-                            Home
-                        </NavLink>
+        <li key={item.id}>
 
-                    </li>
+            <NavLink
+                to={item.path}
+                onClick={() => setMenuOpen(false)}
+            >
+                {item.label}
+            </NavLink>
 
-                    <li>
+        </li>
 
-                        <NavLink to="/features">
-                            Features
-                        </NavLink>
+    ))}
 
-                    </li>
+</ul>
 
-                    <li>
+<div className="navbar-actions">
 
-                        <NavLink to="/pricing">
-                            Pricing
-                        </NavLink>
+    <NavLink to="/login">
+        Login
+    </NavLink>
 
-                    </li>
+    <Button>
+        Get Started
+    </Button>
 
-                    <li>
-
-                        <NavLink to="/login">
-                            Login
-                        </NavLink>
-
-                    </li>
-
-                    <li>
-
-                        <NavLink
-                            to="/register"
-                            className="signup-btn"
-                        >
-                            Sign Up
-                        </NavLink>
-
-                    </li>
-
-                </ul>
-
-                {/* <div className="navbar-actions">
-
-                Login
-
-                Get Started
-
-                Menu
-
-            </div> */}
+</div>
 
                 <button
 
@@ -106,6 +82,20 @@ function Navbar() {
         </nav>
 
     );
+
+    useEffect(() => {
+
+    const handleScroll = () => {
+        setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+        window.removeEventListener("scroll", handleScroll);
+    };
+
+}, []);
 
 }
 
