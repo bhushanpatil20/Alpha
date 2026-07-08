@@ -4,6 +4,7 @@ import { useState } from "react";
 import Container from "../Container/Container";
 
 import "./Navbar.css";
+import { Logo } from "../../common";
 
 function Navbar() {
 
@@ -17,12 +18,7 @@ function Navbar() {
 
  <div className="navbar-container">
 
-                <Link
-                    to="/"
-                    className="logo"
-                >
-                    α Alpha
-                </Link>
+                <Logo/>
 
                 <ul className={menuOpen ? "nav-links active" : "nav-links"}>
 
@@ -70,6 +66,16 @@ function Navbar() {
                     </li>
 
                 </ul>
+
+                {/* <div className="navbar-actions">
+
+                Login
+
+                Get Started
+
+                Menu
+
+            </div> */}
 
                 <button
 
