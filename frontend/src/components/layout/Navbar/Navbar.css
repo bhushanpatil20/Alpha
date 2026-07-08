@@ -18,6 +18,14 @@
 
 }
 
+.mobile-login,
+.mobile-divider,
+.mobile-cta{
+
+    display:none;
+
+}
+
 @keyframes navbarFade {
 
     from {
@@ -174,6 +182,16 @@
 
 .navbar-actions button{
     padding:10px 20px;
+    background: var(--primary);
+}
+.navbar-actions button:hover{
+    background: var(--primary-hover);
+}
+.login-link {
+    display: block;
+}
+.mobile-login {
+    display: none;
 }
 
 
@@ -201,6 +219,8 @@ display:none;
 
 box-shadow:var(--shadow);
 
+gap: 20px;
+
 }
 
 .nav-links.active{
@@ -212,6 +232,51 @@ display:flex;
 .menu-btn{
 
 display:block;
+
+}
+.login-link {
+    display: none;
+}
+.mobile-login{
+
+display:block;
+
+margin-top:16px;
+
+padding-top:16px;
+
+border-top:1px solid var(--border);
+
+}
+
+ .navbar-actions {
+        display: none;
+    }
+
+    .mobile-divider{
+    display: block; 
+
+    width:100%;
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:12px 0;
+
+}
+
+.mobile-cta{
+    
+    display: block;
+
+    width:100%;
+
+}
+
+.mobile-cta .alpha-btn{
+
+    width:100%;
 
 }
 

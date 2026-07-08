@@ -1,61 +1,24 @@
 .alpha-logo {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     text-decoration: none;
-
     user-select: none;
-
 }
 
-.alpha-logo-icon {
+.alpha-logo-image {
+    width: 44px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
 
-    width: 42px;
-
-    height: 42px;
-
-    border-radius: 12px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: linear-gradient(
-        135deg,
-        var(--primary),
-        #7C3AED
-    );
-
-    color: white;
-
-    font-size: 1.2rem;
-
-    font-weight: 700;
-
-    transition: .3s ease;
-
+.alpha-logo:hover .alpha-logo-image {
+    transform: rotate(-6deg) scale(1.08);
 }
 
 .alpha-logo-text {
-
     font-size: 1.45rem;
-
     font-weight: 700;
-
     color: var(--text);
-
-    letter-spacing: -.5px;
-
-}
-
-.alpha-logo:hover .alpha-logo-icon{
-
-    transform: rotate(-8deg) scale(1.05);
-
+    letter-spacing: -0.5px;
 }

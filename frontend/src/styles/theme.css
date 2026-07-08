@@ -1,24 +1,39 @@
-:root {
+:root{
 
-  --primary: #6366F1;
-  --primary-hover: #4F46E5;
+    /* Brand */
 
-  --accent: #06B6D4;
+    --primary: #2DA7BE;
 
-  --background: #FFFFFF;
-  --surface: #F8FAFC;
+    --primary-hover: #238A9D;
 
-  --text: #111827;
-  --text-light: #6B7280;
+    --primary-light: #D9F4F8;
 
-  --border: #E5E7EB;
+    /* Background */
 
-  --success: #22C55E;
-  --danger: #EF4444;
+    --background: #FFFFFF;
 
-  --radius: 12px;
+    --surface: #F8FAFC;
 
-  --shadow:
-    0 10px 30px rgba(0,0,0,.08);
+    /* Text */
+
+    --text: #111827;
+
+    --text-light: #6B7280;
+
+    /* Borders */
+
+    --border: #E5E7EB;
+
+    /* Status */
+
+    --success: #22C55E;
+
+    --danger: #EF4444;
+
+    /* UI */
+
+    --radius: 12px;
+
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
 
 }

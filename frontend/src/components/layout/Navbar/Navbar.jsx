@@ -12,6 +12,20 @@ function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
+        useEffect(() => {
+
+    const handleScroll = () => {
+        setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+        window.removeEventListener("scroll", handleScroll);
+    };
+
+}, []);
+
     return (
 
         <nav className={scrolled ? "navbar navbar-scrolled" : "navbar"}>
@@ -39,11 +53,39 @@ function Navbar() {
 
     ))}
 
+    <li className="mobile-divider"></li>
+
+    <li className="mobile-login">
+        <NavLink
+            to="/login"
+            onClick={() => setMenuOpen(false)}
+        >
+            Login
+        </NavLink>
+    </li>
+
+        <li className="mobile-cta">
+
+        <NavLink
+        to="/register"
+        onClick={() => setMenuOpen(false)}
+    >
+
+        <Button>
+
+            Get Started
+
+        </Button>
+
+    </NavLink>
+
+    </li>
+
 </ul>
 
 <div className="navbar-actions">
 
-    <NavLink to="/login">
+    <NavLink to="/login" className="login-link">
         Login
     </NavLink>
 
@@ -82,20 +124,6 @@ function Navbar() {
         </nav>
 
     );
-
-    useEffect(() => {
-
-    const handleScroll = () => {
-        setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-        window.removeEventListener("scroll", handleScroll);
-    };
-
-}, []);
 
 }
 
