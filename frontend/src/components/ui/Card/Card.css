@@ -1,0 +1,11 @@
+.alpha-card {
+
+    background: white;
+
+    border-radius: var(--radius);
+
+    padding: 24px;
+
+    box-shadow: var(--shadow);
+
+}

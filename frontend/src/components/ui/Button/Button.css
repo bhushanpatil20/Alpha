@@ -1,0 +1,35 @@
+.alpha-btn {
+
+    padding: 12px 22px;
+
+    background: var(--primary);
+
+    color: white;
+
+    border: none;
+
+    border-radius: var(--radius);
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: .25s ease;
+
+}
+
+.alpha-btn:hover {
+
+    background: var(--primary-hover);
+
+}
+
+.alpha-btn:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+
+}

@@ -1,0 +1,23 @@
+.alpha-input {
+
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: .25s;
+
+}
+
+.alpha-input:focus {
+
+    border-color: var(--primary);
+
+}
