@@ -5,6 +5,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import NotFound from "../pages/NotFound";
+import Features from "../pages/Features";
+import Pricing from "../pages/Pricing";
 
 function AppRoutes() {
     return (
@@ -12,6 +14,10 @@ function AppRoutes() {
             <Routes>
 
                 <Route path="/" element={<Home />} />
+
+                <Route path="/features" element={<Features />} />
+
+                <Route path="/pricing" element={<Pricing />} />
 
                 <Route path="/login" element={<Login />} />
 

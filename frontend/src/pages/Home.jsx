@@ -1,28 +1,23 @@
-import { Button, Input, Card } from "../components/ui";
+import Navbar from "../components/layout/Navbar/Navbar";
 
-function Home() {
-    return (
-        <div style={{ maxWidth: "500px", margin: "60px auto" }}>
+function Home(){
 
-            <Card>
+return(
 
-                <h2>Alpha UI Library</h2>
+<>
 
-                <br />
+<Navbar/>
 
-                <Input placeholder="Enter your prompt..." />
+<div style={{padding:"60px"}}>
 
-                <br />
-                <br />
+<h1>Home Page</h1>
 
-                <Button>
-                    Generate Content
-                </Button>
+</div>
 
-            </Card>
+</>
 
-        </div>
-    );
+);
+
 }
 
 export default Home;
