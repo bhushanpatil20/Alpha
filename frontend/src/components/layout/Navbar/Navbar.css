@@ -14,21 +14,15 @@
 
 }
 
-.navbar-container{
+.navbar-container {
 
-    max-width:1200px;
+    height: 72px;
 
-    margin:auto;
+    display: flex;
 
-    height:72px;
+    align-items: center;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 24px;
+    justify-content: space-between;
 
 }
 

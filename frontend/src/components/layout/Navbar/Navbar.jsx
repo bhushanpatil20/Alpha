@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { useState } from "react";
+import Container from "../Container/Container";
 
 import "./Navbar.css";
 
@@ -12,7 +13,9 @@ function Navbar() {
 
         <nav className="navbar">
 
-            <div className="navbar-container">
+<Container>
+
+ <div className="navbar-container">
 
                 <Link
                     to="/"
@@ -91,6 +94,8 @@ function Navbar() {
                 </button>
 
             </div>
+
+</Container>
 
         </nav>
 
