@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Container from "../Container/Container";
 import navigation from "../../../constants/navigation";
@@ -12,23 +12,28 @@ function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
-        useEffect(() => {
 
-    const handleScroll = () => {
-        setScrolled(window.scrollY > 10);
+useEffect(() => {
+
+    const handleResize = () => {
+
+        if (window.innerWidth > 768) {
+            setMenuOpen(false);
+        }
+
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
     };
 
 }, []);
 
     return (
 
-        <nav className={scrolled ? "navbar navbar-scrolled" : "navbar"}>
+<nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
 
 <Container>
 
