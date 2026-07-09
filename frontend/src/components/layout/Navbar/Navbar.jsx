@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Logo } from "../../common";
 import { Button } from "../../ui";
+import useAuth from "../../../hooks/useAuth";
 
 function Navbar() {
 
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const { user, isAuthenticated, logout } = useAuth();
 
 
 useEffect(() => {

@@ -1,0 +1,65 @@
+.auth-input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:22px;
+
+}
+
+.auth-input-group label{
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.auth-input-group label span{
+
+    color:#EF4444;
+
+    margin-left:4px;
+
+}
+
+.auth-input-group input{
+
+    height:52px;
+
+    padding:0 18px;
+
+    border:1px solid #CBD5E1;
+
+    border-radius:14px;
+
+    font-size:1rem;
+
+    transition:.25s;
+
+    outline:none;
+
+    background:white;
+
+}
+
+.auth-input-group input:focus{
+
+    border-color:#2DA7BE;
+
+    box-shadow:0 0 0 4px rgba(45,167,190,.12);
+
+}
+
+.auth-input-group small{
+
+    color:#EF4444;
+
+    font-size:.82rem;
+
+}
