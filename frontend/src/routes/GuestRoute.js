@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-function ProtectedRoute({ children }) {
+function GuestRoute({ children }) {
 
     const {
         loading,
@@ -14,9 +14,9 @@ function ProtectedRoute({ children }) {
 
     }
 
-    if (!isAuthenticated) {
+    if (isAuthenticated) {
 
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/dashboard" replace />;
 
     }
 
@@ -24,4 +24,4 @@ function ProtectedRoute({ children }) {
 
 }
 
-export default ProtectedRoute;
+export default GuestRoute;

@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard";
 import NotFound from "../pages/NotFound";
 import Features from "../pages/Features";
 import Pricing from "../pages/Pricing";
+import GuestRoute from "./GuestRoute";
 
 function AppRoutes() {
     return (
@@ -19,11 +20,11 @@ function AppRoutes() {
 
                 <Route path="/pricing" element={<Pricing />} />
 
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={ <GuestRoute><Login /></GuestRoute>} />
 
-                <Route path="/register" element={<Register />} />
+                <Route path="/register" element={ <GuestRoute><Register /></GuestRoute> } />
 
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute> } />
 
                 <Route path="*" element={<NotFound />} />
 
