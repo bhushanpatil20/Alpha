@@ -1,5 +1,7 @@
-// import Navbar from "../components/layout/Navbar/Navbar";
 import { Navbar, Container } from "../components/layout";
+import Hero from "../components/common/Hero/Hero";
+import Showcase from "../components/common/Showcase/Showcase";
+import Footer from "../components/common/Footer/Footer";
 
 function Home(){
 
@@ -9,11 +11,11 @@ return(
 
 <Navbar/>
 
-<div style={{padding:"60px"}}>
+<Hero />
 
-<h1>Home Page</h1>
+<Showcase />
 
-</div>
+<Footer />
 
 </>
 

@@ -1,0 +1,247 @@
+.showcase{
+
+    padding:100px 0;
+
+}
+
+.showcase-header{
+
+    text-align:center;
+
+    max-width:700px;
+
+    margin:0 auto 70px;
+
+}
+
+.showcase-header h2{
+
+    font-size:2.5rem;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.showcase-header p{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+    font-size:1.05rem;
+
+}
+
+.showcase-slider{
+
+    overflow:hidden;
+
+    width:100%;
+
+    margin-top:60px;
+
+     mask-image:linear-gradient(
+
+        to right,
+
+        transparent,
+
+        black 8%,
+
+        black 92%,
+
+        transparent
+
+    );
+
+}
+
+.showcase-track{
+
+    display:flex;
+
+    gap:24px;
+
+    width:max-content;
+
+    animation: marquee 28s linear infinite;
+
+}
+
+@keyframes marquee{
+
+    from{
+
+        transform:translateX(0);
+
+    }
+
+    to{
+
+        transform:translateX(calc(-50% - 12px));
+
+    }
+
+}
+
+.showcase-track:hover{
+
+    animation-play-state:paused;
+
+}
+
+.showcase-card{
+
+    width:370px;
+
+    flex-shrink:0;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    transition:.3s ease;
+
+}
+
+.showcase-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.08);
+
+}
+
+.showcase-icon{
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:18px;
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+
+}
+
+.showcase-card h3{
+
+    margin-bottom:18px;
+
+    font-size:1.35rem;
+
+}
+
+.showcase-card p{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+    margin-bottom:28px;
+
+}
+
+.showcase-button{
+
+    background:none;
+
+    border:none;
+
+    color:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.showcase-button:hover{
+
+    gap:14px;
+
+}
+
+/* RESPONSIVNESS */
+
+@media (max-width:768px){
+
+.showcase{
+
+padding:80px 0;
+
+}
+
+.showcase-slider {
+
+        overflow: visible;
+
+        mask-image: none;
+        -webkit-mask-image: none;
+
+    }
+
+    .showcase-track {
+
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        animation: none;
+
+        gap: 20px;
+
+    }
+
+    .showcase-card {
+
+        width: 100%;
+
+    }
+
+
+.showcase-header h2{
+
+font-size:2rem;
+
+}
+
+.showcase-card{
+
+padding:28px;
+
+}
+
+}

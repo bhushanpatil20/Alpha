@@ -9,6 +9,20 @@ body {
   background: #ffffff;
 }
 
+html,
+body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
 a {
   text-decoration: none;
   color: inherit;
