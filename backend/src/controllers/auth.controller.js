@@ -1,207 +1,117 @@
 import User from "../models/user.model.js";
-import jwt from "jsonwebtoken";
-
-const generateToken = (userId) => {
-
-    return jwt.sign(
-
-        { id: userId },
-
-        process.env.JWT_SECRET,
-
-        {
-            expiresIn: "7d"
-        }
-
-    );
-
-};
+import asyncHandler from "../utils/asyncHandler.js";
+import ApiResponse from "../utils/ApiResponse.js";
+import ApiError from "../utils/ApiError.js";
+import generateToken from "../utils/generateToken.js";
+import { registerService, loginService } from "../services/auth.service.js";
 
 //Register
 
-export const registerUser = async (req, res) => {
+export const registerUser = asyncHandler(async (req, res) => {
 
-    try {
+    const {
 
-        const {
-            fullName,
-            email,
-            password
-        } = req.body;
+        fullName,
+        email,
+        password
 
-        if (!fullName || !email || !password) {
+    } = req.body;
 
-            return res.status(400).json({
+    if (!fullName || !email || !password) {
 
-                success: false,
-                message: "All fields are required."
-
-            });
-
-        }
-
-        const existingUser = await User.findOne({ email });
-
-        if (existingUser) {
-
-            return res.status(409).json({
-
-                success: false,
-                message: "User already exists."
-
-            });
-
-        }
-
-        const user = await User.create({
-
-            fullName,
-            email,
-            password
-
-        });
-
-        const token = generateToken(user._id);
-
-        return res.status(201).json({
-
-            success: true,
-
-            message: "Account created successfully.",
-
-            token,
-
-            user: {
-
-                id: user._id,
-
-                fullName: user.fullName,
-
-                email: user.email,
-
-                role: user.role
-
-            }
-
-        });
+        throw new ApiError(
+            400,
+            "All fields are required."
+        );
 
     }
 
-    catch (error) {
+    const result = await registerService(req.body);
 
-        console.error(error);
+    return res.status(201).json(
 
-        return res.status(500).json({
+        new ApiResponse(
 
-            success: false,
+            201,
 
-            message: error.message
+            result,
 
-        });
+            "Account created successfully."
 
-    }
+        )
 
-};
+    );
+
+});
 
 //Login
-export const loginUser = async (req, res) => {
+export const loginUser = asyncHandler(async (req, res) => {
 
-    try {
+    const { email, password } = req.body;
 
-        const {
-            email,
-            password
-        } = req.body;
+    if (!email || !password) {
 
-        if (!email || !password) {
-
-            return res.status(400).json({
-
-                success: false,
-
-                message: "Email and password are required."
-
-            });
-
-        }
-
-        const user = await User.findOne({ email });
-
-        if (!user) {
-
-            return res.status(401).json({
-
-                success: false,
-
-                message: "Invalid email or password."
-
-            });
-
-        }
-
-        const isPasswordCorrect = await user.comparePassword(password);
-
-        if (!isPasswordCorrect) {
-
-            return res.status(401).json({
-
-                success: false,
-
-                message: "Invalid email or password."
-
-            });
-
-        }
-
-        const token = generateToken(user._id);
-
-        return res.status(200).json({
-
-            success: true,
-
-            message: "Login successful.",
-
-            token,
-
-            user: {
-
-                id: user._id,
-
-                fullName: user.fullName,
-
-                email: user.email,
-
-                role: user.role
-
-            }
-
-        });
+        throw new ApiError(
+            400,
+            "Email and password are required."
+        );
 
     }
 
-    catch (error) {
+    const result = await loginService(email, password);
 
-        return res.status(500).json({
+    return res.status(200).json(
 
-            success: false,
+        new ApiResponse(
 
-            message: error.message
+            200,
 
-        });
+            result,
 
-    }
+            "Login successful."
 
-};
+        )
+
+    );
+
+});
+
+
 
 //Logout
-export const logoutUser = async (req, res) => {
+export const logoutUser = asyncHandler(async (req, res) => {
 
-    return res.status(200).json({
+    return res.status(200).json(
 
-        success: true,
+        new ApiResponse(
 
-        message: "Logged out successfully."
+            200,
 
-    });
+            null,
 
-};
+            "Logged out successfully."
+
+        )
+
+    );
+
+});
+
+//protected route
+export const getCurrentUser = asyncHandler(async (req, res) => {
+
+    return res.status(200).json(
+
+        new ApiResponse(
+
+            200,
+
+            req.user,
+
+            "User fetched successfully."
+
+        )
+
+    );
+
+});
