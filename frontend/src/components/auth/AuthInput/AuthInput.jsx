@@ -19,8 +19,7 @@ const AuthInput = forwardRef(({
 
     ...props
 
-}))
- {
+}, ref) => {
 
     return (
 
@@ -36,6 +35,8 @@ const AuthInput = forwardRef(({
 
             <input
 
+                ref={ref}
+
                 type={type}
 
                 placeholder={placeholder}
@@ -48,24 +49,14 @@ const AuthInput = forwardRef(({
 
             />
 
-            {
-
-                error && (
-
-                    <small>
-
-                        {error}
-
-                    </small>
-
-                )
-
-            }
+            {error && (
+                <small>{error}</small>
+            )}
 
         </div>
 
     );
 
-}
+});
 
 export default AuthInput;

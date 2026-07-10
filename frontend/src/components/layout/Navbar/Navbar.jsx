@@ -1,19 +1,41 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Container from "../Container/Container";
-import navigation from "../../../constants/navigation";
-import { useEffect, useState } from "react";
+import { guestNavigation, userNavigation } from "../../../constants/navigation";
+import { useEffect, useState, useRef } from "react";
 import "./Navbar.css";
 import { Logo } from "../../common";
 import { Button } from "../../ui";
 import useAuth from "../../../hooks/useAuth";
+import ProfileDropdown from "./ProfileDropdown";
+import toast from "react-hot-toast";
 
 function Navbar() {
 
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const { user, isAuthenticated, logout } = useAuth();
+    const navigationItems = isAuthenticated ? userNavigation : guestNavigation;
+    const navigate = useNavigate();
+    const [profileOpen, setProfileOpen] = useState(false);
+    const dropdownRef = useRef(null);
+    const location = useLocation();
 
+    const handleLogout = async () => {
+
+    await logout();
+
+    toast.success("Logout Successfully!");
+
+    navigate("/");
+
+};
+
+useEffect(() => {
+
+    setProfileOpen(false);
+
+}, [location.pathname]);
 
 useEffect(() => {
 
@@ -33,6 +55,67 @@ useEffect(() => {
 
 }, []);
 
+useEffect(() => {
+
+    const handleClickOutside = (event) => {
+
+        if (
+
+            dropdownRef.current &&
+            !dropdownRef.current.contains(event.target)
+
+        ) {
+
+            setProfileOpen(false);
+
+        }
+
+    };
+
+    document.addEventListener(
+        "mousedown",
+        handleClickOutside
+    );
+
+    return () => {
+
+        document.removeEventListener(
+            "mousedown",
+            handleClickOutside
+        );
+
+    };
+
+}, []);
+
+useEffect(() => {
+
+    const handleEscape = (event) => {
+
+        if (event.key === "Escape") {
+
+            setProfileOpen(false);
+
+        }
+
+    };
+
+    document.addEventListener(
+        "keydown",
+        handleEscape
+    );
+
+    return () => {
+
+        document.removeEventListener(
+            "keydown",
+            handleEscape
+        );
+
+    };
+
+}, []);
+
     return (
 
 <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
@@ -45,7 +128,8 @@ useEffect(() => {
 
 <ul className={menuOpen ? "nav-links active" : "nav-links"}>
 
-    {navigation.map((item) => (
+    {
+    navigationItems.map((item) => (
 
         <li key={item.id}>
 
@@ -58,7 +142,8 @@ useEffect(() => {
 
         </li>
 
-    ))}
+    ))
+    }
 
     <li className="mobile-divider"></li>
 
@@ -90,17 +175,90 @@ useEffect(() => {
 
 </ul>
 
-<div className="navbar-actions">
+{
+    !isAuthenticated ? (
 
-    <NavLink to="/login" className="login-link">
-        Login
-    </NavLink>
+        <div className="navbar-actions">
 
-    <Button>
-        Get Started
-    </Button>
+            <NavLink
+                to="/login"
+                className="login-link"
+            >
+                Login
+            </NavLink>
+
+            <Button>
+                Get Started
+            </Button>
+
+        </div>
+
+    ) : (
+
+ <div className="navbar-profile" ref={ dropdownRef } >
+
+    <button className="profile-button" onClick={
+        () =>
+            setProfileOpen(!profileOpen)
+        }
+
+    >
+
+        <div className="profile-avatar">
+
+            {
+
+                user?.avatar
+
+                    ? (
+                        <img
+                            src={user.avatar}
+                            alt={user.fullName}
+                        />
+                    )
+
+                    : (
+
+                        user?.fullName?.charAt(0).toUpperCase()
+
+                    )
+
+            }
+
+        </div>
+
+        <span className="profile-name">
+
+            {user?.fullName}
+
+        </span>
+
+    </button>
+
+    {
+
+        profileOpen && (
+
+            <ProfileDropdown
+
+                user={user}
+
+                onLogout={handleLogout}
+
+                closeMenu={() =>
+                    setProfileOpen(false)
+                }
+
+            />
+
+        )
+
+    }
 
 </div>
+
+    )
+}
 
                 <button
 

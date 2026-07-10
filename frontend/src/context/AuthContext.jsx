@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-}
 
 //restore user
 useEffect(() => {
@@ -146,5 +145,7 @@ return (
     </AuthContext.Provider>
 
 );
+
+}
 
 export default AuthContext;

@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 import Dashboard from "../pages/Dashboard";
 import NotFound from "../pages/NotFound";
 import Features from "../pages/Features";
 import Pricing from "../pages/Pricing";
 import GuestRoute from "./GuestRoute";
+import ProtectedRoute from "./ProtectedRoute"
 
 function AppRoutes() {
     return (
-        <BrowserRouter>
             <Routes>
 
                 <Route path="/" element={<Home />} />
@@ -29,7 +29,6 @@ function AppRoutes() {
                 <Route path="*" element={<NotFound />} />
 
             </Routes>
-        </BrowserRouter>
     );
 }
 

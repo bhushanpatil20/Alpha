@@ -1,18 +1,3 @@
-const navigation = [
-    {
-        label: "Home",
-        path: "/"
-    },
-    {
-        label: "Features",
-        path: "/features"
-    },
-    {
-        label: "Pricing",
-        path: "/pricing"
-    }
-];
-
 export const guestNavigation = [
 
     {
@@ -56,5 +41,3 @@ export const userNavigation = [
     }
 
 ];
-
-export default navigation;

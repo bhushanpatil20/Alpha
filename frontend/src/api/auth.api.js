@@ -1,5 +1,4 @@
-import { logoutUser } from "../../../backend/src/controllers/auth.controller";
-import api from "./axios";
+import api from "./axios"
 
 //register
 export const register = async (data) => {

@@ -198,6 +198,162 @@
     display: none;
 }
 
+.navbar-user{
+
+display:flex;
+
+align-items:center;
+
+}
+
+.user-menu{
+
+width:44px;
+
+height:44px;
+
+border:none;
+
+border-radius:50%;
+
+background:#2DA7BE;
+
+color:white;
+
+font-size:1rem;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.user-menu:hover{
+
+transform:scale(1.05);
+
+}
+
+.profile-dropdown{
+
+position:absolute;
+
+top:58px;
+
+right:0;
+
+width:180px;
+
+background:white;
+
+border-radius:16px;
+
+box-shadow:0 12px 40px rgba(0,0,0,.08);
+
+padding:10px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:6px;
+
+}
+
+.profile-dropdown a,
+.profile-dropdown button{
+
+background:none;
+
+border:none;
+
+padding:12px;
+
+border-radius:10px;
+
+text-align:left;
+
+cursor:pointer;
+
+font-size:.95rem;
+
+color:#334155;
+
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown button:hover{
+
+background:#F1F5F9;
+
+}
+
+.navbar-profile{
+
+    position:relative;
+
+}
+
+.profile-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+.profile-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#2DA7BE;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    font-weight:700;
+
+}
+
+.profile-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.profile-name{
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
 
 /* Responsive */
 
@@ -303,4 +459,11 @@ border-top:1px solid var(--border);
 .nav-links li {
     width: 30%;
 }
+
+.profile-name{
+
+display:none;
+
+}
+
 }
