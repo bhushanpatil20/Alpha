@@ -1,0 +1,25 @@
+.sidebar{
+
+    width:280px;
+
+    min-height:100vh;
+
+    background:#101826;
+
+    border-right:1px solid #22314B;
+
+    padding:32px;
+
+}
+
+.sidebar h1{
+
+    color:#3CC6E8;
+
+    font-family:"Oxanium",sans-serif;
+
+    letter-spacing:4px;
+
+    font-size:2rem;
+
+}
