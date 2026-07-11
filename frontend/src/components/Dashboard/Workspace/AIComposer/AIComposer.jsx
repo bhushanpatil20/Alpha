@@ -1,38 +1,26 @@
 import "./AIComposer.css";
-
+import { useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 
 import promptSuggestions from "../../../../constants/promptSuggestions";
 
-function AIComposer({ value, onChange, onSubmit }) {
+function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
+
+    const isWriting = value.trim().length > 0;
+
+    useEffect(() => {
+
+    onWritingChange?.(isWriting);
+
+}, [isWriting, onWritingChange]);
 
     return (
 
         <section className="ai-composer">
 
-            <div className="composer-header">
+            <div className={`composer-card ${isWriting ? "writing" : ""}`}>
 
-                <span className="composer-badge">
-
-                    <span className="composer-status"></span>
-
-                    AI Workspace
-
-                </span>
-
-                <h2>Create Content</h2>
-
-                <p>
-
-                    Describe what you'd like Alpha to generate for you.
-
-                </p>
-
-            </div>
-
-            <div className="composer-card">
-
-                <div className="composer-intro">
+                <div className={`composer-intro ${isWriting ? "writing-hidden" : ""}`}>
 
                     <h3>✨ Start with your idea</h3>
 
@@ -44,7 +32,7 @@ function AIComposer({ value, onChange, onSubmit }) {
 
                 </div>
 
-                <div className="composer-chips">
+                <div className={`composer-chips ${isWriting ? "writing-hidden" : ""}`}>
 
                     {
 
@@ -88,7 +76,7 @@ function AIComposer({ value, onChange, onSubmit }) {
 
                     onChange={(e) => onChange(e.target.value)}
 
-                    
+                    rows={3}
 
                     maxLength={4000}
 

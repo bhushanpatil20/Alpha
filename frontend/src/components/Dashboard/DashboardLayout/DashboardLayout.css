@@ -137,4 +137,28 @@
 
 }
 
+.dashboard-main{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:100dvh;
+
+    padding:18px;
+
+    overflow:hidden;
+
+}
+
+.dashboard-content{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding-bottom: 260px;
+
+}
+
 }

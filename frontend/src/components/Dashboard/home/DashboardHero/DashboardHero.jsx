@@ -2,7 +2,7 @@ import "./DashboardHero.css";
 import getGreeting from "../../../../utils/getGreeting";
 import useAuth from "../../../../hooks/useAuth";
 
-function DashboardHero() {
+function DashboardHero({isWriting}) {
 
     const { user } = useAuth();
 
@@ -10,7 +10,7 @@ function DashboardHero() {
 
     return (
 
-        <section className="dashboard-hero">
+        <section className={`dashboard-hero ${isWriting ? "hero-hidden" : ""}`}>
 
             <span className="hero-greeting">
 

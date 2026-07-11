@@ -6,23 +6,36 @@ import { useState } from "react";
 
 function Dashboard() {
 
+    const [isWriting, setIsWriting] = useState(false);
+
     const [prompt, setPrompt] = useState("");
 
-      const handleGenerate = () => {
+    const handleGenerate = () => {
 
     console.log(prompt);
 
 };
 
     return (
+        
+<DashboardLayout>
 
-        <DashboardLayout>
+    <div className="dashboard-content">
 
-           <DashboardHero />
+        <DashboardHero isWriting={isWriting} />
 
-           <AIComposer value={prompt} onChange={setPrompt} onSubmit={handleGenerate} />
+        {/* AI responses will live here later */}
 
-        </DashboardLayout>
+    </div>
+
+    <AIComposer
+        value={prompt}
+        onChange={setPrompt}
+        onSubmit={handleGenerate}
+        onWritingChange={setIsWriting}
+    />
+
+</DashboardLayout>
 
     );
 

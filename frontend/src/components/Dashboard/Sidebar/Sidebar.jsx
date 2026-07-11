@@ -19,28 +19,6 @@ function Sidebar({sidebarOpen, setSidebarOpen}) {
 
             <div className="sidebar-top">
 
-                <div className="sidebar-brand">
-
-                    <Logo />
-
-                    <div>
-
-                        <h1>ALPHA</h1>
-
-                        <p>AI Content Studio</p>
-
-                    </div>
-
-                </div>
-
-                <div className="ai-status">
-
-                    <span className="status-dot"></span>
-
-                    <span>AI Ready</span>
-
-                </div>
-
                 
                     <nav className="sidebar-nav">
 
