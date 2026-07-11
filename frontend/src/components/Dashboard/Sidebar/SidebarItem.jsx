@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function SidebarItem({ item }) {
+function SidebarItem({ item, setSidebarOpen }) {
 
     const Icon = item.icon;
 
@@ -13,6 +13,17 @@ function SidebarItem({ item }) {
                     ? "sidebar-item active"
                     : "sidebar-item"
             }
+
+            onClick={() => {
+
+        if(window.innerWidth <= 768){
+
+            setSidebarOpen(false);
+
+        }
+
+    }}
+
         >
 
             <span className="sidebar-item-indicator"></span>

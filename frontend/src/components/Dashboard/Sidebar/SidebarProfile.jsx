@@ -1,20 +1,23 @@
 import { FiUser, FiLogOut } from "react-icons/fi";
 import useAuth from "../../../hooks/useAuth";
 import "./Sidebar.css";
-
-const [showLogoutModal, setShowLogoutModal] = useState(false);
+import { useState } from "react";
+import ConfirmationModal from "../../common/ConfirmationModel/ConfirmationModel";
 
 function SidebarProfile() {
 
     const { user, logout } = useAuth();
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-    const handleLogout = async () => {
+    // const handleLogout = async () => {
 
-        await logout();
+    //     await logout();
 
-    };
+    // };
 
     return (
+
+        <>
 
         <div className="sidebar-profile">
 
@@ -84,7 +87,32 @@ function SidebarProfile() {
 
         </div>
 
-        
+
+            <ConfirmationModal
+
+                isOpen={showLogoutModal}
+
+                title="Logout"
+
+                message="Are you sure you want to logout from Alpha?"
+
+                confirmText="Logout"
+
+                cancelText="Stay"
+
+                onCancel={() => setShowLogoutModal(false)}
+
+                onConfirm={async () => {
+
+                    setShowLogoutModal(false);
+
+                    await logout();
+
+                }}
+
+            />
+
+        </>
 
     );
 

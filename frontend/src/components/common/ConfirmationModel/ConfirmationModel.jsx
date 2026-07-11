@@ -1,4 +1,4 @@
-import "./ConfirmationModal.css";
+import "./ConfirmationModel.css";
 
 function ConfirmationModal({
 

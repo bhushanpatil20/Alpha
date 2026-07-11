@@ -3,12 +3,19 @@ import dashboardNavigation from "../../../constants/dashboardNavigation";
 import SidebarItem from "./SidebarItem";
 import Logo from "../../common/Logo/Logo"
 import SidebarProfile from "./SidebarProfile";
+import { HiOutlineX } from "react-icons/hi";
 
-function Sidebar() {
+function Sidebar({sidebarOpen, setSidebarOpen}) {
 
     return (
 
-        <aside className="sidebar">
+        <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+
+            <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)}>
+
+    <HiOutlineX />
+
+</button>
 
             <div className="sidebar-top">
 
@@ -46,6 +53,8 @@ function Sidebar() {
                 key={item.id}
 
                 item={item}
+
+                setSidebarOpen={setSidebarOpen}
 
             />
 

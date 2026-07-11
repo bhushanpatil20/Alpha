@@ -1,0 +1,159 @@
+.prompt-composer{
+
+    background:#0F172A;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    position:relative;
+
+}
+
+.prompt-placeholder{
+
+    margin-bottom:24px;
+
+}
+
+.prompt-placeholder h3{
+
+    color:#E2E8F0;
+
+    margin-bottom:10px;
+
+}
+
+.prompt-placeholder p{
+
+    color:#64748B;
+
+}
+
+.prompt-suggestions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:24px;
+
+}
+
+.suggestion-chip{
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:#161F32;
+
+    color:#CBD5E1;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.suggestion-chip:hover{
+
+    background:rgba(60,198,232,.08);
+
+    border-color:#3CC6E8;
+
+    color:#3CC6E8;
+
+}
+
+.prompt-composer textarea{
+
+    width:100%;
+
+    min-height:220px;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    color:white;
+
+    font-size:1rem;
+
+    line-height:1.8;
+
+    font-family:"Manrope",sans-serif;
+
+}
+
+.prompt-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:18px;
+
+}
+
+.character-counter{
+
+    color:#64748B;
+
+    font-variant-numeric:tabular-nums;
+
+}
+
+.send-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #3CC6E8,
+        #8B5CF6
+    );
+
+    transition:.25s;
+
+}
+
+.send-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.send-btn:disabled{
+
+    background:#2A3345;
+
+    color:#64748B;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}

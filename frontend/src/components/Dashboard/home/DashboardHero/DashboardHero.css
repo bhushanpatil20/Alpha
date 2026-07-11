@@ -1,0 +1,63 @@
+.dashboard-hero{
+
+    margin-bottom:56px;
+
+}
+
+.hero-greeting{
+
+    display:block;
+
+    color:#94A3B8;
+
+    font-size:1rem;
+
+    margin-bottom:8px;
+
+}
+
+.dashboard-hero h1{
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:3rem;
+
+    color:#F8FAFC;
+
+    margin:0;
+
+}
+
+.dashboard-hero h1 span{
+
+    font-family:inherit;
+
+}
+
+.dashboard-hero p{
+
+    margin-top:18px;
+
+    font-size:1.3rem;
+
+    font-weight:600;
+
+    color:#E2E8F0;
+
+}
+
+.dashboard-hero small{
+
+    display:block;
+
+    margin-top:12px;
+
+    font-size:1rem;
+
+    color:#94A3B8;
+
+    max-width:650px;
+
+    line-height:1.8;
+
+}
