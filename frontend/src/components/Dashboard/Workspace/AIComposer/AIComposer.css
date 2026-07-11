@@ -1,0 +1,297 @@
+.ai-composer{
+
+    width:100%;
+
+    max-width:1100px;
+
+    margin:40px auto;
+
+}
+
+.composer-header{
+
+    margin-bottom:28px;
+
+}
+
+.composer-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:rgba(60,198,232,.08);
+
+    color:#3CC6E8;
+
+    font-size:.9rem;
+
+}
+
+.composer-status{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+}
+
+.composer-header h2{
+
+    margin-top:20px;
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:2.3rem;
+
+    color:#F8FAFC;
+
+}
+
+.composer-header p{
+
+    margin-top:10px;
+
+    color:#94A3B8;
+
+    font-size:1rem;
+
+}
+
+.composer-card{
+
+    margin-top:28px;
+
+    background:#141B2D;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:28px;
+
+    padding:28px;
+
+    transition:.3s;
+
+}
+
+.composer-card:hover{
+
+    border-color:rgba(60,198,232,.18);
+
+}
+
+.composer-intro h3{
+
+    font-size:1.3rem;
+
+    color:#F8FAFC;
+
+}
+
+.composer-intro p{
+
+    margin-top:8px;
+
+    color:#94A3B8;
+
+}
+
+.composer-chips{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin:24px 0;
+
+}
+
+.composer-chip{
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:#1E263B;
+
+    color:#CBD5E1;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.composer-chip:hover{
+
+    background:#24324F;
+
+    color:#3CC6E8;
+
+}
+
+.composer-input{
+
+    width:100%;
+
+    min-height: 100px;
+
+    max-height: 150px;
+
+    overflow-y: auto;
+
+    resize:none;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#F8FAFC;
+
+    font-size:1rem;
+
+    line-height:1.8;
+
+    font-family:"Manrope",sans-serif;
+
+}
+
+.composer-input::placeholder{
+
+    color:#64748B;
+
+}
+
+.composer-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:20px;
+
+    padding-top:20px;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+.composer-counter{
+
+    color:#64748B;
+
+    font-size:.9rem;
+
+}
+
+.composer-send{
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #3CC6E8,
+
+        #8B5CF6
+
+    );
+
+    color:white;
+
+    transition:.25s;
+
+}
+
+.composer-send:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 0 25px rgba(60,198,232,.25);
+
+}
+
+.composer-send:disabled{
+
+    background:#2A3345;
+
+    color:#64748B;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
+    transform:none;
+
+}
+
+/* Chrome, Edge, Safari */
+
+.composer-input::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.composer-input::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.composer-input::-webkit-scrollbar-thumb{
+
+    background:rgba(60,198,232,.25);
+
+    border-radius:999px;
+
+}
+
+.composer-input::-webkit-scrollbar-thumb:hover{
+
+    background:rgba(60,198,232,.45);
+
+}
+
+/* Firefox */
+
+.composer-input{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:rgba(60,198,232,.35) transparent;
+
+}

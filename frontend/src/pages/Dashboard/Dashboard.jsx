@@ -1,9 +1,8 @@
 import DashboardLayout from "../../components/dashboard/DashboardLayout/DashboardLayout";
 import DashboardHero from "../../components/Dashboard/home/DashboardHero/DashboardHero";
-import AIWorkspace from "../../components/Dashboard/Workspace/AIWorkspace/AIWorkspace";
-import PromptEditor from "../../components/Dashboard/Workspace/PromptEditor/PromptEditor";
-import PromptComposer from "../../components/Dashboard/Workspace/PromptComposer/PromptComposer";
+import AIComposer from "../../components/Dashboard/Workspace/AIComposer/AIComposer";
 import { useState } from "react";
+
 
 function Dashboard() {
 
@@ -21,14 +20,7 @@ function Dashboard() {
 
            <DashboardHero />
 
-           <AIWorkspace>
-
-        <PromptComposer value={prompt} onChange={setPrompt} onSubmit={handleGenerate} />
-
-            <PromptEditor value={prompt} onChange={setPrompt} />
-
-            </AIWorkspace>
-
+           <AIComposer value={prompt} onChange={setPrompt} onSubmit={handleGenerate} />
 
         </DashboardLayout>
 

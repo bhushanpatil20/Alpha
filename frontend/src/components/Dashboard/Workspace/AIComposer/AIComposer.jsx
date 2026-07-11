@@ -1,0 +1,145 @@
+import "./AIComposer.css";
+
+import { ArrowUp } from "lucide-react";
+
+import promptSuggestions from "../../../../constants/promptSuggestions";
+
+function AIComposer({ value, onChange, onSubmit }) {
+
+    return (
+
+        <section className="ai-composer">
+
+            <div className="composer-header">
+
+                <span className="composer-badge">
+
+                    <span className="composer-status"></span>
+
+                    AI Workspace
+
+                </span>
+
+                <h2>Create Content</h2>
+
+                <p>
+
+                    Describe what you'd like Alpha to generate for you.
+
+                </p>
+
+            </div>
+
+            <div className="composer-card">
+
+                <div className="composer-intro">
+
+                    <h3>✨ Start with your idea</h3>
+
+                    <p>
+
+                        Choose a template or start writing your own prompt.
+
+                    </p>
+
+                </div>
+
+                <div className="composer-chips">
+
+                    {
+
+                        promptSuggestions.map((item) => (
+
+                            <button
+
+                                key={item}
+
+                                className="composer-chip"
+
+                                onClick={() =>
+
+                                    onChange(
+
+                                        `Write a professional ${item.toLowerCase()} about `
+
+                                    )
+
+                                }
+
+                            >
+
+                                {item}
+
+                            </button>
+
+                        ))
+
+                    }
+
+                </div>
+
+                <textarea
+
+                    className="composer-input"
+
+                    placeholder="Tell Alpha exactly what you'd like to create..."
+
+                    value={value}
+
+                    onChange={(e) => onChange(e.target.value)}
+
+                    
+
+                    maxLength={4000}
+
+                    onKeyDown={(e) => {
+
+    if (e.key === "Enter" && !e.shiftKey) {
+
+        e.preventDefault();
+
+        if (value.trim()) {
+
+            onSubmit();
+
+        }
+
+    }
+
+}}
+
+                />
+
+                <div className="composer-footer">
+
+                    <div className="composer-counter">
+
+                        {value.length}/4000
+
+                    </div>
+
+                    <button
+
+                        className="composer-send"
+
+                        disabled={!value.trim()}
+
+                        onClick={onSubmit}
+
+                    >
+
+                        <ArrowUp size={18} />
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    );
+
+}
+
+export default AIComposer;
