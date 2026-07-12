@@ -122,9 +122,9 @@
 
 .sidebar-avatar{
 
-    width:82px;
+    width:72px;
 
-    height:82px;
+    height:72px;
 
     margin:0 auto 18px;
 
@@ -208,31 +208,41 @@
 
     flex:1;
 
-    margin:28px 0;
+    margin-top:18px;
+
+    padding-top:18px;
+
+    border-top:1px solid rgba(255,255,255,.05);
 
     overflow-y:auto;
 
-    padding-right:4px;
+    overflow-x: hidden;
 
 }
 
 .sidebar-history::-webkit-scrollbar{
 
-    width:4px;
+    width: 5px;
 
 }
 
 .sidebar-history::-webkit-scrollbar-thumb{
 
-    background:#25324D;
+    background:#26324A;
 
     border-radius:999px;
 
 }
 
+.sidebar-history::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
 .history-group{
 
-    margin-bottom:28px;
+    margin-bottom: 20px;
 
 }
 
@@ -262,9 +272,9 @@
 
     gap:14px;
 
-    padding:14px 16px;
+    padding: 16px;
 
-    margin-bottom:10px;
+    margin-bottom: 12px;
 
     border:none;
 
@@ -292,15 +302,17 @@
 
 .history-item span{
 
-    flex:1;
+    width:100%;
 
     overflow:hidden;
 
-    text-overflow:ellipsis;
-
     white-space:nowrap;
 
-    text-align:left;
+    text-overflow:ellipsis;
+
+    font-weight:600;
+
+    color:#F8FAFC;
 
 }
 
@@ -308,9 +320,11 @@
 
     background:rgba(60,198,232,.08);
 
-    transform:translateX(4px);
+    transform:translateX(5px);
 
-    color:white;
+    box-shadow:
+
+        0 0 22px rgba(60,198,232,.08);
 
 }
 
@@ -335,5 +349,103 @@
 .history-item:active{
 
     transform:scale(.98);
+
+}
+
+.history-content{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    overflow:hidden;
+
+    text-align: left;
+
+}
+
+.history-content small{
+
+    margin-top:4px;
+
+    color:#64748B;
+
+    font-size:.72rem;
+
+}
+
+.sidebar-nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+.sidebar-nav button{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px 18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:transparent;
+
+    color:#E2E8F0;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+}
+
+.sidebar-nav button{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px 18px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:transparent;
+
+    color:#E2E8F0;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.logout-btn:hover{
+
+    background:rgba(239,68,68,.12);
+
+    color:#F87171;
 
 }

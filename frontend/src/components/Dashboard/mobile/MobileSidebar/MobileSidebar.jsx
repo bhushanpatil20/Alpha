@@ -1,39 +1,60 @@
 import "./MobileSidebar.css";
-
-import {
-    X,
-    House,
-    Sparkles,
-    LogOut,
-    MessageSquare
-} from "lucide-react";
+import { X, House, Sparkles, LogOut, MessageSquare} from "lucide-react";
+import { useState } from "react";
+import useAuth from "../../../../hooks/useAuth";
+import ConfirmationModal from "../../../common/ConfirmationModel/ConfirmationModel";
 
 const demoChats = {
 
     Today: [
-        "Build React Dashboard",
-        "AI Startup Ideas"
+
+        {
+            id:1,
+            title:"Build React Dashboard",
+            time:"2:35 PM"
+        },
+
+        {
+            id:2,
+            title:"AI Startup Ideas",
+            time:"11:40 AM"
+        }
+
     ],
 
-    Yesterday: [
-        "Resume Improvements",
-        "LinkedIn Post"
+    Yesterday:[
+
+        {
+            id:3,
+            title:"Resume Improvements",
+            time:"6:12 PM"
+        },
+
+        {
+            id:4,
+            title:"LinkedIn Post",
+            time:"3:18 PM"
+        }
+
     ],
 
-    "Previous 7 Days": [
-        "Internship Roadmap",
-        "Gemini API Setup"
+    "Previous 7 Days":[
+
+        {
+            id:5,
+            title:"Gemini API Setup",
+            time:"Monday"
+        }
+
     ]
 
 };
 
-function MobileSidebar({
+function MobileSidebar({ isOpen, onClose}) {
 
-    isOpen,
+    const { logout } = useAuth();
 
-    onClose
-
-}) {
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     return (
 
@@ -41,13 +62,13 @@ function MobileSidebar({
 
             <div
 
-                className={`mobile-sidebar-overlay ${
-                    isOpen ? "show" : ""
-                }`}
+    className={`mobile-sidebar-overlay ${
+        isOpen ? "show" : ""
+    }`}
 
-                onClick={onClose}
+    onClick={onClose}
 
-            />
+/>
 
             <aside
 
@@ -91,25 +112,25 @@ function MobileSidebar({
 
                 </div>
 
-                <nav className="sidebar-nav">
+                      <div className="sidebar-nav">
 
-                    <button>
+    <button>
 
-                        <House size={20}/>
+        <Sparkles size={20} />
 
-                        Home
+        <span>New Chat</span>
 
-                    </button>
+    </button>
 
-                    <button>
+    <button className="logout-btn" onClick={() => setShowLogoutModal(true)}>
 
-                        <Sparkles size={20}/>
+        <LogOut size={20} />
 
-                        New Chat
+        <span>Logout</span>
 
-                    </button>
+    </button>
 
-                </nav>
+</div>
 
                 <div className="sidebar-history">
 
@@ -135,21 +156,32 @@ function MobileSidebar({
                                         chats.map(chat=>(
 
                                             <button
-                                                key={chat}
-                                                className="history-item"
-                                            >
 
-                                                <MessageSquare
-                                                    size={16}
-                                                />
+    key={chat.id}
 
-                                                <span>
+    className="history-item"
 
-                                                    {chat}
+>
 
-                                                </span>
+    <MessageSquare size={18}/>
 
-                                            </button>
+    <div className="history-content">
+
+        <span>
+
+            {chat.title}
+
+        </span>
+
+        <small>
+
+            {title} • {chat.time}
+
+        </small>
+
+    </div>
+
+</button>
 
                                         ))
 
@@ -165,19 +197,33 @@ function MobileSidebar({
 
                 </div>
 
-                <div className="sidebar-footer">
-
-                    <button>
-
-                        <LogOut size={20}/>
-
-                        Logout
-
-                    </button>
-
-                </div>
-
             </aside>
+
+            <ConfirmationModal
+
+    isOpen={showLogoutModal}
+
+    title="Logout"
+
+    message="Are you sure you want to logout from Alpha?"
+
+    confirmText="Logout"
+
+    cancelText="Stay"
+
+    onCancel={() => setShowLogoutModal(false)}
+
+    onConfirm={async () => {
+
+        setShowLogoutModal(false);
+
+        onClose();          // Close the sidebar first
+
+        await logout();
+
+    }}
+
+/>
 
         </>
 

@@ -1,20 +1,24 @@
-// import DashboardLayout from "../../components/dashboard/DashboardLayout/DashboardLayout";
-// import DashboardHero from "../../components/Dashboard/home/DashboardHero/DashboardHero";
-// import AIComposer from "../../components/Dashboard/Workspace/AIComposer/AIComposer";
+import DashboardLayout from "../../components/dashboard/DashboardLayout/DashboardLayout";
+import DashboardHero from "../../components/Dashboard/home/DashboardHero/DashboardHero";
+import AIComposer from "../../components/Dashboard/Workspace/AIComposer/AIComposer";
+import Sidebar from "../../components/dashboard/Sidebar/Sidebar";
 import { useState } from "react";
-import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
-import MobileHero from "../../components/Dashboard/mobile/MobileHero";
-import MobileTopBar from "../../components/Dashboard/mobile/MobileTopBar/MobileTopBar";
-import MobileComposer from "../../components/Dashboard/mobile/MobileComposer";
-
+// import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
+// import MobileHero from "../../components/Dashboard/mobile/MobileHero";
+// import MobileTopBar from "../../components/Dashboard/mobile/MobileTopBar/MobileTopBar";
+// import MobileComposer from "../../components/Dashboard/mobile/MobileComposer";
+// import MobileSidebar from "../../components/Dashboard/mobile/MobileSidebar/MobileSidebar";
+import { logout } from "../../api/auth.api";
 
 function Dashboard() {
 
-    // const [isWriting, setIsWriting] = useState(false);
+   const [isWriting, setIsWriting] = useState(false);
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const [prompt, setPrompt] = useState("");
 
-    const isWriting = prompt.trim().length > 0;
+    // const isWriting = prompt.trim().length > 0;
 
     const handleGenerate = () => {
 
@@ -24,23 +28,25 @@ function Dashboard() {
 
     return (
 
-        <MobileDashboard>
+<DashboardLayout>
 
-    <MobileTopBar />
+    <div className="dashboard-content">
 
-<MobileHero isWriting={isWriting} />
+        <Sidebar onLogout={logout} />
 
-<MobileComposer
+        <DashboardHero isWriting={isWriting} />
 
-    value={prompt}
+        {/* AI responses will live here later */}
 
-    onChange={setPrompt}
+  </div>
 
-    onSubmit={handleGenerate}
+    <AIComposer
+      value={prompt}
+       onChange={setPrompt}
+      onSubmit={handleGenerate}
+        onWritingChange={setIsWriting}  />
 
-/>
-
-</MobileDashboard>
+ </DashboardLayout>
 
     );
 
@@ -48,21 +54,23 @@ function Dashboard() {
 
 export default Dashboard;
 
-{/* <DashboardLayout>
 
-    <div className="dashboard-content">
+//       <MobileDashboard>
 
-        <DashboardHero isWriting={isWriting} />
+//     <MobileTopBar onMenuClick={() => setIsSidebarOpen(true)}/>
 
-        {/* AI responses will live here later */}
+//         <MobileSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} onLogout={logout}/>
 
-//     </div>
+// <MobileHero isWriting={isWriting} />
 
-//     <AIComposer
-//         value={prompt}
-//         onChange={setPrompt}
-//         onSubmit={handleGenerate}
-//         onWritingChange={setIsWriting}
-//     />
+// <MobileComposer
 
-// </DashboardLayout> */}
+//     value={prompt}
+
+//     onChange={setPrompt}
+
+//     onSubmit={handleGenerate}
+
+// />
+
+// </MobileDashboard>

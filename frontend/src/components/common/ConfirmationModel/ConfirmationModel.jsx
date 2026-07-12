@@ -1,22 +1,6 @@
 import "./ConfirmationModel.css";
 
-function ConfirmationModal({
-
-    isOpen,
-
-    title,
-
-    message,
-
-    confirmText = "Confirm",
-
-    cancelText = "Cancel",
-
-    onConfirm,
-
-    onCancel
-
-}) {
+function ConfirmationModal({ isOpen, title, message, confirmText = "Confirm", cancelText = "Cancel", onConfirm, onCancel}) {
 
     if (!isOpen) return null;
 
