@@ -1,14 +1,20 @@
-import DashboardLayout from "../../components/dashboard/DashboardLayout/DashboardLayout";
-import DashboardHero from "../../components/Dashboard/home/DashboardHero/DashboardHero";
-import AIComposer from "../../components/Dashboard/Workspace/AIComposer/AIComposer";
+// import DashboardLayout from "../../components/dashboard/DashboardLayout/DashboardLayout";
+// import DashboardHero from "../../components/Dashboard/home/DashboardHero/DashboardHero";
+// import AIComposer from "../../components/Dashboard/Workspace/AIComposer/AIComposer";
 import { useState } from "react";
+import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
+import MobileHero from "../../components/Dashboard/mobile/MobileHero";
+import MobileTopBar from "../../components/Dashboard/mobile/MobileTopBar/MobileTopBar";
+import MobileComposer from "../../components/Dashboard/mobile/MobileComposer";
 
 
 function Dashboard() {
 
-    const [isWriting, setIsWriting] = useState(false);
+    // const [isWriting, setIsWriting] = useState(false);
 
     const [prompt, setPrompt] = useState("");
+
+    const isWriting = prompt.trim().length > 0;
 
     const handleGenerate = () => {
 
@@ -17,8 +23,32 @@ function Dashboard() {
 };
 
     return (
-        
-<DashboardLayout>
+
+        <MobileDashboard>
+
+    <MobileTopBar />
+
+<MobileHero isWriting={isWriting} />
+
+<MobileComposer
+
+    value={prompt}
+
+    onChange={setPrompt}
+
+    onSubmit={handleGenerate}
+
+/>
+
+</MobileDashboard>
+
+    );
+
+}
+
+export default Dashboard;
+
+{/* <DashboardLayout>
 
     <div className="dashboard-content">
 
@@ -26,19 +56,13 @@ function Dashboard() {
 
         {/* AI responses will live here later */}
 
-    </div>
+//     </div>
 
-    <AIComposer
-        value={prompt}
-        onChange={setPrompt}
-        onSubmit={handleGenerate}
-        onWritingChange={setIsWriting}
-    />
+//     <AIComposer
+//         value={prompt}
+//         onChange={setPrompt}
+//         onSubmit={handleGenerate}
+//         onWritingChange={setIsWriting}
+//     />
 
-</DashboardLayout>
-
-    );
-
-}
-
-export default Dashboard;
+// </DashboardLayout> */}

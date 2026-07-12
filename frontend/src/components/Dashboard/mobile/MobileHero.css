@@ -1,0 +1,89 @@
+.mobile-hero{
+
+    margin-top:28px;
+
+    animation:fadeUp .5s ease;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease,
+        max-height .35s ease,
+        margin .35s ease;
+
+}
+
+.mobile-hero-hidden{
+
+    opacity:0;
+
+    transform:translateY(-25px);
+
+    max-height:0;
+
+    overflow:hidden;
+
+    margin:0;
+
+    pointer-events:none;
+
+}
+
+.mobile-hero{
+
+    margin-top:16px;
+
+}
+
+.mobile-greeting{
+
+    color:#94A3B8;
+
+    font-size:.95rem;
+
+    margin-bottom:10px;
+
+}
+
+.mobile-hero h1{
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:2.5rem;
+
+    line-height:1.1;
+
+    margin-bottom:22px;
+
+}
+
+.mobile-description{
+
+    font-size:1.15rem;
+
+    line-height:1.6;
+
+    color:#CBD5E1;
+
+    max-width:320px;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

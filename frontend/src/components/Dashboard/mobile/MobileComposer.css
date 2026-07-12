@@ -1,0 +1,241 @@
+.mobile-composer{
+
+    position:fixed;
+
+    left:20px;
+
+    right:20px;
+
+    bottom:20px;
+
+    z-index:100;
+
+}
+
+.mobile-chip-row{
+
+    display:flex;
+
+    gap:10px;
+
+    overflow-x:auto;
+
+    margin-bottom:14px;
+
+    scrollbar-width:none;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease,
+        max-height .3s ease;
+
+}
+
+.mobile-chip-hidden{
+
+    opacity:0;
+
+    transform:translateY(-12px);
+
+    max-height:0;
+
+    margin-bottom:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+}
+
+.mobile-input-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:220px;
+
+    background:#161F32;
+
+    border:1px solid rgba(60,198,232,.15);
+
+    border-radius:24px;
+
+    padding:18px;
+
+    backdrop-filter:blur(16px);
+
+}
+
+.mobile-chip-row::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.mobile-chip-row button{
+
+    flex-shrink:0;
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#1B2338;
+
+    color:#CBD5E1;
+
+    font-size:.9rem;
+
+}
+
+.mobile-input-card{
+
+    background:#161F32;
+
+    border:1px solid rgba(60,198,232,.15);
+
+    border-radius:24px;
+
+    padding:18px;
+
+    backdrop-filter:blur(16px);
+
+}
+
+.mobile-input{
+
+    flex:1;
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    background:transparent;
+
+    color:#F8FAFC;
+
+    font-size:1rem;
+
+    font-family:"Manrope",sans-serif;
+
+    min-height:70px;
+
+    max-height:none;
+
+    overflow-y:auto;
+
+    padding-bottom: 10px;
+
+}
+
+.mobile-composer-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:auto;
+
+    padding-top:16px;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+.mobile-composer-footer span{
+
+    color:#94A3B8;
+
+    font-size:.85rem;
+
+}
+
+.mobile-send-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius: 50%;
+
+    background:linear-gradient(
+
+        135deg,
+
+        #3CC6E8,
+
+        #8B5CF6
+
+    );
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.2rem;
+
+}
+
+.mobile-chip{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#1B2338;
+
+    color:#CBD5E1;
+
+    cursor:pointer;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        color .25s ease;
+
+}
+
+.mobile-chip:active{
+
+    transform:scale(.95);
+
+}
+
+.mobile-chip:hover{
+
+    transform:translateY(-3px);
+
+    background:linear-gradient(
+        135deg,
+        rgba(60,198,232,.18),
+        rgba(139,92,246,.18)
+    );
+
+    color:#FFFFFF;
+
+    box-shadow:
+        0 0 18px rgba(60,198,232,.18);
+
+}

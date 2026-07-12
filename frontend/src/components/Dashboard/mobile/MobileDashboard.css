@@ -1,0 +1,33 @@
+.mobile-dashboard{
+
+    width:100%;
+
+    min-height:100dvh;
+
+    background:#070B14;
+
+    color:#F8FAFC;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+.mobile-content{
+
+    width:100%;
+
+    max-width:480px;
+
+    margin:0 auto;
+
+    padding:32px 24px;
+
+    flex:1;
+
+    box-sizing:border-box;
+
+}
