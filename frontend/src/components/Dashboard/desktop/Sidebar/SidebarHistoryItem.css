@@ -1,0 +1,99 @@
+.history-item{
+
+    width:100%;
+
+    margin-right: 8px;
+
+    box-sizing: border-box;
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+    padding: 16px;
+
+    margin-bottom: 8px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:left;
+
+}
+
+.history-item:hover{
+
+    background:#17253B;
+
+    transform:translateX(4px);
+
+}
+
+.history-item.active{
+
+    background:#182338;
+
+    border:none;
+
+    position:relative;
+
+}
+
+.history-item.active::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:10px;
+
+    bottom:10px;
+
+    width:3px;
+
+    border-radius:999px;
+
+}
+
+.history-icon{
+
+    opacity:.7;
+
+    color:#94A3B8;
+
+}
+
+.history-item:hover .history-icon{
+
+    opacity:1;
+
+    color:#47D7FF;
+
+}
+
+.history-content h5{
+
+    color:#F8FAFC;
+
+    font-weight:600;
+
+    font-size:.93rem;
+
+    margin-bottom: 10px;
+
+}
+
+.history-content p{
+     color:#94A3B8;
+}

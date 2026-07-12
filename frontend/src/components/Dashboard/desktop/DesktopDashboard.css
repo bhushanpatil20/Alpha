@@ -1,0 +1,25 @@
+.desktop-dashboard{
+
+    display:flex;
+
+    height:100vh;
+
+    background:#070B14;
+
+    overflow:hidden;
+
+}
+
+.desktop-workspace{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow-y:auto;
+
+    padding:42px 48px;
+
+}

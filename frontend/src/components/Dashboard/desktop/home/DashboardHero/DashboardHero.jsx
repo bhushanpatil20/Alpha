@@ -1,6 +1,6 @@
 import "./DashboardHero.css";
-import getGreeting from "../../../../utils/getGreeting";
-import useAuth from "../../../../hooks/useAuth";
+import "../../../../../utils/getGreeting"
+import "../../../../../hooks/useAuth";
 
 function DashboardHero({isWriting}) {
 

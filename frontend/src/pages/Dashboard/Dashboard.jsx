@@ -1,13 +1,5 @@
-import DashboardLayout from "../../components/dashboard/DashboardLayout/DashboardLayout";
-import DashboardHero from "../../components/Dashboard/home/DashboardHero/DashboardHero";
-import AIComposer from "../../components/Dashboard/Workspace/AIComposer/AIComposer";
-import Sidebar from "../../components/dashboard/Sidebar/Sidebar";
+import DesktopDashboard from "../../components/Dashboard/desktop/DesktopDashboard";
 import { useState } from "react";
-// import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
-// import MobileHero from "../../components/Dashboard/mobile/MobileHero";
-// import MobileTopBar from "../../components/Dashboard/mobile/MobileTopBar/MobileTopBar";
-// import MobileComposer from "../../components/Dashboard/mobile/MobileComposer";
-// import MobileSidebar from "../../components/Dashboard/mobile/MobileSidebar/MobileSidebar";
 import { logout } from "../../api/auth.api";
 
 function Dashboard() {
@@ -18,59 +10,30 @@ function Dashboard() {
 
     const [prompt, setPrompt] = useState("");
 
-    // const isWriting = prompt.trim().length > 0;
-
     const handleGenerate = () => {
 
     console.log(prompt);
 
 };
 
-    return (
+return (
 
-<DashboardLayout>
+    <DesktopDashboard
 
-    <div className="dashboard-content">
+        prompt={prompt}
 
-        <Sidebar onLogout={logout} />
+        setPrompt={setPrompt}
 
-        <DashboardHero isWriting={isWriting} />
+        handleGenerate={handleGenerate}
 
-        {/* AI responses will live here later */}
+        isWriting={isWriting}
 
-  </div>
+        setIsWriting={setIsWriting}
 
-    <AIComposer
-      value={prompt}
-       onChange={setPrompt}
-      onSubmit={handleGenerate}
-        onWritingChange={setIsWriting}  />
+    />
 
- </DashboardLayout>
-
-    );
+);
 
 }
 
 export default Dashboard;
-
-
-//       <MobileDashboard>
-
-//     <MobileTopBar onMenuClick={() => setIsSidebarOpen(true)}/>
-
-//         <MobileSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} onLogout={logout}/>
-
-// <MobileHero isWriting={isWriting} />
-
-// <MobileComposer
-
-//     value={prompt}
-
-//     onChange={setPrompt}
-
-//     onSubmit={handleGenerate}
-
-// />
-
-// </MobileDashboard>

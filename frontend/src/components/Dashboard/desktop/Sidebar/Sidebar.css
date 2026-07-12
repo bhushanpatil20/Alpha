@@ -1,0 +1,31 @@
+.desktop-sidebar{
+
+    width:320px;
+
+    min-width:310px;
+
+    height:100vh;
+
+    background:#0D1320;
+
+    border-right:1px solid rgba(255,255,255,.05);
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:20px;
+
+    overflow:hidden;
+
+}
+
+.desktop-sidebar-divider{
+
+    height:1px;
+
+    background:rgba(255,255,255,.06);
+
+    margin: 10px 0;
+
+}

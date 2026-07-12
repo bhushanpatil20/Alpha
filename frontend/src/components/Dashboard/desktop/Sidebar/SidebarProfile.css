@@ -1,0 +1,97 @@
+.desktop-profile{
+
+    background:linear-gradient(
+        180deg,
+        #162235 0%,
+        #101827 100%
+    );
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:24px;
+
+    padding: 18px 8px;
+
+    text-align:center;
+
+    margin-bottom: 16px;
+
+    transition:.3s ease;
+
+}
+
+.desktop-profile:hover{
+
+    border-color:rgba(72,208,255,.15);
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 28px rgba(0,0,0,.35);
+
+}
+
+.desktop-avatar{
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    margin:0 auto 18px;
+
+    background:linear-gradient(
+        135deg,
+        #47D7FF,
+        #7B61FF
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    color:white;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+}
+
+.desktop-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.desktop-profile h3{
+
+    margin:0;
+
+    font-size: 0.9rem;
+
+    font-weight:700;
+
+    color:#F8FAFC;
+
+}
+
+.desktop-profile p{
+
+    margin-top:8px;
+
+    color:#94A3B8;
+
+    font-size:.92rem;
+
+    word-break:break-word;
+
+}

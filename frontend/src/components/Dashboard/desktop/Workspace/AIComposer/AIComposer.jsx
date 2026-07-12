@@ -1,8 +1,7 @@
 import "./AIComposer.css";
 import { useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-
-import promptSuggestions from "../../../../constants/promptSuggestions";
+import "../../../../../constants/promptSuggestions";
 
 function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
 
