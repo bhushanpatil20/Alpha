@@ -4,7 +4,7 @@ import SidebarProfile from "./SidebarProfile";
 import SidebarNav from "./SidebarNav";
 import SidebarHistory from "./SidebarHistory";
 
-function Sidebar() {
+function Sidebar({logout}) {
 
     return (
 
@@ -12,7 +12,7 @@ function Sidebar() {
 
             <SidebarProfile />
 
-            <SidebarNav />
+            <SidebarNav onLogout={logout}/>
 
             <div className="desktop-sidebar-divider" />
 

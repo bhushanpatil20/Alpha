@@ -32,17 +32,19 @@
 
 .history-item:hover{
 
-    background:#17253B;
+    background:#212121;
 
     transform:translateX(4px);
+
+    border: none;
 
 }
 
 .history-item.active{
 
-    background:#182338;
+    background:#212121;
 
-    border:none;
+    border: none;
 
     position:relative;
 

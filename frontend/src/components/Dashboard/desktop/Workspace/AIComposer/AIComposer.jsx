@@ -1,7 +1,7 @@
 import "./AIComposer.css";
 import { useEffect } from "react";
 import { ArrowUp } from "lucide-react";
-import "../../../../../constants/promptSuggestions";
+import promptSuggestions from "../../../../../constants/promptSuggestions";
 
 function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
 
@@ -19,7 +19,7 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
 
             <div className={`composer-card ${isWriting ? "writing" : ""}`}>
 
-                <div className={`composer-intro ${isWriting ? "writing-hidden" : ""}`}>
+                {/* <div className={`composer-intro ${isWriting ? "writing-hidden" : ""}`}>
 
                     <h3>✨ Start with your idea</h3>
 
@@ -29,7 +29,7 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
 
                     </p>
 
-                </div>
+                </div> */}
 
                 <div className={`composer-chips ${isWriting ? "writing-hidden" : ""}`}>
 

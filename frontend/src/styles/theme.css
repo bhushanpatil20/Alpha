@@ -36,4 +36,46 @@
 
     --shadow: 0 10px 30px rgba(0,0,0,.08);
 
+    :root{
+
+    /* ========= Backgrounds ========= */
+
+    --bg-app: #1E1E1E;
+    --bg-sidebar: #252526;
+    --bg-surface: #2D2D30;
+    --bg-surface-hover: #37373D;
+
+    /* ========= Borders ========= */
+
+    --border-primary: #3C3C3C;
+    --border-secondary: rgba(255,255,255,.05);
+
+    /* ========= Text ========= */
+
+    --text-primary: #F3F3F3;
+    --text-secondary: #A8A8A8;
+    --text-muted: #7F848E;
+
+    /* ========= Alpha Brand ========= */
+
+    --accent: #47D7FF;
+    --accent-hover: #63E1FF;
+
+    --gradient-start: #47D7FF;
+    --gradient-end: #7B61FF;
+
+    /* ========= Status ========= */
+
+    --success: #22C55E;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+
+    /* ========= Radius ========= */
+
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+
+}
+
 }

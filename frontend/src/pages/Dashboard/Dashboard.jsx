@@ -1,38 +1,17 @@
 import DesktopDashboard from "../../components/Dashboard/desktop/DesktopDashboard";
-import { useState } from "react";
-import { logout } from "../../api/auth.api";
+import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
+
+import useDevice from "../../hooks/useDevice";
 
 function Dashboard() {
 
-   const [isWriting, setIsWriting] = useState(false);
+    const isMobile = useDevice();
 
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    return isMobile
 
-    const [prompt, setPrompt] = useState("");
+        ? <MobileDashboard />
 
-    const handleGenerate = () => {
-
-    console.log(prompt);
-
-};
-
-return (
-
-    <DesktopDashboard
-
-        prompt={prompt}
-
-        setPrompt={setPrompt}
-
-        handleGenerate={handleGenerate}
-
-        isWriting={isWriting}
-
-        setIsWriting={setIsWriting}
-
-    />
-
-);
+        : <DesktopDashboard />;
 
 }
 

@@ -1,13 +1,50 @@
 import "./DesktopDashboard.css";
 import Sidebar from "./Sidebar/Sidebar";
+import {logout} from "../../../api/auth.api"
+import DashboardHero from "../desktop/home/DashboardHero/DashboardHero"
+import Workspace from "./Workspace/Workspace";
+import AIComposer from "../desktop/Workspace/AIComposer/AIComposer";
+import { useState } from "react";
 
 function DesktopDashboard() {
+
+    const [prompt, setPrompt] = useState("");
+
+    const [isWriting, setIsWriting] = useState(false);
+
+    const handleGenerate = () => {
+
+    console.log(prompt);
+
+};
 
     return (
 
         <div className="desktop-dashboard">
 
-            <Sidebar />
+            <Sidebar onLogout={logout} />
+
+             <Workspace hero={<DashboardHero isWriting={isWriting}/>}
+              conversation={<></>}
+
+               composer={
+                
+                <AIComposer
+
+    value={prompt}
+
+    onChange={setPrompt}
+
+    onSubmit={handleGenerate}
+
+    onWritingChange={setIsWriting}
+
+/>
+            
+            }
+
+    />
+
 
         </div>
 
