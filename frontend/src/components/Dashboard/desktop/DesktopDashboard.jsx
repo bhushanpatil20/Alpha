@@ -12,6 +12,10 @@ function DesktopDashboard() {
 
     const [isWriting, setIsWriting] = useState(false);
 
+    const [conversations, setConversations] = useState([]);
+
+    const [activeConversation, setActiveConversation] = useState(null);
+
     const handleGenerate = () => {
 
     console.log(prompt);
@@ -22,7 +26,13 @@ function DesktopDashboard() {
 
         <div className="desktop-dashboard">
 
-            <Sidebar onLogout={logout} />
+            <Sidebar
+    onLogout={logout}
+    conversations={conversations}
+    setConversations={setConversations}
+    activeConversation={activeConversation}
+    setActiveConversation={setActiveConversation}
+/>
 
              <Workspace hero={<DashboardHero isWriting={isWriting}/>}
               conversation={<></>}

@@ -4,7 +4,12 @@
 
     min-height:100dvh;
 
-    background:#070B14;
+    background: linear-gradient(
+    180deg,
+    #232323 0%,
+    #1d1d1d 35%,
+    #171717 100%
+);
 
     color:#F8FAFC;
 

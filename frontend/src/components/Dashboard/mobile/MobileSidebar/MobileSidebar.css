@@ -12,7 +12,7 @@
 
     height:100vh;
 
-    background:#0D1320;
+    background:#212121;
 
     display:flex;
 
@@ -104,15 +104,12 @@
 
     border-radius:24px;
 
-    background:linear-gradient(
-
-        180deg,
-
-        rgba(60,198,232,.08),
-
-        rgba(139,92,246,.04)
-
-    );
+     background: linear-gradient(
+    180deg,
+    #2a2a2a 0%,
+    #212121 45%,
+    #1b1b1b 100%
+);
 
     border:1px solid rgba(255,255,255,.05);
 
@@ -122,13 +119,13 @@
 
 .sidebar-avatar{
 
-    width:72px;
+    width: 60px;
 
-    height:72px;
+    height: 60px;
 
     margin:0 auto 18px;
 
-    border-radius:24px;
+    border-radius: 50%;
 
     display:flex;
 
@@ -142,15 +139,7 @@
 
     color:white;
 
-    background:linear-gradient(
-
-        135deg,
-
-        #3CC6E8,
-
-        #8B5CF6
-
-    );
+    background-color: #3CC6E8;
 
     box-shadow:
 
@@ -228,7 +217,7 @@
 
 .sidebar-history::-webkit-scrollbar-thumb{
 
-    background:#26324A;
+    background:#212121;
 
     border-radius:999px;
 
@@ -318,7 +307,7 @@
 
 .history-item:hover{
 
-    background:rgba(60,198,232,.08);
+    background:#191919;
 
     transform:translateX(5px);
 
@@ -330,15 +319,7 @@
 
 .history-item.active{
 
-    background:linear-gradient(
-
-        90deg,
-
-        rgba(60,198,232,.18),
-
-        rgba(139,92,246,.08)
-
-    );
+    background-color: #191919;
 
     border-left:3px solid #3CC6E8;
 

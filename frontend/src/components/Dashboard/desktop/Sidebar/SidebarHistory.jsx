@@ -1,56 +1,43 @@
 const history = [
 
     {
+
         title: "Today",
-        chats: [
-            {
-                id: 1,
-                title: "Build React Dashboard",
-                time: "Today • 2:35 PM",
-                active: true
-            },
-            {
-                id: 2,
-                title: "AI Startup Ideas",
-                time: "Today • 11:40 AM"
-            }
-        ]
-    },
 
-    {
-        title: "Yesterday",
-        chats: [
-            {
-                id: 3,
-                title: "Resume Improvements",
-                time: "Yesterday • 6:12 PM"
-            },
-            {
-                id: 4,
-                title: "LinkedIn Post",
-                time: "Yesterday • 3:18 PM"
-            }
-        ]
-    },
+        chats: conversations.map((conversation) => ({
 
-    {
-        title: "Previous 7 Days",
-        chats: [
-            {
-                id: 5,
-                title: "Gemini API Setup",
-                time: "Monday"
-            }
-        ]
+            id: conversation._id,
+
+            title: conversation.title,
+
+            time: new Date(
+
+                conversation.createdAt
+
+            ).toLocaleTimeString([], {
+
+                hour: "2-digit",
+
+                minute: "2-digit"
+
+            }),
+
+            active:
+
+                activeConversation === conversation._id
+
+        }))
+
     }
 
 ];
+
 
 import "./SidebarHistory.css";
 
 import SidebarHistoryItem from "./SidebarHistoryItem";
 
-function SidebarHistory() {
+function SidebarHistory({ conversations, activeConversation, setActiveConversation}) {
 
     return (
 
@@ -73,13 +60,19 @@ function SidebarHistory() {
 
                         group.chats.map((chat) => (
 
-                            <SidebarHistoryItem
+                           <SidebarHistoryItem
 
-                                key={chat.id}
+    key={chat.id}
 
-                                chat={chat}
+    chat={chat}
 
-                            />
+    onClick={() =>
+
+        setActiveConversation(chat.id)
+
+    }
+
+/>
 
                         ))
 

@@ -55,7 +55,12 @@
 
     min-height:220px;
 
-    background:#161F32;
+    background: linear-gradient(
+    180deg,
+    #2a2a2a 0%,
+    #212121 45%,
+    #1b1b1b 100%
+);
 
     border:1px solid rgba(60,198,232,.15);
 
@@ -83,7 +88,7 @@
 
     border-radius:999px;
 
-    background:#1B2338;
+    background:#212121;
 
     color:#CBD5E1;
 
@@ -93,7 +98,12 @@
 
 .mobile-input-card{
 
-    background:#161F32;
+    background: linear-gradient(
+    180deg,
+    #2a2a2a 0%,
+    #212121 45%,
+    #1b1b1b 100%
+);
 
     border:1px solid rgba(60,198,232,.15);
 

@@ -2,7 +2,7 @@ import "./SidebarHistoryItem.css";
 
 import { MessageSquare } from "lucide-react";
 
-function SidebarHistoryItem({ chat }) {
+function SidebarHistoryItem({ chat, onClick }) {
 
     return (
 

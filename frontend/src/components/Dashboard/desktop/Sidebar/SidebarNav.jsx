@@ -3,8 +3,11 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import { IoLogOut } from "react-icons/io5";
 import { useState } from "react";
 import ConfirmationModal from "../../../common/ConfirmationModel/ConfirmationModel"
+import useAuth from "../../../../hooks/useAuth";
 
 function SidebarNav({ onNewChat, onLogout }) {
+
+     const { logout } = useAuth();
 
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
@@ -53,7 +56,7 @@ function SidebarNav({ onNewChat, onLogout }) {
 
         setShowLogoutModal(false);
 
-        await onLogout();
+        await logout();
 
     }}
 
