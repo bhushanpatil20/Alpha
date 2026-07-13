@@ -8,6 +8,7 @@ function SidebarHistoryItem({ chat, onClick }) {
 
         <button
             className={`history-item ${chat.active ? "active" : ""}`}
+            onClick={onClick}
         >
 
             <div className="history-icon">

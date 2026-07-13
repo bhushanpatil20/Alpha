@@ -59,3 +59,39 @@
 }
 
 
+.desktop-history {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    margin-top: 8px;
+    padding-right: 12px;
+}
+
+.history-heading {
+    font-size: .72rem;
+    letter-spacing: 2px;
+    color: #9AA0A6;
+    text-transform: uppercase;
+    margin: 22px 0 12px;
+}
+
+.history-group {
+    margin-bottom: 26px;
+}
+
+.desktop-history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.desktop-history::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.desktop-history::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+}
+
+.desktop-history::-webkit-scrollbar-thumb:hover {
+    background: #9CDCFE;
+}

@@ -4,7 +4,9 @@ import {logout} from "../../../api/auth.api"
 import DashboardHero from "../desktop/home/DashboardHero/DashboardHero"
 import Workspace from "./Workspace/Workspace";
 import AIComposer from "../desktop/Workspace/AIComposer/AIComposer";
-import { useState } from "react";
+import DashboardHome from "./DashboardHome/DashboardHome";
+import { useState, useEffect } from "react";
+import { getConversations } from "../../../api/conversation.api";
 
 function DesktopDashboard() {
 
@@ -22,6 +24,36 @@ function DesktopDashboard() {
 
 };
 
+useEffect(() => {
+
+    const loadConversations = async () => {
+
+        try {
+
+            const data = await getConversations();
+
+            setConversations(data);
+
+            if (data.length > 0) {
+
+                setActiveConversation(data[0]._id);
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+        }
+
+    };
+
+    loadConversations();
+
+}, []);
+
     return (
 
         <div className="desktop-dashboard">
@@ -34,26 +66,41 @@ function DesktopDashboard() {
     setActiveConversation={setActiveConversation}
 />
 
-             <Workspace hero={<DashboardHero isWriting={isWriting}/>}
-              conversation={<></>}
+           {activeConversation ? (
 
-               composer={
-                
-                <AIComposer
+    <Workspace
 
-    value={prompt}
+        hero={<DashboardHero isWriting={isWriting} />}
 
-    onChange={setPrompt}
+        conversation={<></>}
 
-    onSubmit={handleGenerate}
+        composer={
 
-    onWritingChange={setIsWriting}
+            <AIComposer
 
-/>
-            
-            }
+                value={prompt}
+
+                onChange={setPrompt}
+
+                onSubmit={handleGenerate}
+
+                onWritingChange={setIsWriting}
+
+            />
+
+        }
 
     />
+
+) : (
+
+    <DashboardHome
+
+        onNewChat={() => setShowNewChatModal(true)}
+
+    />
+
+)}
 
 
         </div>

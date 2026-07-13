@@ -45,6 +45,7 @@ function Sidebar({onLogout, conversations, setConversations, activeConversation,
     conversations={conversations}
     activeConversation={activeConversation}
     setActiveConversation={setActiveConversation}
+    setConversations={setConversations}
 />
 
         </aside>

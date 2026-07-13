@@ -1,31 +1,17 @@
-.desktop-sidebar{
-
-    width:320px;
-
-    min-width:310px;
-
-    height:100vh;
-
-    background:#252526;
-
-    border-right:1px solid rgba(255,255,255,.05);
-
-    display:flex;
-
-    flex-direction:column;
-
-    padding:20px;
-
-    overflow:hidden;
-
+.desktop-sidebar {
+    width: 320px;
+    min-width: 310px;
+    height: 100vh;
+    background: #0C0A06;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden;
 }
 
-.desktop-sidebar-divider{
-
-    height:1px;
-
-    background:rgba(255,255,255,.06);
-
+.desktop-sidebar-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
     margin: 10px 0;
-
 }

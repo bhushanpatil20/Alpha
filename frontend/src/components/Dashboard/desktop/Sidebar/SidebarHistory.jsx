@@ -1,4 +1,10 @@
-const history = [
+import "./SidebarHistory.css";
+import SidebarHistoryItem from "./SidebarHistoryItem";
+import { openConversation, getConversations } from "../../../../api/conversation.api";
+
+function SidebarHistory({ conversations, activeConversation, setActiveConversation, setConversations}) {
+
+    const history = [
 
     {
 
@@ -32,12 +38,27 @@ const history = [
 
 ];
 
+const handleConversationClick = async (conversationId) => {
 
-import "./SidebarHistory.css";
+    try {
 
-import SidebarHistoryItem from "./SidebarHistoryItem";
+        await openConversation(conversationId);
 
-function SidebarHistory({ conversations, activeConversation, setActiveConversation}) {
+        const updatedConversations = await getConversations();
+
+        setConversations(updatedConversations);
+
+        setActiveConversation(conversationId);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
 
     return (
 
@@ -68,7 +89,7 @@ function SidebarHistory({ conversations, activeConversation, setActiveConversati
 
     onClick={() =>
 
-        setActiveConversation(chat.id)
+        handleConversationClick(chat.id)
 
     }
 
