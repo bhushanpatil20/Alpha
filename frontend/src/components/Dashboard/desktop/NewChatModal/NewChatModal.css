@@ -1,17 +1,13 @@
-/* Import a modern sans-serif font for a premium look */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-/* =========================================
-   Overlay & Modal Container[cite: 1]
-   ========================================= */
 .new-chat-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(15, 15, 15, 0.75);
-    backdrop-filter: blur(8px); /* Premium frosted glass effect */
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,22 +17,20 @@
 }
 
 .new-chat-modal {
-    background-color: #1a1a1c; /* Deep dark gray matching the image panels */
-    border: 1px solid #2d2d30;
-    border-radius: 16px;
+    background: rgba(20, 18, 11, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
     width: 100%;
     max-width: 460px;
     padding: 32px;
     position: relative;
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
-    color: #ffffff;
+    color: #F3F4F6;
     box-sizing: border-box;
     animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(20px);
 }
 
-/* =========================================
-   Typography & Headings[cite: 1]
-   ========================================= */
 .new-chat-modal h2 {
     margin: 0 0 8px 0;
     font-size: 24px;
@@ -46,7 +40,7 @@
 
 .modal-subtitle {
     margin: 0 0 24px 0;
-    color: #9ca3af;
+    color: #9CA3AF;
     font-size: 14px;
     line-height: 1.5;
 }
@@ -56,21 +50,18 @@
     margin-bottom: 8px;
     font-size: 13px;
     font-weight: 500;
-    color: #e5e7eb;
+    color: #E5E7EB;
     letter-spacing: 0.3px;
 }
 
-/* =========================================
-   Form Inputs[cite: 1]
-   ========================================= */
 .new-chat-modal input[type="text"],
 .new-chat-modal textarea {
     width: 100%;
-    background-color: #0f0f11; /* Darker than modal for depth */
-    border: 1px solid #333336;
-    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
     padding: 14px 16px;
-    color: #ffffff;
+    color: #F3F4F6;
     font-size: 15px;
     font-family: inherit;
     box-sizing: border-box;
@@ -81,42 +72,37 @@
 .new-chat-modal input[type="text"]:focus,
 .new-chat-modal textarea:focus {
     outline: none;
-    border-color: #2dd4bf; /* Turquoise/Cyan accent matching the image */
-    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15);
+    border-color: #9CDCFE;
+    box-shadow: 0 0 0 3px rgba(156, 220, 254, 0.15);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .new-chat-modal input::placeholder,
 .new-chat-modal textarea::placeholder {
-    color: #6b7280;
+    color: #64748B;
 }
 
 .new-chat-modal input {
     margin-bottom: 20px;
 }
 
-/* =========================================
-   Helpers & Counters[cite: 1]
-   ========================================= */
 .instruction-count {
     text-align: right;
     font-size: 12px;
-    color: #6b7280;
+    color: #64748B;
     margin-top: 8px;
 }
 
-/* =========================================
-   Buttons & Actions[cite: 1]
-   ========================================= */
 .close-btn {
     position: absolute;
     top: 24px;
     right: 24px;
     background: transparent;
     border: none;
-    color: #9ca3af;
+    color: #9CA3AF;
     cursor: pointer;
-    padding: 4px;
-    border-radius: 6px;
+    padding: 6px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,8 +110,8 @@
 }
 
 .close-btn:hover {
-    color: #ffffff;
-    background-color: #2d2d30;
+    color: #F3F4F6;
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 .modal-actions {
@@ -138,7 +124,7 @@
 .cancel-btn,
 .create-btn {
     padding: 12px 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
     font-family: inherit;
@@ -149,35 +135,34 @@
 .cancel-btn {
     background-color: transparent;
     border: 1px solid transparent;
-    color: #e5e7eb;
+    color: #E5E7EB;
 }
 
 .cancel-btn:hover {
-    background-color: #2d2d30;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .create-btn {
-    background-color: #2dd4bf; /* Matches the vibrant accent in your sidebar */
+    background-color: #007ACC;
     border: none;
-    color: #0f0f11;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .create-btn:hover:not(:disabled) {
-    background-color: #14b8a6;
+    background-color: #0E639C;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
 }
 
 .create-btn:disabled {
-    background-color: #2d2d30;
-    color: #6b7280;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #475569;
     cursor: not-allowed;
-    opacity: 0.7;
+    box-shadow: none;
+    transform: none;
 }
 
-/* =========================================
-   Animations
-   ========================================= */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

@@ -1,38 +1,33 @@
-.mobile-dashboard{
-
-    width:100%;
-
-    min-height:100dvh;
-
-    background: linear-gradient(
-    180deg,
-    #232323 0%,
-    #1d1d1d 35%,
-    #171717 100%
-);
-
-    color:#F8FAFC;
-
-    display:flex;
-
-    flex-direction:column;
-
-    overflow:hidden;
-
+.mobile-dashboard {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #14120B;
+    color: #F3F4F6;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding-top: 73px;
+    box-sizing: border-box;
 }
 
-.mobile-content{
+.mobile-content {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    flex: 1;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
 
-    width:100%;
+.mobile-content::-webkit-scrollbar {
+    width: 4px;
+}
 
-    max-width:480px;
-
-    margin:0 auto;
-
-    padding:32px 24px;
-
-    flex:1;
-
-    box-sizing:border-box;
-
+.mobile-content::-webkit-scrollbar-thumb {
+    background: rgba(156, 220, 254, 0.2);
+    border-radius: 999px;
 }

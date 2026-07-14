@@ -8,15 +8,11 @@ import DashboardHome from "./DashboardHome/DashboardHome";
 import { useState, useEffect } from "react";
 import { getConversations } from "../../../api/conversation.api";
 
-function DesktopDashboard() {
+function DesktopDashboard({conversations, setConversations, activeConversation, setActiveConversation}) {
 
     const [prompt, setPrompt] = useState("");
 
     const [isWriting, setIsWriting] = useState(false);
-
-    const [conversations, setConversations] = useState([]);
-
-    const [activeConversation, setActiveConversation] = useState(null);
 
     const handleGenerate = () => {
 

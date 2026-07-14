@@ -48,7 +48,7 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
                 <textarea
                     ref={textareaRef}
                     className="composer-input"
-                    placeholder="Tell Alpha exactly what you'd like to create..."
+                    placeholder="Tell Alpha what content you'd like to generate today..."
                     value={value}
                     onChange={handleInput}
                     rows={1}
@@ -74,8 +74,9 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
                             onSubmit();
                             handleResetHeight();
                         }}
+                        aria-label="Send prompt"
                     >
-                        <ArrowUp size={18} />
+                        <ArrowUp size={20} strokeWidth={2.5} />
                     </button>
                 </div>
             </div>

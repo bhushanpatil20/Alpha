@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.route.js";
 import conversationRoutes from "./routes/conversation.routes.js"
+import messageRoutes from "./routes/message.route.js"
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 
 app.use("/api/conversations", conversationRoutes);
+
+app.use("/api/messages", messageRoutes);
 
 app.get("/", (req, res) => {
     res.send("Alpha Backend Running 🚀");

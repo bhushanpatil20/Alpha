@@ -1,109 +1,118 @@
 .ai-composer {
     width: 100%;
-    max-width: 800px;
+    max-width: 860px;
     margin: 20px auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .composer-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     transition: all 0.3s ease;
 }
 
 .composer-chip {
-    border: none;
-    padding: 6px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 16px;
     border-radius: 999px;
-    background: #212121;
-    color: #CBD5E1;
+    background: rgba(255, 255, 255, 0.02);
+    color: #9CA3AF;
     font-size: 0.85rem;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
 }
 
 .composer-chip:hover {
-    background: #24324F;
-    color: #3CC6E8;
+    background: rgba(156, 220, 254, 0.08);
+    border-color: rgba(156, 220, 254, 0.25);
+    color: #9CDCFE;
+    transform: translateY(-1px);
 }
 
 .composer-card {
-    background: #171717;
-    border: 1px solid rgb(88, 87, 87);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    padding: 10px 16px;
+    padding: 12px 20px;
     display: flex;
     align-items: flex-end;
-    gap: 12px;
-    transition: 0.3s;
+    gap: 16px;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .composer-card:focus-within {
-    border-color: #47D7FF;
+    border-color: rgba(156, 220, 254, 0.4);
+    box-shadow: 0 0 24px rgba(156, 220, 254, 0.08), 0 8px 32px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .composer-input {
     flex-grow: 1;
     height: auto;
     min-height: 24px;
-    max-height: 108px;
+    max-height: 140px; 
     overflow-y: auto;
     resize: none;
     border: none;
     outline: none;
     background: transparent;
-    color: #F8FAFC;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    font-family: "Manrope", sans-serif;
-    padding: 6px 0;
+    color: #F3F4F6;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 8px 0;
 }
 
 .composer-input::placeholder {
     color: #64748B;
+    font-weight: 400;
 }
 
 .composer-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding-bottom: 2px;
+    gap: 16px;
+    padding-bottom: 4px;
 }
 
 .composer-counter {
-    color: #64748B;
+    color: #475569;
     font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .composer-send {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #3CC6E8, #8B5CF6);
+    background: #007ACC;
     color: white;
-    transition: 0.25s;
+    transition: all 0.25s ease;
     flex-shrink: 0;
 }
 
-.composer-send:hover {
+.composer-send:hover:not(:disabled) {
+    background: #0E639C;
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(60, 198, 232, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
 }
 
 .composer-send:disabled {
-    background: #2A3345;
-    color: #64748B;
+    background: rgba(255, 255, 255, 0.04);
+    color: #475569;
     cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
 }
 
 .writing-hidden {
@@ -111,37 +120,31 @@
     max-height: 0;
     overflow: hidden;
     margin: 0;
+    padding: 0;
     pointer-events: none;
 }
 
-.composer-input::-webkit-scrollbar {
-    width: 6px;
-}
 
+.composer-input::-webkit-scrollbar {
+    width: 4px;
+}
 .composer-input::-webkit-scrollbar-track {
     background: transparent;
 }
-
 .composer-input::-webkit-scrollbar-thumb {
-    background: rgba(60, 198, 232, 0.25);
+    background: rgba(156, 220, 254, 0.2);
     border-radius: 999px;
 }
-
 .composer-input::-webkit-scrollbar-thumb:hover {
-    background: rgba(60, 198, 232, 0.45);
-}
-
-.composer-input {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(60, 198, 232, 0.35) transparent;
+    background: rgba(156, 220, 254, 0.4);
 }
 
 @media (max-width: 768px) {
     .ai-composer {
         position: fixed;
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
         z-index: 1000;
         width: auto;
         margin: 0;

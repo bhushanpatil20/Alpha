@@ -1,234 +1,102 @@
 import "./MobileSidebar.css";
-import { X, House, Sparkles, LogOut, MessageSquare} from "lucide-react";
+import { X, LogOut, MessageSquare } from "lucide-react";
+import { RiCloseLine } from "react-icons/ri";
+import { TiPlus } from "react-icons/ti";
 import { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import ConfirmationModal from "../../../common/ConfirmationModel/ConfirmationModel";
+import { openConversation, getConversations } from "../../../../api/conversation.api";
 
-const demoChats = {
-
-    Today: [
-
-        {
-            id:1,
-            title:"Build React Dashboard",
-            time:"2:35 PM"
-        },
-
-        {
-            id:2,
-            title:"AI Startup Ideas",
-            time:"11:40 AM"
-        }
-
-    ],
-
-    Yesterday:[
-
-        {
-            id:3,
-            title:"Resume Improvements",
-            time:"6:12 PM"
-        },
-
-        {
-            id:4,
-            title:"LinkedIn Post",
-            time:"3:18 PM"
-        }
-
-    ],
-
-    "Previous 7 Days":[
-
-        {
-            id:5,
-            title:"Gemini API Setup",
-            time:"Monday"
-        }
-
-    ]
-
-};
-
-function MobileSidebar({ isOpen, onClose}) {
-
-    const { logout } = useAuth();
-
+function MobileSidebar({ isOpen, onClose, conversations, setConversations, activeConversation, setActiveConversation }) {
+    const { logout, user } = useAuth();
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+    const displayName = user?.fullName || "Anonymous";
+    const displayInitial = displayName.charAt(0).toUpperCase();
+
+    const handleConversationClick = async (conversationId) => {
+        try {
+            await openConversation(conversationId);
+            const updated = await getConversations();
+            setConversations(updated);
+            setActiveConversation(conversationId);
+            onClose();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
-
         <>
-
             <div
+                className={`mobile-sidebar-overlay ${isOpen ? "show" : ""}`}
+                onClick={onClose}
+            />
 
-    className={`mobile-sidebar-overlay ${
-        isOpen ? "show" : ""
-    }`}
-
-    onClick={onClose}
-
-/>
-
-            <aside
-
-                className={`mobile-sidebar ${
-                    isOpen ? "open" : ""
-                }`}
-
-            >
-
-                <button
-
-                    className="sidebar-close"
-
-                    onClick={onClose}
-
-                >
-
-                    <X size={22} />
-
+            <aside className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
+                <button className="sidebar-close" onClick={onClose}>
+                    <RiCloseLine size={18} />
                 </button>
 
                 <div className="sidebar-profile">
-
                     <div className="sidebar-avatar">
-
-                        P
-
+                        {user?.avatar ? <img src={user.avatar} alt={displayName} /> : displayInitial}
                     </div>
-
-                    <h3>
-
-                        Bhushan Patil
-
-                    </h3>
-
-                    <p>
-
-                        bhushan@gmail.com
-
-                    </p>
-
+                    <div className="sidebar-profile-details">
+                        <h3>{displayName}</h3>
+                        <p>{user?.email || "AI Architect"}</p>
+                    </div>
                 </div>
 
-                      <div className="sidebar-nav">
+                <div className="sidebar-nav">
+                    <button onClick={onClose}>
+                        <TiPlus size={18} />
+                        <span>New Chat</span>
+                    </button>
+                    <button className="logout-btn" onClick={() => setShowLogoutModal(true)}>
+                        <LogOut size={18} />
+                        <span>Logout</span>
+                    </button>
+                </div>
 
-    <button>
+                <div className="sidebar-history-divider" />
 
-        <Sparkles size={20} />
-
-        <span>New Chat</span>
-
-    </button>
-
-    <button className="logout-btn" onClick={() => setShowLogoutModal(true)}>
-
-        <LogOut size={20} />
-
-        <span>Logout</span>
-
-    </button>
-
-</div>
-
+                <p className="history-heading">Recent</p>
+                
                 <div className="sidebar-history">
-
-                    {
-
-                        Object.entries(demoChats).map(
-
-                            ([title,chats])=>(
-
-                                <div
-                                    key={title}
-                                    className="history-group"
-                                >
-
-                                    <h4>
-
-                                        {title}
-
-                                    </h4>
-
-                                    {
-
-                                        chats.map(chat=>(
-
-                                            <button
-
-    key={chat.id}
-
-    className="history-item"
-
->
-
-    <MessageSquare size={18}/>
-
-    <div className="history-content">
-
-        <span>
-
-            {chat.title}
-
-        </span>
-
-        <small>
-
-            {title} • {chat.time}
-
-        </small>
-
-    </div>
-
-</button>
-
-                                        ))
-
-                                    }
-
-                                </div>
-
-                            )
-
-                        )
-
-                    }
-
+                    {conversations.map((chat) => (
+                        <button
+                            key={chat._id}
+                            className={`history-item ${activeConversation === chat._id ? "active" : ""}`}
+                            onClick={() => handleConversationClick(chat._id)}
+                        >
+                            <MessageSquare size={16} />
+                            <div className="history-content">
+                                <span>{chat.title}</span>
+                                <small>
+                                    {new Date(chat.updatedAt).toLocaleDateString()}
+                                </small>
+                            </div>
+                        </button>
+                    ))}
                 </div>
-
             </aside>
 
             <ConfirmationModal
-
-    isOpen={showLogoutModal}
-
-    title="Logout"
-
-    message="Are you sure you want to logout from Alpha?"
-
-    confirmText="Logout"
-
-    cancelText="Stay"
-
-    onCancel={() => setShowLogoutModal(false)}
-
-    onConfirm={async () => {
-
-        setShowLogoutModal(false);
-
-        onClose();          // Close the sidebar first
-
-        await logout();
-
-    }}
-
-/>
-
+                isOpen={showLogoutModal}
+                title="Logout"
+                message="Are you sure you want to logout from Alpha?"
+                confirmText="Logout"
+                cancelText="Stay"
+                onCancel={() => setShowLogoutModal(false)}
+                onConfirm={async () => {
+                    setShowLogoutModal(false);
+                    onClose();
+                    await logout();
+                }}
+            />
         </>
-
     );
-
 }
 
 export default MobileSidebar;
