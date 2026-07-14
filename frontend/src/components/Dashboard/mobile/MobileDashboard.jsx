@@ -5,12 +5,35 @@ import MobileSidebar from "./MobileSidebar/MobileSidebar";
 import MobileHero from "./MobileHero";
 import MobileComposer from "./MobileComposer";
 import { logout } from "../../../api/auth.api";
+import { useChat } from "../../../context/ChatContext";
 
-function MobileDashboard({conversations, setConversations, activeConversation, setActiveConversation}) {
+function MobileDashboard() {
     
     const [prompt, setPrompt] = useState("");
     const [isWriting, setIsWriting] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const {
+
+    conversations,
+
+    setConversations,
+
+    activeConversation,
+
+    setActiveConversation,
+
+    messages,
+
+    setMessages,
+
+    isGenerating,
+
+    setIsGenerating,
+
+    handleConversationClick
+
+} = useChat();
 
     const handleGenerate = () => {
         console.log(prompt);
@@ -30,6 +53,7 @@ function MobileDashboard({conversations, setConversations, activeConversation, s
                 setConversations={setConversations}
                 activeConversation={activeConversation}
                 setActiveConversation={setActiveConversation}
+                onConversationClick={handleConversationClick}
             />
             
             <MobileComposer

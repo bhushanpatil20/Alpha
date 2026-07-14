@@ -7,12 +7,16 @@ import AIComposer from "../desktop/Workspace/AIComposer/AIComposer";
 import DashboardHome from "./DashboardHome/DashboardHome";
 import { useState, useEffect } from "react";
 import { getConversations } from "../../../api/conversation.api";
+import Conversation from "./Workspace/Conversations/Conversation"
+import { useChat } from "../../../context/ChatContext";
 
-function DesktopDashboard({conversations, setConversations, activeConversation, setActiveConversation}) {
+function DesktopDashboard() {
 
     const [prompt, setPrompt] = useState("");
 
     const [isWriting, setIsWriting] = useState(false);
+
+    const [showNewChatModal, setShowNewChatModal] = useState("");
 
     const handleGenerate = () => {
 
@@ -20,35 +24,7 @@ function DesktopDashboard({conversations, setConversations, activeConversation, 
 
 };
 
-useEffect(() => {
-
-    const loadConversations = async () => {
-
-        try {
-
-            const data = await getConversations();
-
-            setConversations(data);
-
-            if (data.length > 0) {
-
-                setActiveConversation(data[0]._id);
-
-            }
-
-        }
-
-        catch (error) {
-
-            console.error(error);
-
-        }
-
-    };
-
-    loadConversations();
-
-}, []);
+const { conversations, setConversations, activeConversation, setActiveConversation, messages, handleConversationClick } = useChat();
 
     return (
 
@@ -60,6 +36,7 @@ useEffect(() => {
     setConversations={setConversations}
     activeConversation={activeConversation}
     setActiveConversation={setActiveConversation}
+    onConversationClick={handleConversationClick}
 />
 
            {activeConversation ? (
@@ -68,7 +45,7 @@ useEffect(() => {
 
         hero={<DashboardHero isWriting={isWriting} />}
 
-        conversation={<></>}
+        conversation={<Conversation messages={messages} />}
 
         composer={
 
@@ -85,6 +62,8 @@ useEffect(() => {
             />
 
         }
+
+        messages={messages}
 
     />
 

@@ -4,10 +4,24 @@ import SidebarNav from "./SidebarNav";
 import SidebarHistory from "./SidebarHistory";
 import { useState } from "react";
 import NewChatModal from "../NewChatModal/NewChatModal";
+import { useChat } from "../../../../context/ChatContext";
 
-function Sidebar({onLogout, conversations, setConversations, activeConversation, setActiveConversation}) {
-
+function Sidebar({onLogout}){
     const [showNewChatModal, setShowNewChatModal] = useState(false);
+
+    const {
+
+    conversations,
+
+    setConversations,
+
+    activeConversation,
+
+    setActiveConversation,
+
+    handleConversationClick
+
+} = useChat();
 
     const handleConversationCreated = (conversation) => {
 
@@ -46,6 +60,7 @@ function Sidebar({onLogout, conversations, setConversations, activeConversation,
     activeConversation={activeConversation}
     setActiveConversation={setActiveConversation}
     setConversations={setConversations}
+    onConversationClick={handleConversationClick}
 />
 
         </aside>

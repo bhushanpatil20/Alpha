@@ -1,8 +1,19 @@
 import "./SidebarHistory.css";
 import SidebarHistoryItem from "./SidebarHistoryItem";
 import { openConversation, getConversations } from "../../../../api/conversation.api";
+import { useChat } from "../../../../context/ChatContext";
 
-function SidebarHistory({ conversations, activeConversation, setActiveConversation, setConversations}) {
+function SidebarHistory() {
+
+    const {
+
+    conversations,
+
+    activeConversation,
+
+    handleConversationClick
+
+} = useChat();
 
     const history = [
 
@@ -38,28 +49,6 @@ function SidebarHistory({ conversations, activeConversation, setActiveConversati
 
 ];
 
-const handleConversationClick = async (conversationId) => {
-
-    try {
-
-        await openConversation(conversationId);
-
-        const updatedConversations = await getConversations();
-
-        setConversations(updatedConversations);
-
-        setActiveConversation(conversationId);
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-    }
-
-};
-
     return (
 
         <div className="desktop-history">
@@ -87,11 +76,7 @@ const handleConversationClick = async (conversationId) => {
 
     chat={chat}
 
-    onClick={() =>
-
-        handleConversationClick(chat.id)
-
-    }
+    onClick={() => handleConversationClick(chat.id)}
 
 />
 

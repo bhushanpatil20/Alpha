@@ -2,7 +2,9 @@ import DesktopDashboard from "../../components/Dashboard/desktop/DesktopDashboar
 import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
 import useDevice from "../../hooks/useDevice";
 import { useState, useEffect } from "react";
-import { getConversations } from "../../api/conversation.api";
+import { getConversations, openConversation } from "../../api/conversation.api";
+import {getMessages} from "../../api/message.api";
+import { ChatProvider } from "../../context/ChatContext";
 
 function Dashboard() {
 
@@ -13,6 +15,8 @@ function Dashboard() {
     const [messages, setMessages] = useState([]);
 
     const [isGenerating, setIsGenerating] = useState(false);
+
+    const [showWorkspace, setShowWorkspace] = useState(false);
 
     const isMobile = useDevice();
 
@@ -58,34 +62,75 @@ const fetchMessages = async (conversationId) => {
 
 };
 
-    return isMobile
+const handleConversationClick = async (conversationId) => {
 
-        ? <MobileDashboard
-        
-        conversations={conversations}
-        setConversations={setConversations}
-        activeConversation={activeConversation}
-        setActiveConversation={setActiveConversation}
-        messages={messages}
-        setMessages={setMessages}
-        isGenerating={isGenerating}
-        setIsGenerating={setIsGenerating}
+    try {
 
-        />
+        await openConversation(conversationId);
 
-        : <DesktopDashboard
+        const updatedConversations =
+            await getConversations();
 
-            conversations={conversations}
-            setConversations={setConversations}
-            activeConversation={activeConversation}
-            setActiveConversation={setActiveConversation}
-            messages={messages}
-            setMessages={setMessages}
-            isGenerating={isGenerating}
-            setIsGenerating={setIsGenerating}
+        setConversations(updatedConversations);
 
-            />;
+        await fetchMessages(conversationId);
 
+        setActiveConversation(conversationId);
+
+        setShowWorkspace(true);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+return (
+
+    <ChatProvider
+
+        value={{
+
+            conversations,
+
+            setConversations,
+
+            activeConversation,
+
+            setActiveConversation,
+
+            messages,
+
+            setMessages,
+
+            isGenerating,
+
+            setIsGenerating,
+
+            handleConversationClick
+
+        }}
+
+    >
+
+        {
+
+            isMobile
+
+                ? <MobileDashboard />
+
+                : <DesktopDashboard />
+
+        }
+
+    </ChatProvider>
+
+);
+   
 }
 
 export default Dashboard;

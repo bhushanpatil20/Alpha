@@ -5,26 +5,24 @@ import { TiPlus } from "react-icons/ti";
 import { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import ConfirmationModal from "../../../common/ConfirmationModel/ConfirmationModel";
-import { openConversation, getConversations } from "../../../../api/conversation.api";
+import { useChat } from "../../../../context/ChatContext";
 
-function MobileSidebar({ isOpen, onClose, conversations, setConversations, activeConversation, setActiveConversation }) {
+function MobileSidebar({ isOpen, onClose }) {
     const { logout, user } = useAuth();
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+    const {
+
+    conversations,
+
+    activeConversation,
+
+    handleConversationClick
+
+} = useChat();
+
     const displayName = user?.fullName || "Anonymous";
     const displayInitial = displayName.charAt(0).toUpperCase();
-
-    const handleConversationClick = async (conversationId) => {
-        try {
-            await openConversation(conversationId);
-            const updated = await getConversations();
-            setConversations(updated);
-            setActiveConversation(conversationId);
-            onClose();
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     return (
         <>
@@ -68,7 +66,10 @@ function MobileSidebar({ isOpen, onClose, conversations, setConversations, activ
                         <button
                             key={chat._id}
                             className={`history-item ${activeConversation === chat._id ? "active" : ""}`}
-                            onClick={() => handleConversationClick(chat._id)}
+                            onClick={() =>{
+                                handleConversationClick(chat._id); 
+                                onClose();
+                            }}
                         >
                             <MessageSquare size={16} />
                             <div className="history-content">
