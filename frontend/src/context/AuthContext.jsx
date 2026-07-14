@@ -1,16 +1,5 @@
-import {
-    createContext,
-    useContext,
-    useEffect,
-    useState
-} from "react";
-
-import {
-    login as loginAPI,
-    register as registerAPI,
-    logout as logoutAPI,
-    getCurrentUser
-} from "../api/auth.api";
+import { createContext, useContext, useEffect, useState} from "react";
+import { login as loginAPI, register as registerAPI, logout as logoutAPI, getCurrentUser} from "../api/auth.api";
 
 const AuthContext = createContext();
 

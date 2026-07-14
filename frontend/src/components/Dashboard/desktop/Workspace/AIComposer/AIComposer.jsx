@@ -71,8 +71,10 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
                         className="composer-send"
                         disabled={!value.trim()}
                         onClick={() => {
+                            if(value.trim()){
                             onSubmit();
                             handleResetHeight();
+                            }
                         }}
                         aria-label="Send prompt"
                     >

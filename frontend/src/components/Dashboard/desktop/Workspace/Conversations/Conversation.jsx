@@ -1,14 +1,29 @@
-function Conversation({ messages }) {
+import "./Conversation.css";
+import { useChat } from "../../../../../context/ChatContext";
 
-    if(messages.length===0){
+function Conversation() {
+
+    const { messages } = useChat();
+
+    console.log("Conversation Render:", messages);
+
+    if (messages.length === 0) {
 
         return (
 
             <div className="conversation-empty">
 
-                This conversation is empty.
+                <h3>
 
-                Start typing below.
+                    No messages yet
+
+                </h3>
+
+                <p>
+
+                    Start chatting below.
+
+                </p>
 
             </div>
 
@@ -16,7 +31,35 @@ function Conversation({ messages }) {
 
     }
 
-    return null;
+    return (
+
+        <div className="conversation-list">
+
+            {
+
+                messages.map((message) => (
+
+                    <div
+
+                        key={message._id}
+
+                        className={`message ${message.role}`}
+
+                    >
+
+                        {message.content}
+
+                    </div>
+
+                ))
+
+                
+
+            }
+
+        </div>
+
+    );
 
 }
 

@@ -50,6 +50,8 @@ const fetchMessages = async (conversationId) => {
 
         const data = await getMessages(conversationId);
 
+        console.log("API Returned:", data);
+
         setMessages(data);
 
     }
@@ -68,8 +70,7 @@ const handleConversationClick = async (conversationId) => {
 
         await openConversation(conversationId);
 
-        const updatedConversations =
-            await getConversations();
+        const updatedConversations = await getConversations();
 
         setConversations(updatedConversations);
 
@@ -81,7 +82,7 @@ const handleConversationClick = async (conversationId) => {
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(error);
 

@@ -31,12 +31,15 @@ function MobileDashboard() {
 
     setIsGenerating,
 
-    handleConversationClick
+    handleConversationClick,
+
+    sendMessage
 
 } = useChat();
 
-    const handleGenerate = () => {
-        console.log(prompt);
+    const handleGenerate = async () => {
+        await sendMessage(prompt);
+        setPrompt("");
     };
 
     return (

@@ -13,3 +13,9 @@ export const getMessages = async (conversationId) => {
     });
 
 };
+
+export const createMessage = async ( conversation, role, content ) => {
+
+    return await Message.create({ conversation, role, content });
+
+};

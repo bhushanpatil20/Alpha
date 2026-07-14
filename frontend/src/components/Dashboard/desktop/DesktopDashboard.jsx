@@ -18,9 +18,12 @@ function DesktopDashboard() {
 
     const [showNewChatModal, setShowNewChatModal] = useState("");
 
-    const handleGenerate = () => {
+    const { sendMessage } = useChat();
 
-    console.log(prompt);
+    const handleGenerate = async () => {
+
+    await sendMessage(prompt);
+    setPrompt("");
 
 };
 

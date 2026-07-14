@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./DashboardHome.css";
 
 function DashboardHome({ onNewChat }) {
-    // --- Live Typing Effect State (Hero Section) ---
     const [streamingText, setStreamingText] = useState("");
     const [activeTone, setActiveTone] = useState("Witty");
     const blogDraft = "In the rapidly evolving landscape of digital spaces, holding attention is currency. The secret isn't writing more; it's engineering text hooks that disrupt the scroll mechanism entirely...";
