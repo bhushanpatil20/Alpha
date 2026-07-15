@@ -2,6 +2,7 @@ import "./Conversation.css";
 import { useChat } from "../../../../../context/ChatContext";
 import {useRef, useEffect} from "react";
 import ThinkingMessage from "../ThinkingMessage/ThinkingMessage"
+import MessageBubble from "../../../../chat/MessageBubble/MessageBubble";
 
 function Conversation() {
     const bottomRef = useRef(null);
@@ -57,9 +58,11 @@ useEffect(() => {
 
                 messages.map((message) => (
 
-                    <div
+                    <MessageBubble
 
                         key={message._id}
+
+                        message={message}
 
                         className={`message ${message.role}`}
 
@@ -67,7 +70,7 @@ useEffect(() => {
 
                         {message.content}
 
-                    </div>
+                    </MessageBubble>
 
                 ))
 

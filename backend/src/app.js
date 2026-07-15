@@ -6,6 +6,8 @@ import conversationRoutes from "./routes/conversation.routes.js"
 import messageRoutes from "./routes/message.route.js"
 import { generateResponse } from "./services/ai.service.js";
 import ai from "./config/gemini.js";
+import { generateAIResponse } from "./services/ai.service.js";
+import axios from "axios";
 import "./config/env.js";
 
 const app = express();
@@ -55,6 +57,47 @@ app.get("/test", async (req, res) => {
 
 });
 
+app.get("/open", async (req, res) => {
+
+    try {
+
+        const reply = await generateAIResponse(
+            "What is the name of your mother?"
+        );
+
+        console.log(reply);
+
+        res.send(reply);
+
+    }
+
+   catch (error) {
+
+    console.error("OpenRouter Error:");
+    console.error(error);
+
+    res.status(500).json({
+        success: false,
+        message: error.message,
+        stack: error.stack
+    });
+
+}
+
+});
+
+app.get("/models", async (req, res)=>{
+    const response = await axios.get(
+  "https://api.cerebras.ai/v1/models",
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.CEREBRAS_API_KEY}`,
+    },
+  }
+);
+
+console.log(response.data);
+})
 
 export default app;
 

@@ -1,4 +1,5 @@
 import ai from "../config/gemini.js";
+import { generateCerebras } from "../config/open.js";
 
 export const generateResponse = async (prompt, instructions = "") => {
 
@@ -16,4 +17,19 @@ export const generateResponse = async (prompt, instructions = "") => {
 
     return response.text;
 
+};
+
+export const generateAIResponse = async (prompt) => {
+    const messages = [
+        {
+            role: "system",
+            content: "You are Alpha, a helpful AI assistant.",
+        },
+        {
+            role: "user",
+            content: prompt,
+        },
+    ];
+
+    return await generateCerebras(messages);
 };

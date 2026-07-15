@@ -6,6 +6,11 @@ import { useChat } from "../../../../../context/ChatContext";
 
 function AIComposer({ onSubmit, onWritingChange }) {
     const {prompt, setPrompt, isGenerating} = useChat();
+    console.log("I can print!");
+    console.log({
+    prompt,
+    isGenerating
+});
     const isWriting = prompt.trim().length > 0;
     const textareaRef = useRef(null);
 

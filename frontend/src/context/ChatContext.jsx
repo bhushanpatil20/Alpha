@@ -82,25 +82,81 @@ const handleConversationClick = async (conversationId) => {
 
 };
 
+// const sendMessage = async (content) => {
+
+//        console.log({
+//         activeConversation,
+//         isGenerating,
+//         content
+//     });
+
+//     if (!activeConversation || !isGenerating) return;
+
+//     try {
+
+//         await createMessage(activeConversation, "user", content);
+//         await fetchMessages(activeConversation);
+//         await fetchConversations();
+//         setPrompt("");
+//     }
+
+//     catch (error) {
+
+//         console.error(error);
+
+//     }
+//     finally {
+//         setIsGenerating(false);
+//     }
+
+// };
+
 const sendMessage = async (content) => {
 
-    if (!activeConversation || !isGenerating) return;
+    console.log("1. sendMessage started");
+
+    if (!activeConversation || isGenerating) return;
+
+    setIsGenerating(true);
 
     try {
 
-        await createMessage(activeConversation, "user", content);
+        console.log("2. Calling createMessage...");
+
+        await createMessage(
+            activeConversation,
+            "user",
+            content
+        );
+
+        console.log("3. createMessage finished");
+
         await fetchMessages(activeConversation);
+
+        console.log("4. fetchMessages finished");
+
         await fetchConversations();
+
+        console.log("5. fetchConversations finished");
+
         setPrompt("");
+
+        console.log("6. Prompt cleared");
+
     }
 
     catch (error) {
 
-        console.error(error);
+        console.error("sendMessage Error:", error);
 
     }
+
     finally {
+
         setIsGenerating(false);
+
+        console.log("7. Finished");
+
     }
 
 };

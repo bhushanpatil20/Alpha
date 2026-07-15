@@ -1,6 +1,7 @@
 import { Conversation } from "../models/conversation.model.js";
 import { generateResponse } from "./ai.service.js";
 import { Message } from "../models/message.model.js";
+import { generateAIResponse } from "./ai.service.js";
 
 export const getMessages = async (conversationId) => {
 
@@ -42,13 +43,7 @@ export const createMessage = async (conversationId, role, content) => {
 
 
 
-    const aiReply = await generateResponse(
-
-        content,
-
-        conversation.instructions
-
-    );
+    const aiReply = await generateAIResponse(content, conversation.instructions);
 
 
     await Message.create({

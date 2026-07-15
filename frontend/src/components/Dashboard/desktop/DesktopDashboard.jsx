@@ -16,15 +16,14 @@ function DesktopDashboard() {
 
     const [showNewChatModal, setShowNewChatModal] = useState("");
 
-    const { sendMessage } = useChat();
-
-    const {prompt} = useChat();
+    const { sendMessage, prompt } = useChat();
 
     const handleGenerate = async () => {
 
     if (!prompt.trim()) return;
 
     await sendMessage(prompt);
+    console.log("sendMessage called");
 
 };
 
