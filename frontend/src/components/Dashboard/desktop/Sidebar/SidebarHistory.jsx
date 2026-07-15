@@ -19,7 +19,7 @@ function SidebarHistory() {
 
     {
 
-        title: "Today",
+        title: "",
 
         chats: conversations.map((conversation) => ({
 

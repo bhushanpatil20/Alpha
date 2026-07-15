@@ -1,11 +1,28 @@
 import "./Conversation.css";
 import { useChat } from "../../../../../context/ChatContext";
+import {useRef, useEffect} from "react";
 
 function Conversation() {
-
+    const bottomRef = useRef(null);
     const { messages } = useChat();
 
-    console.log("Conversation Render:", messages);
+    const previousLength = useRef(0);
+
+useEffect(() => {
+
+    if(messages.length > previousLength.current){
+
+        bottomRef.current?.scrollIntoView({
+
+            behavior:"smooth"
+
+        });
+
+    }
+
+    previousLength.current = messages.length;
+
+}, [messages]);
 
     if (messages.length === 0) {
 
@@ -56,6 +73,8 @@ function Conversation() {
                 
 
             }
+
+            <div ref={bottomRef} />
 
         </div>
 

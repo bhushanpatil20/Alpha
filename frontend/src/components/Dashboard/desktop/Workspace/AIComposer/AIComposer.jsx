@@ -2,9 +2,11 @@ import "./AIComposer.css";
 import { useEffect, useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import promptSuggestions from "../../../../../constants/promptSuggestions";
+import { useChat } from "../../../../../context/ChatContext";
 
-function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
-    const isWriting = value.trim().length > 0;
+function AIComposer({ onSubmit, onWritingChange }) {
+    const {prompt, setPrompt} = useChat();
+    const isWriting = prompt.trim().length > 0;
     const textareaRef = useRef(null);
 
     useEffect(() => {
@@ -12,7 +14,7 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
     }, [isWriting, onWritingChange]);
 
     const handleInput = (e) => {
-        onChange(e.target.value);
+        setPrompt(e.target.value);
         if (textareaRef.current) {
             textareaRef.current.style.height = "auto";
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
@@ -33,7 +35,7 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
                         key={item}
                         className="composer-chip"
                         onClick={() => {
-                            onChange(`Write a professional ${item.toLowerCase()} about `);
+                            setPrompt(`Write a professional ${item.toLowerCase()} about `);
                             if (textareaRef.current) {
                                 textareaRef.current.focus();
                             }
@@ -49,14 +51,14 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
                     ref={textareaRef}
                     className="composer-input"
                     placeholder="Tell Alpha what content you'd like to generate today..."
-                    value={value}
+                    value={prompt}
                     onChange={handleInput}
                     rows={1}
                     maxLength={4000}
                     onKeyDown={(e) => {
                         if (e.key === "Enter" && !e.shiftKey) {
                             e.preventDefault();
-                            if (value.trim()) {
+                            if (prompt.trim()) {
                                 onSubmit();
                                 handleResetHeight();
                             }
@@ -65,13 +67,13 @@ function AIComposer({ value, onChange, onSubmit, onWritingChange }) {
                 />
                 <div className="composer-actions">
                     <span className="composer-counter">
-                        {value.length}/4000
+                        {prompt.length}/4000
                     </span>
                     <button
                         className="composer-send"
-                        disabled={!value.trim()}
+                        disabled={!prompt.trim()}
                         onClick={() => {
-                            if(value.trim()){
+                            if(prompt.trim()){
                             onSubmit();
                             handleResetHeight();
                             }

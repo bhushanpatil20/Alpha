@@ -17,20 +17,20 @@
     flex-direction: column;
 }
 
-.workspace-content::-webkit-scrollbar {
+.workspace-content *::-webkit-scrollbar {
     width: 6px;
 }
 
-.workspace-content::-webkit-scrollbar-track {
+.workspace-content *::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.workspace-content::-webkit-scrollbar-thumb {
+.workspace-content *::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 999px;
 }
 
-.workspace-content::-webkit-scrollbar-thumb:hover {
+.workspace-content *::-webkit-scrollbar-thumb:hover {
     background: rgba(156, 220, 254, 0.2);
 }
 

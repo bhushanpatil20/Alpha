@@ -6,47 +6,35 @@ import MobileHero from "./MobileHero";
 import MobileComposer from "./MobileComposer";
 import { logout } from "../../../api/auth.api";
 import { useChat } from "../../../context/ChatContext";
+import Conversation from "../desktop/Workspace/Conversations/Conversation";
 
 function MobileDashboard() {
     
-    const [prompt, setPrompt] = useState("");
     const [isWriting, setIsWriting] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const {
-
     conversations,
-
     setConversations,
-
     activeConversation,
-
     setActiveConversation,
-
     messages,
-
     setMessages,
-
     isGenerating,
-
     setIsGenerating,
-
     handleConversationClick,
-
+    prompt,
+    setPrompt,
     sendMessage
-
 } = useChat();
-
-    const handleGenerate = async () => {
-        await sendMessage(prompt);
-        setPrompt("");
-    };
 
     return (
         <main className="mobile-dashboard">
             <MobileTopBar
                 onMenuClick={() => setIsSidebarOpen(true)}
             />
+
+            <Conversation />
             
             <MobileSidebar
                 isOpen={isSidebarOpen}
@@ -60,9 +48,6 @@ function MobileDashboard() {
             />
             
             <MobileComposer
-                value={prompt}
-                onChange={setPrompt}
-                onSubmit={handleGenerate}
                 onWritingChange={setIsWriting}
             />
         </main>

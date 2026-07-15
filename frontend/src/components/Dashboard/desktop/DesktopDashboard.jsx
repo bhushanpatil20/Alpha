@@ -12,18 +12,19 @@ import { useChat } from "../../../context/ChatContext";
 
 function DesktopDashboard() {
 
-    const [prompt, setPrompt] = useState("");
-
     const [isWriting, setIsWriting] = useState(false);
 
     const [showNewChatModal, setShowNewChatModal] = useState("");
 
     const { sendMessage } = useChat();
 
+    const {prompt} = useChat();
+
     const handleGenerate = async () => {
 
+    if (!prompt.trim()) return;
+
     await sendMessage(prompt);
-    setPrompt("");
 
 };
 
@@ -53,10 +54,6 @@ const { conversations, setConversations, activeConversation, setActiveConversati
         composer={
 
             <AIComposer
-
-                value={prompt}
-
-                onChange={setPrompt}
 
                 onSubmit={handleGenerate}
 

@@ -1,33 +1,46 @@
-import { createContext, useContext } from "react";
-import { getMessages } from "../api/message.api";
+import { getMessages, createMessage} from "../api/message.api";
 import { getConversations, openConversation } from "../api/conversation.api";
+import { useContext, createContext, useEffect, useState } from "react";
 const ChatContext = createContext();
 
-export function ChatProvider({
+export function ChatProvider({ children }) {
 
-    children,
+    const [conversations, setConversations] = useState([]);
+    const [activeConversation, setActiveConversation] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [showWorkspace, setShowWorkspace] = useState(false);
+    const [prompt, setPrompt] = useState("");
 
-    value
+     const fetchConversations = async () => {
 
-}) {
+        try {
 
-    return (
+            const data = await getConversations();
 
-        <ChatContext.Provider value={value}>
+            setConversations(data);
 
-            {children}
+        }
 
-        </ChatContext.Provider>
+        catch (error) {
 
-    );
+            console.error(error);
 
-}
+        }
 
-export function useChat() {
+    };
 
-    return useContext(ChatContext);
+    useEffect(() => {
 
-}
+    fetchConversations();
+
+}, []);
+
+useEffect(() => {
+
+    setPrompt("");
+
+}, [activeConversation]);
 
 const fetchMessages = async (conversationId) => {
 
@@ -74,9 +87,9 @@ const sendMessage = async (content) => {
     try {
 
         await createMessage(activeConversation, "user", content);
-
         await fetchMessages(activeConversation);
-
+        await fetchConversations();
+        setPrompt("");
     }
 
     catch (error) {
@@ -86,3 +99,27 @@ const sendMessage = async (content) => {
     }
 
 };
+
+    return (
+
+        <ChatContext.Provider value={
+            {
+            conversations, activeConversation, messages, 
+            isGenerating, showWorkspace, fetchConversations, fetchMessages, handleConversationClick,
+            sendMessage, setShowWorkspace, prompt, setPrompt
+            }
+        }>
+
+            {children}
+
+        </ChatContext.Provider>
+
+    );
+
+}
+
+export function useChat() {
+
+    return useContext(ChatContext);
+
+}

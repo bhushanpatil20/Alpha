@@ -1,137 +1,30 @@
-import DesktopDashboard from "../../components/Dashboard/desktop/DesktopDashboard";
-import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
-import useDevice from "../../hooks/useDevice";
-import { useState, useEffect } from "react";
-import { getConversations, openConversation } from "../../api/conversation.api";
-import {getMessages} from "../../api/message.api";
 import { ChatProvider } from "../../context/ChatContext";
+import {useDevice} from "../../hooks/useDevice";
+import MobileDashboard from "../../components/Dashboard/mobile/MobileDashboard";
+import DesktopDashboard from "../../components/Dashboard/desktop/DesktopDashboard";
 
 function Dashboard() {
 
-    const [conversations, setConversations] = useState([]);
-
-    const [activeConversation, setActiveConversation] = useState(null);
-
-    const [messages, setMessages] = useState([]);
-
-    const [isGenerating, setIsGenerating] = useState(false);
-
-    const [showWorkspace, setShowWorkspace] = useState(false);
-
     const isMobile = useDevice();
 
-    useEffect(() => {
+    return (
 
-    const fetchConversations = async () => {
+        <ChatProvider>
 
-        try {
+            {
 
-            const data = await getConversations();
+                isMobile
 
-            setConversations(data);
+                    ? <MobileDashboard />
 
-        }
+                    : <DesktopDashboard />
 
-        catch (error) {
+            }
 
-            console.error(error);
+        </ChatProvider>
 
-        }
+    );
 
-    };
-
-    fetchConversations();
-
-}, []);
-
-const fetchMessages = async (conversationId) => {
-
-    try {
-
-        const data = await getMessages(conversationId);
-
-        console.log("API Returned:", data);
-
-        setMessages(data);
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-    }
-
-};
-
-const handleConversationClick = async (conversationId) => {
-
-    try {
-
-        await openConversation(conversationId);
-
-        const updatedConversations = await getConversations();
-
-        setConversations(updatedConversations);
-
-        await fetchMessages(conversationId);
-
-        setActiveConversation(conversationId);
-
-        setShowWorkspace(true);
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-    }
-
-};
-
-return (
-
-    <ChatProvider
-
-        value={{
-
-            conversations,
-
-            setConversations,
-
-            activeConversation,
-
-            setActiveConversation,
-
-            messages,
-
-            setMessages,
-
-            isGenerating,
-
-            setIsGenerating,
-
-            handleConversationClick
-
-        }}
-
-    >
-
-        {
-
-            isMobile
-
-                ? <MobileDashboard />
-
-                : <DesktopDashboard />
-
-        }
-
-    </ChatProvider>
-
-);
-   
 }
 
 export default Dashboard;
