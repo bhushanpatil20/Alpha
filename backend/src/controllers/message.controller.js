@@ -5,11 +5,7 @@ export const getMessagesController = async (req, res) => {
 
     try {
 
-        const messages = await getMessages(
-
-            req.params.conversationId
-
-        );
+        const messages = await getMessages(req.params.conversationId);
 
         return res.status(200).json({
 
@@ -23,6 +19,9 @@ export const getMessagesController = async (req, res) => {
 
     catch(error){
 
+            console.error("Create Message Error:");
+    console.error(error);
+
         return res.status(500).json({
 
             success:false,
@@ -35,35 +34,12 @@ export const getMessagesController = async (req, res) => {
 
 };
 
-export const createMessageController = async (
-
-    req,
-
-    res
-
-) => {
-
+export const createMessageController = async (req, res) => {
     try {
 
-        const {
+        const { conversationId, role, content } = req.body;
 
-            conversationId,
-
-            role,
-
-            content
-
-        } = req.body;
-
-        const message = await createMessage(
-
-            conversationId,
-
-            role,
-
-            content
-
-        );
+        const message = await createMessage(conversationId, role, content);
 
         return res.status(201).json({
 

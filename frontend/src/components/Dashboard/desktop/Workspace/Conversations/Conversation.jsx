@@ -1,10 +1,11 @@
 import "./Conversation.css";
 import { useChat } from "../../../../../context/ChatContext";
 import {useRef, useEffect} from "react";
+import ThinkingMessage from "../ThinkingMessage/ThinkingMessage"
 
 function Conversation() {
     const bottomRef = useRef(null);
-    const { messages } = useChat();
+    const { messages, isGenerating } = useChat();
 
     const previousLength = useRef(0);
 
@@ -73,6 +74,12 @@ useEffect(() => {
                 
 
             }
+
+            {isGenerating && (
+
+    <ThinkingMessage />
+
+)}
 
             <div ref={bottomRef} />
 

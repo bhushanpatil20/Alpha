@@ -18,6 +18,8 @@ export function ChatProvider({ children }) {
 
             const data = await getConversations();
 
+             console.log("Fetched conversations:", data);
+
             setConversations(data);
 
         }
@@ -82,7 +84,7 @@ const handleConversationClick = async (conversationId) => {
 
 const sendMessage = async (content) => {
 
-    if (!activeConversation) return;
+    if (!activeConversation || !isGenerating) return;
 
     try {
 
@@ -97,6 +99,9 @@ const sendMessage = async (content) => {
         console.error(error);
 
     }
+    finally {
+        setIsGenerating(false);
+    }
 
 };
 
@@ -104,9 +109,9 @@ const sendMessage = async (content) => {
 
         <ChatContext.Provider value={
             {
-            conversations, activeConversation, messages, 
+            conversations, activeConversation, setActiveConversation, messages, 
             isGenerating, showWorkspace, fetchConversations, fetchMessages, handleConversationClick,
-            sendMessage, setShowWorkspace, prompt, setPrompt
+            sendMessage, setShowWorkspace, prompt, setPrompt, isGenerating
             }
         }>
 

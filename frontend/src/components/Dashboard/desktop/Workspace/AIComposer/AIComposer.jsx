@@ -5,7 +5,7 @@ import promptSuggestions from "../../../../../constants/promptSuggestions";
 import { useChat } from "../../../../../context/ChatContext";
 
 function AIComposer({ onSubmit, onWritingChange }) {
-    const {prompt, setPrompt} = useChat();
+    const {prompt, setPrompt, isGenerating} = useChat();
     const isWriting = prompt.trim().length > 0;
     const textareaRef = useRef(null);
 
@@ -70,8 +70,8 @@ function AIComposer({ onSubmit, onWritingChange }) {
                         {prompt.length}/4000
                     </span>
                     <button
-                        className="composer-send"
-                        disabled={!prompt.trim()}
+                        className={`composer-send ${isGenerating ? "disabled" : ""}`}
+                        disabled={!prompt.trim() || isGenerating}
                         onClick={() => {
                             if(prompt.trim()){
                             onSubmit();

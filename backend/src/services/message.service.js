@@ -1,3 +1,5 @@
+import { Conversation } from "../models/conversation.model.js";
+import { generateResponse } from "./ai.service.js";
 import { Message } from "../models/message.model.js";
 
 export const getMessages = async (conversationId) => {
@@ -14,8 +16,58 @@ export const getMessages = async (conversationId) => {
 
 };
 
-export const createMessage = async ( conversation, role, content ) => {
+export const createMessage = async (conversationId, role, content) => {
 
-    return await Message.create({ conversation, role, content });
+    const userMessage = await Message.create({
+
+        conversation: conversationId,
+
+        role,
+
+        content
+
+    });
+
+    if (role === "assistant") {
+
+        return userMessage;
+
+    }
+
+    
+
+    const conversation = await Conversation.findById(
+        conversationId
+    );
+
+
+
+    const aiReply = await generateResponse(
+
+        content,
+
+        conversation.instructions
+
+    );
+
+
+    await Message.create({
+
+        conversation: conversationId,
+
+        role: "assistant",
+
+        content: aiReply
+
+    });
+
+
+    conversation.lastMessage = aiReply;
+
+    conversation.lastMessageAt = new Date();
+
+    await conversation.save();
+
+    return userMessage;
 
 };

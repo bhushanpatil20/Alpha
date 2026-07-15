@@ -19,21 +19,16 @@ function Sidebar({onLogout}){
 
     setActiveConversation,
 
-    handleConversationClick
+    handleConversationClick,
+
+    fetchConversations
 
 } = useChat();
 
-    const handleConversationCreated = (conversation) => {
-
-    setConversations(prev => [
-
-        conversation,
-
-        ...prev
-
-    ]);
-
-    setActiveConversation(conversation._id);
+    const handleConversationCreated = async (conversation) => {
+        await fetchConversations();
+        setActiveConversation(conversation._id);
+        setShowNewChatModal(false);
 
 };
 
