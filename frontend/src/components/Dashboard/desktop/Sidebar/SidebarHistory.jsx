@@ -1,97 +1,34 @@
 import "./SidebarHistory.css";
 import SidebarHistoryItem from "./SidebarHistoryItem";
-import { openConversation, getConversations } from "../../../../api/conversation.api";
 import { useChat } from "../../../../context/ChatContext";
+import { BsChatLeftDotsFill } from "react-icons/bs";
 
 function SidebarHistory() {
-
-    const {
-
-    conversations,
-
-    activeConversation,
-
-    handleConversationClick
-
-} = useChat();
-
-    const history = [
-
-    {
-
-        title: "",
-
-        chats: conversations.map((conversation) => ({
-
-            id: conversation._id,
-
-            title: conversation.title,
-
-            time: new Date(
-
-                conversation.createdAt
-
-            ).toLocaleTimeString([], {
-
-                hour: "2-digit",
-
-                minute: "2-digit"
-
-            }),
-
-            active:
-
-                activeConversation === conversation._id
-
-        }))
-
-    }
-
-];
+    const { conversations, activeConversation, handleConversationClick } = useChat();
 
     return (
-
         <div className="desktop-history">
-
-            {history.map((group) => (
-
-                <div
-                    key={group.title}
-                    className="history-group"
-                >
-
-                    <p className="history-heading">
-
-                        {group.title}
-
-                    </p>
-
-                    {
-
-                        group.chats.map((chat) => (
-
-                           <SidebarHistoryItem
-
-    key={chat.id}
-
-    chat={chat}
-
-    onClick={() => handleConversationClick(chat.id)}
-
-/>
-
-                        ))
-
-                    }
-
-                </div>
-
-            ))}
-
+            <div className="history-header">
+                <BsChatLeftDotsFill size={16} />
+                <br/>
+                <span>Chats</span>
+            </div>
+            
+            <div className="history-list">
+                {conversations.map((chat) => (
+                    <SidebarHistoryItem
+                        key={chat._id}
+                        chat={{
+                            id: chat._id,
+                            title: chat.title,
+                            active: activeConversation === chat._id
+                        }}
+                        onClick={() => handleConversationClick(chat._id)}
+                    />
+                ))}
+            </div>
         </div>
-
     );
-
 }
 
 export default SidebarHistory;

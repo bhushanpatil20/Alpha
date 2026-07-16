@@ -2,31 +2,28 @@ import "./MobileDashboard.css";
 import { useState } from "react";
 import MobileTopBar from "./MobileTopBar/MobileTopBar";
 import MobileSidebar from "./MobileSidebar/MobileSidebar";
-import MobileHero from "./MobileHero";
 import MobileComposer from "./MobileComposer";
 import { logout } from "../../../api/auth.api";
 import { useChat } from "../../../context/ChatContext";
 import Conversation from "../desktop/Workspace/Conversations/Conversation";
 
 function MobileDashboard() {
-    
-    const [isWriting, setIsWriting] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const {
-    conversations,
-    setConversations,
-    activeConversation,
-    setActiveConversation,
-    messages,
-    setMessages,
-    isGenerating,
-    setIsGenerating,
-    handleConversationClick,
-    prompt,
-    setPrompt,
-    sendMessage
-} = useChat();
+        conversations,
+        setConversations,
+        activeConversation,
+        setActiveConversation,
+        messages,
+        setMessages,
+        isGenerating,
+        setIsGenerating,
+        handleConversationClick,
+        prompt,
+        setPrompt,
+        sendMessage
+    } = useChat();
 
     return (
         <main className="mobile-dashboard">
@@ -34,7 +31,9 @@ function MobileDashboard() {
                 onMenuClick={() => setIsSidebarOpen(true)}
             />
 
-            <Conversation />
+            <div className="mobile-content">
+                <Conversation messages={messages} />
+            </div>
             
             <MobileSidebar
                 isOpen={isSidebarOpen}
@@ -47,9 +46,7 @@ function MobileDashboard() {
                 onConversationClick={handleConversationClick}
             />
             
-            <MobileComposer
-                onWritingChange={setIsWriting}
-            />
+            <MobileComposer />
         </main>
     );
 }

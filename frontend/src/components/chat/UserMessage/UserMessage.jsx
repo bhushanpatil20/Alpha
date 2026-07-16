@@ -1,4 +1,4 @@
-import "../MessageBubble/MessageBubble.css";
+import "./UserMessage.css";
 import MessageTimestamp from "../MessageTimestamp/MessageTimestamp";
 
 function UserMessage({ message }) {
@@ -16,6 +16,8 @@ function UserMessage({ message }) {
                 />
 
             </div>
+
+            <div className="message--row-divider" />
 
         </div>
 

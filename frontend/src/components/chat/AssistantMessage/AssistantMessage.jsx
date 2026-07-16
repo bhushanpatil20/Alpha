@@ -1,29 +1,26 @@
 import "../AssistantMessage/AssistantMessage.css";
-import MessageTimestamp from "../MessageTimestamp/MessageTimestamp";
+import MessageTimestamp from "../MessageTimestamp/MessageTimestamp.jsx";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 function AssistantMessage({ message }) {
 
     return (
 
-        <div className="message-row assistant">
+       <div className="assistant-message">
 
-            <div className="assistant-avatar">
+    <div className="assistant-content">
 
-                A
+        <ReactMarkdown>
 
-            </div>
+            {message.content}
 
-            <div className="message-bubble assistant-bubble">
+        </ReactMarkdown>
 
-                <p>{message.content}</p>
+    </div>
 
-                <MessageTimestamp
-                    date={message.createdAt}
-                />
-
-            </div>
-
-        </div>
+</div>
 
     );
 

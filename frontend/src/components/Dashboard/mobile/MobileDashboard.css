@@ -2,14 +2,14 @@
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
-    background: #14120B;
+    background: #0F0F0F;
     color: #F3F4F6;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    padding-top: 73px;
+    padding-top: 60px; /* Adjusted to maximize space */
     box-sizing: border-box;
 }
 
@@ -17,7 +17,7 @@
     width: 100%;
     max-width: 480px;
     margin: 0 auto;
-    padding: 24px 20px;
+    padding: 16px 20px 80px; /* Reduced padding for wider workspace, added bottom padding for composer */
     flex: 1;
     box-sizing: border-box;
     overflow-y: auto;
@@ -27,7 +27,15 @@
     width: 4px;
 }
 
+.mobile-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 .mobile-content::-webkit-scrollbar-thumb {
-    background: rgba(156, 220, 254, 0.2);
+    background: rgba(255, 255, 255, 0.1); /* Flatter, more subtle scrollbar */
     border-radius: 999px;
+}
+
+.mobile-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
 }

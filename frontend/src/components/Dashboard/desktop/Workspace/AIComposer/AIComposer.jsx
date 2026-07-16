@@ -1,16 +1,11 @@
 import "./AIComposer.css";
 import { useEffect, useRef } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import promptSuggestions from "../../../../../constants/promptSuggestions";
 import { useChat } from "../../../../../context/ChatContext";
 
 function AIComposer({ onSubmit, onWritingChange }) {
-    const {prompt, setPrompt, isGenerating} = useChat();
-    console.log("I can print!");
-    console.log({
-    prompt,
-    isGenerating
-});
+    const { prompt, setPrompt, isGenerating } = useChat();
     const isWriting = prompt.trim().length > 0;
     const textareaRef = useRef(null);
 
@@ -55,7 +50,7 @@ function AIComposer({ onSubmit, onWritingChange }) {
                 <textarea
                     ref={textareaRef}
                     className="composer-input"
-                    placeholder="Tell Alpha what content you'd like to generate today..."
+                    placeholder="Ask Alpha anything..."
                     value={prompt}
                     onChange={handleInput}
                     rows={1}
@@ -70,23 +65,26 @@ function AIComposer({ onSubmit, onWritingChange }) {
                         }
                     }}
                 />
-                <div className="composer-actions">
-                    <span className="composer-counter">
-                        {prompt.length}/4000
-                    </span>
-                    <button
-                        className={`composer-send ${isGenerating ? "disabled" : ""}`}
-                        disabled={!prompt.trim() || isGenerating}
-                        onClick={() => {
-                            if(prompt.trim()){
-                            onSubmit();
-                            handleResetHeight();
-                            }
-                        }}
-                        aria-label="Send prompt"
-                    >
-                        <ArrowUp size={20} strokeWidth={2.5} />
-                    </button>
+                
+                <div className="composer-bottom-bar">
+                    <div className="composer-actions">
+                        <span className="composer-counter">
+                            {prompt.length}/4000
+                        </span>
+                        <button
+                            className={`composer-send ${isGenerating ? "disabled" : ""}`}
+                            disabled={!prompt.trim() || isGenerating}
+                            onClick={() => {
+                                if(prompt.trim()){
+                                    onSubmit();
+                                    handleResetHeight();
+                                }
+                            }}
+                            aria-label="Send prompt"
+                        >
+                            <ArrowRight size={18} strokeWidth={2.5} />
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

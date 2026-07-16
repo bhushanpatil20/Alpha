@@ -1,7 +1,5 @@
 import "./MobileSidebar.css";
-import { X, LogOut, MessageSquare } from "lucide-react";
-import { RiCloseLine } from "react-icons/ri";
-import { TiPlus } from "react-icons/ti";
+import { X, LogOut, Plus, History } from "lucide-react";
 import { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import ConfirmationModal from "../../../common/ConfirmationModel/ConfirmationModel";
@@ -12,14 +10,10 @@ function MobileSidebar({ isOpen, onClose }) {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     const {
-
-    conversations,
-
-    activeConversation,
-
-    handleConversationClick
-
-} = useChat();
+        conversations,
+        activeConversation,
+        handleConversationClick
+    } = useChat();
 
     const displayName = user?.fullName || "Anonymous";
     const displayInitial = displayName.charAt(0).toUpperCase();
@@ -32,54 +26,57 @@ function MobileSidebar({ isOpen, onClose }) {
             />
 
             <aside className={`mobile-sidebar ${isOpen ? "open" : ""}`}>
-                <button className="sidebar-close" onClick={onClose}>
-                    <RiCloseLine size={18} />
-                </button>
-
-                <div className="sidebar-profile">
-                    <div className="sidebar-avatar">
-                        {user?.avatar ? <img src={user.avatar} alt={displayName} /> : displayInitial}
+                <div className="sidebar-top-section">
+                    <div className="sidebar-header">
+                        <button className="sidebar-close" onClick={onClose}>
+                            <X size={20} />
+                        </button>
                     </div>
-                    <div className="sidebar-profile-details">
-                        <h3>{displayName}</h3>
-                        <p>{user?.email || "AI Architect"}</p>
+
+                    <div className="sidebar-nav">
+                        <button className="new-chat-btn" onClick={onClose}>
+                            <Plus size={18} />
+                            <span>New</span>
+                        </button>
+                    </div>
+
+                    <div className="sidebar-history-container">
+                        <div className="history-header-title">
+                            <History size={16} />
+                            <span>History</span>
+                        </div>
+                        
+                        <div className="sidebar-history">
+                            {conversations.map((chat) => (
+                                <button
+                                    key={chat._id}
+                                    className={`history-item ${activeConversation === chat._id ? "active" : ""}`}
+                                    onClick={() => {
+                                        handleConversationClick(chat._id); 
+                                        onClose();
+                                    }}
+                                >
+                                    <span className="history-text">{chat.title}</span>
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
-                <div className="sidebar-nav">
-                    <button onClick={onClose}>
-                        <TiPlus size={18} />
-                        <span>New Chat</span>
-                    </button>
-                    <button className="logout-btn" onClick={() => setShowLogoutModal(true)}>
-                        <LogOut size={18} />
+                <div className="sidebar-bottom-section">
+                    <button className="mobile-logout-btn" onClick={() => setShowLogoutModal(true)}>
+                        <LogOut size={16} />
                         <span>Logout</span>
                     </button>
-                </div>
-
-                <div className="sidebar-history-divider" />
-
-                <p className="history-heading">Recent</p>
-                
-                <div className="sidebar-history">
-                    {conversations.map((chat) => (
-                        <button
-                            key={chat._id}
-                            className={`history-item ${activeConversation === chat._id ? "active" : ""}`}
-                            onClick={() =>{
-                                handleConversationClick(chat._id); 
-                                onClose();
-                            }}
-                        >
-                            <MessageSquare size={16} />
-                            <div className="history-content">
-                                <span>{chat.title}</span>
-                                <small>
-                                    {new Date(chat.updatedAt).toLocaleDateString()}
-                                </small>
-                            </div>
-                        </button>
-                    ))}
+                    <div className="mobile-sidebar-divider" />
+                    <div className="compact-profile">
+                        <div className="compact-avatar">
+                            {user?.avatar ? <img src={user.avatar} alt={displayName} /> : displayInitial}
+                        </div>
+                        <div className="compact-profile-info">
+                            <span>{displayName}</span>
+                        </div>
+                    </div>
                 </div>
             </aside>
 

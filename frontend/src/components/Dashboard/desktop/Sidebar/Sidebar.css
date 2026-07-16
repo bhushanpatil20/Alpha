@@ -1,17 +1,61 @@
 .desktop-sidebar {
-    width: 320px;
-    min-width: 310px;
-    height: 100vh;
-    background: #0C0A06;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    justify-content: space-between;
+    height: 100vh;
+    width: 260px;
+    background-color: #1F1F1F;
+    color: #e5e5e5;
+    padding: 16px 12px;
+    box-sizing: border-box;
+}
+
+.sidebar-top-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     overflow: hidden;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px 24px;
+    color: #a3a3a3;
+}
+
+.sidebar-collapse-btn {
+    background: transparent;
+    border: none;
+    color: #a3a3a3;
+    cursor: pointer;
+}
+
+.sidebar-bottom-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
 }
 
 .desktop-sidebar-divider {
     height: 1px;
-    background: rgba(255, 255, 255, 0.06);
-    margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 8px 0;
+}
+
+.upgrade-plan-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 99px;
+    padding: 8px 16px;
+    color: #e5e5e5;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 12px;
 }
