@@ -15,25 +15,41 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 24px 48px 180px;
-    display: flex;
-    flex-direction: column;
+    /* Removed display: flex and flex-direction: column to prevent top cutoff */
 }
 
-.workspace-content::-webkit-scrollbar {
+.workspace-content ::-webkit-scrollbar {
     width: 6px;
 }
 
-.workspace-content::-webkit-scrollbar-track {
+.workspace-content ::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.workspace-content::-webkit-scrollbar-thumb {
+.workspace-content ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
 }
 
-.workspace-content::-webkit-scrollbar-thumb:hover {
+.workspace-content ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width:768px){
+
+.workspace-content{
+
+    padding:20px 16px 0;
+
+}
+
+}
+
+@media (max-width: 1024px) {
+    .workspace-content {
+        /* Restored the 180px bottom padding so the composer doesn't hide text */
+        padding: 16px 24px 180px;
+    }
 }
 
 @media (max-width: 1024px) {

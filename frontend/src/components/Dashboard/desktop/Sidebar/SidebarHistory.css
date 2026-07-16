@@ -18,7 +18,9 @@
    align-items: center;
    margin-left: 13px;
    margin-top: 12px;
-   margin-bottom: 6px;
+   margin-bottom: 10px;
+   font-size: medium;
+   color: #888;
 }
 
 .history-header span {

@@ -1,7 +1,7 @@
 .desktop-sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 7px;
 }
 
 .desktop-nav-item {

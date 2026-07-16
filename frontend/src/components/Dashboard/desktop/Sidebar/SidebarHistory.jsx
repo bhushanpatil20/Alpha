@@ -10,8 +10,7 @@ function SidebarHistory() {
         <div className="desktop-history">
             <div className="history-header">
                 <BsChatLeftDotsFill size={16} />
-                <br/>
-                <span>Chats</span>
+                <span>CHATS</span>
             </div>
             
             <div className="history-list">

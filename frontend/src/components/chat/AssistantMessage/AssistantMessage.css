@@ -1,21 +1,118 @@
-.assistant-message{
-
-    display:flex;
-
-    gap:18px;
-
-    margin-top: 18px;
-
-    margin-bottom:48px;
-
+.assistant-message {
+    display: flex;
+    gap: 16px; /* Slightly tighter gap for a cleaner look */
+    margin-top: 24px;
+    margin-bottom: 32px;
+    animation: fadeIn 0.3s ease-in-out;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    width:min(850px,100%);
 }
 
-.assistant-content{
+.assistant-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 850px;
+    min-width: 0;
+}
 
-    flex:1;
+.assistant-content {
+    color: #e5e5e5;
+    font-size: 1rem;
+    line-height: 1.7; /* Increased for premium readability */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-width: 0;
+    width:min(850px,100%);
+}
 
-    max-width:850px;
+/* --- Premium Markdown Styling --- */
+.assistant-content p {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
 
-    line-height:1.8;
+.assistant-content p:last-child {
+    margin-bottom: 0;
+}
 
+.assistant-content strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.assistant-content ul, 
+.assistant-content ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.assistant-content li {
+    margin-bottom: 8px;
+}
+
+/* Inline Code Styling */
+.assistant-content code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    color: #9CDCFE; /* Soft blue for syntax emphasis */
+}
+
+/* Code Block Styling */
+.assistant-content pre {
+    background: #161616;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+
+.assistant-content pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: 0.85rem;
+}
+
+/* Timestamp Alignment */
+.assistant-timestamp {
+    display: flex;
+    justify-content: flex-start;
+    opacity: 0.7;
+}
+
+/* Subtle entrance animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .assistant-message {
+        gap: 12px;
+        margin-top: 16px;
+        margin-bottom: 24px;
+    }
+
+    .assistant-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .assistant-content {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .assistant-content-wrapper {
+        max-width: 100%;
+    }
 }

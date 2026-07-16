@@ -6,6 +6,7 @@ import App from './App.jsx'
 import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from 'react-router-dom';
+import "highlight.js/styles/github-dark.css";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
