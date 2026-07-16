@@ -43,7 +43,7 @@ export const createMessage = async (conversationId, role, content) => {
 
 
 
-    const aiReply = await generateAIResponse(content, conversation.instructions);
+    const aiReply = await generateResponse(content, conversation.instructions);
 
 
     await Message.create({

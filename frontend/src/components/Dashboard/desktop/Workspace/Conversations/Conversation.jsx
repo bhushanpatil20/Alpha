@@ -3,6 +3,7 @@ import { useChat } from "../../../../../context/ChatContext";
 import {useRef, useEffect} from "react";
 import ThinkingMessage from "../ThinkingMessage/ThinkingMessage"
 import MessageBubble from "../../../../chat/MessageBubble/MessageBubble";
+import ThinkingIndicator from "../../../../chat/ThinkingIndicator/ThinkingIndicator";
 
 function Conversation() {
     const bottomRef = useRef(null);
@@ -80,7 +81,16 @@ useEffect(() => {
 
             {isGenerating && (
 
-    <ThinkingMessage />
+                <>
+
+                   {/* <ThinkingMessage /> */}
+    
+<div className="thinking-indicator">
+     <ThinkingIndicator />
+</div>
+
+
+                </>
 
 )}
 

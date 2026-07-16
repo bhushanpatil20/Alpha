@@ -9,7 +9,7 @@ export const generateResponse = async (prompt, instructions = "") => {
 
     const response = await ai.models.generateContent({
 
-        model: "gemini-flash-latest",
+        model: "models/gemma-4-26b-a4b-it",
 
         contents: finalPrompt
 
@@ -32,4 +32,24 @@ export const generateAIResponse = async (prompt) => {
     ];
 
     return await generateCerebras(messages);
+};
+
+
+export const generateStreamingResponse = async (
+    prompt,
+    instructions = ""
+) => {
+
+    const finalPrompt = instructions
+        ? `${instructions}\n\nUser: ${prompt}`
+        : prompt;
+
+    return await ai.models.generateContentStream({
+
+        model: "models/gemma-4-26b-a4b-it",
+
+        contents: finalPrompt
+
+    });
+
 };

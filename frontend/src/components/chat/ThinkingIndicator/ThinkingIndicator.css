@@ -1,0 +1,83 @@
+.thinking-message{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+    margin:32px 0 48px;
+
+}
+
+.thinking-container{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.thinking-text{
+
+    color:#CFCFCF;
+
+    font-size:15px;
+
+}
+
+.thinking-dots{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.thinking-dots span{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#8FA3BF;
+
+    animation:thinking 1.4s infinite ease-in-out;
+
+}
+
+.thinking-dots span:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+.thinking-dots span:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+@keyframes thinking{
+
+    0%,80%,100%{
+
+        transform:scale(.6);
+
+        opacity:.35;
+
+    }
+
+    40%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}

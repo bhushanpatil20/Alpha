@@ -1,5 +1,6 @@
 import { getMessages } from "../services/message.service.js";
 import { createMessage } from "../services/message.service.js";
+import { generateStreamingResponse } from "../services/ai.service.js";
 
 export const getMessagesController = async (req, res) => {
 
@@ -60,6 +61,47 @@ export const createMessageController = async (req, res) => {
             message: error.message
 
         });
+
+    }
+
+};
+
+
+export const streamMessageController = async (req, res) => {
+
+    try {
+
+        const { prompt } = req.body;
+
+        res.setHeader("Content-Type", "text/event-stream");
+        res.setHeader( "Cache-Control", "no-cache");
+        res.setHeader("Connection", "keep-alive");
+
+        const stream = await generateStreamingResponse(prompt);
+
+        for await (const chunk of stream) {
+
+            const text = chunk.text || "";
+
+            console.log(text);
+
+            res.write(
+                `data: ${JSON.stringify({text})}\n\n`
+            );
+
+        }
+
+        res.write("event: end\ndata: done\n\n");
+
+        res.end();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        res.end();
 
     }
 

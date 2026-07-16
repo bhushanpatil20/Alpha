@@ -1,4 +1,4 @@
-import { getMessages, createMessage} from "../api/message.api";
+import { getMessages, createMessage, streamMessage} from "../api/message.api";
 import { getConversations, openConversation } from "../api/conversation.api";
 import { useContext, createContext, useEffect, useState } from "react";
 const ChatContext = createContext();
@@ -82,67 +82,15 @@ const handleConversationClick = async (conversationId) => {
 
 };
 
-// const sendMessage = async (content) => {
-
-//        console.log({
-//         activeConversation,
-//         isGenerating,
-//         content
-//     });
-
-//     if (!activeConversation || !isGenerating) return;
-
-//     try {
-
-//         await createMessage(activeConversation, "user", content);
-//         await fetchMessages(activeConversation);
-//         await fetchConversations();
-//         setPrompt("");
-//     }
-
-//     catch (error) {
-
-//         console.error(error);
-
-//     }
-//     finally {
-//         setIsGenerating(false);
-//     }
-
-// };
-
 const sendMessage = async (content) => {
 
-    console.log("1. sendMessage started");
-
     if (!activeConversation || isGenerating) return;
-
+    setPrompt("");
     setIsGenerating(true);
-
     try {
-
-        console.log("2. Calling createMessage...");
-
-        await createMessage(
-            activeConversation,
-            "user",
-            content
-        );
-
-        console.log("3. createMessage finished");
-
+        await createMessage(activeConversation, "user", content);
         await fetchMessages(activeConversation);
-
-        console.log("4. fetchMessages finished");
-
         await fetchConversations();
-
-        console.log("5. fetchConversations finished");
-
-        setPrompt("");
-
-        console.log("6. Prompt cleared");
-
     }
 
     catch (error) {
@@ -155,7 +103,30 @@ const sendMessage = async (content) => {
 
         setIsGenerating(false);
 
-        console.log("7. Finished");
+    }
+
+};
+
+const sendStreamingMessage = async (content) => {
+
+    if (!activeConversation || isGenerating) return;
+    setPrompt("");
+    setIsGenerating(true);
+    try {
+        await streamMessage(activeConversation, "user", content);
+        await fetchMessages(activeConversation);
+        await fetchConversations();
+    }
+
+    catch (error) {
+
+        console.error("sendStreamingMessage Error:", error);
+
+    }
+
+    finally {
+
+        setIsGenerating(false);
 
     }
 
@@ -167,7 +138,7 @@ const sendMessage = async (content) => {
             {
             conversations, activeConversation, setActiveConversation, messages, 
             isGenerating, showWorkspace, fetchConversations, fetchMessages, handleConversationClick,
-            sendMessage, setShowWorkspace, prompt, setPrompt, isGenerating
+            sendMessage, sendStreamingMessage, setShowWorkspace, prompt, setPrompt, isGenerating
             }
         }>
 

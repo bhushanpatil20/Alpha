@@ -87,16 +87,28 @@ app.get("/open", async (req, res) => {
 });
 
 app.get("/models", async (req, res)=>{
-    const response = await axios.get(
-  "https://api.cerebras.ai/v1/models",
-  {
-    headers: {
-      Authorization: `Bearer ${process.env.CEREBRAS_API_KEY}`,
-    },
-  }
-);
 
-console.log(response.data);
+      try {
+        const response = await axios.get(
+            `https://generativelanguage.googleapis.com/v1beta/models?key=${process.env.GEMINI_API_KEY}`
+        );
+
+        console.log("Available Models:\n");
+
+        response.data.models.forEach((model) => {
+            console.log(`Model: ${model.name}`);
+            console.log(`Description: ${model.description}`);
+            console.log(`Input Token Limit: ${model.inputTokenLimit}`);
+            console.log(`Output Token Limit: ${model.outputTokenLimit}`);
+            console.log("-----------------------------------------");
+        });
+    } catch (error) {
+        console.error(
+            "Error:",
+            error.response?.data || error.message
+        );
+    }
+
 })
 
 export default app;
