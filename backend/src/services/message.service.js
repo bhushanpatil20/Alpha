@@ -25,16 +25,13 @@ export const createMessage = async (conversationId, role, content) => {
         content
     });
 
-    const conversation = await Conversation.findById(conversationId);
-
-    if (conversation) {
-
-        conversation.lastMessage = content;
-        conversation.lastMessageAt = new Date();
-
-        await conversation.save();
-
-    }
+    await Conversation.findByIdAndUpdate(
+        conversationId,
+        {
+            lastMessage: content,
+            lastMessageAt: new Date()
+        }
+    );
 
     return message;
 

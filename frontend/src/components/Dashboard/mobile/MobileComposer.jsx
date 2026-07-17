@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useChat } from "../../../context/ChatContext";
 
 function MobileComposer() {
-    const { prompt, setPrompt, sendMessage, isGenerating } = useChat(); //[cite: 22]
+    const { prompt, setPrompt, sendStreamingMessage, isGenerating } = useChat(); //[cite: 22]
     const textareaRef = useRef(null); //[cite: 22]
 
     const handleInput = (e) => {
@@ -14,7 +14,7 @@ function MobileComposer() {
             textareaRef.current.style.height = "auto";
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
         }
-    }; //[cite: 22]
+    };
 
     const handleResetHeight = () => {
         if (textareaRef.current) {
@@ -24,7 +24,7 @@ function MobileComposer() {
 
     const handleSubmit = async () => {
         if (!prompt.trim() || isGenerating) return;
-        await sendMessage(prompt);
+        await sendStreamingMessage(prompt);
         handleResetHeight();
     };
 

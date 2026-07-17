@@ -69,9 +69,6 @@ export const createMessageController = async (req, res) => {
 
 export const streamMessageController = async (req, res) => {
 
-    console.log("========== STREAM REQUEST ==========");
-console.log(req.body);
-
     try {
 
         const { conversationId, prompt } = req.body;
@@ -82,8 +79,6 @@ console.log(req.body);
         res.setHeader( "Cache-Control", "no-cache");
         res.setHeader("Connection", "keep-alive");
 
-        console.log("Calling Gemini...");
-
         const stream = await generateStreamingResponse(prompt);
 
         let fullResponse = "";
@@ -92,6 +87,10 @@ console.log(req.body);
 
             const text = chunk.text || "";
 
+            if (!text.trim()) {
+    continue;
+}
+
             fullResponse += text;
 
             res.write(`data: ${JSON.stringify({text})}\n\n`);
@@ -99,10 +98,6 @@ console.log(req.body);
             console.log("Chunk:", text);
 
         }
-
-        console.log("Streaming completed.");
-
-        console.log("Saving assistant...");
 
         await createMessage(conversationId, "assistant", fullResponse);
 

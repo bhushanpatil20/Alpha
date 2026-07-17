@@ -1,6 +1,6 @@
 .assistant-message {
     display: flex;
-    gap: 16px; /* Slightly tighter gap for a cleaner look */
+    gap: 16px;
     margin-top: 24px;
     margin-bottom: 32px;
     animation: fadeIn 0.3s ease-in-out;
@@ -97,9 +97,12 @@
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .assistant-message {
+        width: 353px;
         gap: 12px;
         margin-top: 16px;
         margin-bottom: 24px;
+        text-align: left;
+        margin-left: -40px;
     }
 
     .assistant-avatar {

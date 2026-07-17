@@ -192,6 +192,8 @@ const sendStreamingMessage = async () => {
                 // Create assistant message only when first token arrives
                 if (!assistantCreated) {
 
+                    console.log("First token received");
+
                     assistantCreated = true;
 
                     streamingId = `assistant-${Date.now()}`;
@@ -210,6 +212,8 @@ const sendStreamingMessage = async () => {
                         }
 
                     ]);
+
+                    console.log("Assistant bubble created");
 
                 }
 
