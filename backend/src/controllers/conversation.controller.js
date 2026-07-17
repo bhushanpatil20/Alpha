@@ -4,7 +4,7 @@ export const createConversationController = async (req, res) => {
 
     try {
 
-        const { title, instructions } = req.body;
+        const { title, workspace } = req.body;
 
         const conversation = await createConversation(
 
@@ -12,7 +12,7 @@ export const createConversationController = async (req, res) => {
 
             title,
 
-            instructions
+            workspace
 
         );
 

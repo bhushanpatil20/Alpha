@@ -1,61 +1,29 @@
-.desktop-sidebar {
+.dash-sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
     width: 260px;
-    background-color: #1F1F1F;
-    color: #e5e5e5;
-    padding: 16px 12px;
-    box-sizing: border-box;
+    height: 100vh;
+    background-color: #171717; /* Deep black matching the screenshot */
+    border-right: 1px solid #1F1F22;
+    color: #E2E8F0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.sidebar-top-section {
-    display: flex;
-    flex-direction: column;
+.dash-sidebar-scrollable {
     flex: 1;
-    overflow: hidden;
-}
-
-.sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px 24px;
-    color: #a3a3a3;
-}
-
-.sidebar-collapse-btn {
-    background: transparent;
-    border: none;
-    color: #a3a3a3;
-    cursor: pointer;
-}
-
-.sidebar-bottom-section {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-top: 12px;
+    overflow-y: auto;
+    padding: 20px 16px 0;
 }
 
-.desktop-sidebar-divider {
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 8px 0;
-}
-
-.upgrade-plan-btn {
+/* Hide scrollbar for a cleaner look */
+.dash-sidebar-scrollable::-webkit-scrollbar {
+    width: 0px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 99px;
-    padding: 8px 16px;
-    color: #e5e5e5;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-    cursor: pointer;
-    margin: 0 12px;
+}
+
+.dash-sidebar-bottom {
+    padding: 16px;
+    background-color: #0E0E10;
 }

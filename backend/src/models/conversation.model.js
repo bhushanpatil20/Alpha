@@ -22,6 +22,25 @@ const conversationSchema = new mongoose.Schema(
             maxlength: 1000
         },
 
+        workspace: {
+
+    contentType: {
+        type: String,
+        default: "General"
+    },
+
+    tone: {
+        type: String,
+        default: "Professional"
+    },
+
+    context: {
+        type: String,
+        default: ""
+    }
+
+},
+
         lastMessage: {
             type: String,
             default: ""

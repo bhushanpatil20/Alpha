@@ -1,35 +1,41 @@
-.history-item {
+.dash-history-item {
+    position: relative;
+    display: block;
     width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    background-color: transparent;
-    cursor: pointer;
     text-align: left;
-    margin-bottom: 2px;
-}
-
-.history-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.history-text {
-    color: white;
-    font-size: 0.88rem;
-    font-weight: lighter;
+    padding: 8px 12px 8px 16px;
+    background: transparent;
+    border: none;
+    color: #ffff; /* Faded grey for inactive items */
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: all 0.2s ease;
 }
 
-.history-item.active{
-    background-color: #171717;
+.dash-history-item:hover {
+    background-color: #1e1e1e;
+    color: #A1A1AA;
 }
 
-.history-item:hover .history-text,
-.history-item.active .history-text {
-    color: #e5e5e5;
+/* Active State Styling */
+.dash-history-item.active {
+    background-color: #ffff; /* Subtle dark purple background */
+    color: #1e1e1e; /* Brighter text */
+}
+
+/* Purple indicator bar on the left */
+.dash-history-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 3px;
+    background-color: #8A5CF5;
+    border-radius: 0 4px 4px 0;
 }

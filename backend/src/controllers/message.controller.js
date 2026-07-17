@@ -1,6 +1,8 @@
 import { getMessages } from "../services/message.service.js";
 import { createMessage } from "../services/message.service.js";
-import { generateStreamingResponse } from "../services/ai.service.js";
+import { updateConversationTitle } from "../services/conversation.service.js";
+import { generateStreamingResponse, generateConversationTitle } from "../services/ai.service.js";
+import { Conversation } from "../models/conversation.model.js";
 
 export const getMessagesController = async (req, res) => {
 
@@ -79,7 +81,7 @@ export const streamMessageController = async (req, res) => {
         res.setHeader( "Cache-Control", "no-cache");
         res.setHeader("Connection", "keep-alive");
 
-        const stream = await generateStreamingResponse(prompt);
+        const stream = await generateStreamingResponse(conversationId, prompt);
 
         let fullResponse = "";
 
@@ -102,6 +104,22 @@ export const streamMessageController = async (req, res) => {
         await createMessage(conversationId, "assistant", fullResponse);
 
         console.log("Assistant saved");
+
+        const conversation = await Conversation.findById(conversationId);
+
+if (conversation?.title === "New Chat") {
+
+    const title = await generateConversationTitle(
+        prompt,
+        fullResponse
+    );
+
+    await updateConversationTitle(
+        conversationId,
+        title
+    );
+
+}
 
         res.write(`event: end\n` + `data: ${JSON.stringify({ done: true })}\n\n`);
 

@@ -3,7 +3,7 @@ import { Conversation } from "../models/conversation.model.js";
 export const createConversation = async (
     userId,
     title,
-    instructions
+    workspace
 ) => {
 
     const conversation = await Conversation.create({
@@ -12,7 +12,7 @@ export const createConversation = async (
 
         title,
 
-        instructions
+        workspace
 
     });
 
@@ -65,5 +65,27 @@ export const openConversation = async ( conversationId, userId ) => {
     );
 
     return conversation;
+
+};
+
+export const updateConversationTitle = async (conversationId, title) => {
+
+    return await Conversation.findByIdAndUpdate(
+
+        conversationId,
+
+        {
+
+            title
+
+        },
+
+        {
+
+            new: true
+
+        }
+
+    );
 
 };

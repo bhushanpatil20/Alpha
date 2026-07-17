@@ -5,7 +5,7 @@ import SidebarHistory from "./SidebarHistory";
 import { useState } from "react";
 import NewChatModal from "../NewChatModal/NewChatModal";
 import { useChat } from "../../../../context/ChatContext";
-import { Layout } from "lucide-react"; 
+
 function Sidebar({ onLogout }) {
     const [showNewChatModal, setShowNewChatModal] = useState(false);
 
@@ -26,15 +26,12 @@ function Sidebar({ onLogout }) {
 
     return (
         <>
-            <aside className="desktop-sidebar">
-                <div className="sidebar-top-section">
-                    
-
+            <aside className="dash-sidebar">
+                <div className="dash-sidebar-scrollable">
                     <SidebarNav
                         onLogout={onLogout}
                         onNewChat={() => setShowNewChatModal(true)}
                     />
-
                     <SidebarHistory
                         conversations={conversations}
                         activeConversation={activeConversation}
@@ -44,8 +41,7 @@ function Sidebar({ onLogout }) {
                     />
                 </div>
 
-                <div className="sidebar-bottom-section">
-                    <div className="desktop-sidebar-divider" />
+                <div className="dash-sidebar-bottom">
                     <SidebarProfile />
                 </div>
             </aside>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import ConfirmationModal from "../../../common/ConfirmationModel/ConfirmationModel";
 import { useChat } from "../../../../context/ChatContext";
+import { createConversation } from "../../../../api/conversation.api";
 
 function MobileSidebar({ isOpen, onClose }) {
     const { logout, user } = useAuth();
@@ -17,6 +18,34 @@ function MobileSidebar({ isOpen, onClose }) {
 
     const displayName = user?.fullName || "Anonymous";
     const displayInitial = displayName.charAt(0).toUpperCase();
+
+    const handleNewChat = async () => {
+
+    try {
+
+        const conversation = await createConversation({
+
+            title: "New Chat",
+
+            workspace: {
+
+                context: ""
+
+            }
+
+        });
+
+        handleConversationClick(conversation._id);
+
+        onClose();
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+};
 
     return (
         <>
@@ -34,7 +63,10 @@ function MobileSidebar({ isOpen, onClose }) {
                     </div>
 
                     <div className="sidebar-nav">
-                        <button className="new-chat-btn" onClick={onClose}>
+                        <button
+    className="new-chat-btn"
+    onClick={handleNewChat}
+>
                             <Plus size={18} />
                             <span>New</span>
                         </button>

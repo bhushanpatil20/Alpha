@@ -6,19 +6,21 @@ function SidebarProfile() {
     const { user } = useAuth();
 
     return (
-        <div className="compact-profile">
-            <div className="compact-avatar">
-                {user?.avatar ? (
-                    <img src={user.avatar} alt={user.fullName} />
-                ) : (
-                    user?.fullName?.charAt(0).toUpperCase() || "U"
-                )}
+        <div className="dash-profile-card">
+            <div className="dash-profile-left">
+                <div className="dash-profile-avatar">
+                    {user?.fullName?.charAt(0).toUpperCase() || "T"}
+                </div>
+                <div className="dash-profile-info">
+                    <span className="dash-profile-name">
+                        {user?.fullName || user?.email?.split('@')[0] || "tejash123"}
+                    </span>
+                    <span className="dash-profile-status">Online</span>
+                </div>
             </div>
-            <div className="compact-profile-info">
-                <span>{user?.email ? user.email.split('@')[0] : "User"}</span>
-            </div>
-            <button className="profile-notification-btn">
-                <Bell size={16} />
+            
+            <button className="dash-notification-btn" aria-label="Notifications">
+                <Bell size={18} />
             </button>
         </div>
     );

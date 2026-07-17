@@ -5,15 +5,22 @@ import { createConversation } from "../../../../api/conversation.api";
 
 function NewChatModal({ isOpen, onClose, onCreate }) {
     const [title, setTitle] = useState("");
-    const [instructions, setInstructions] = useState("");
+    const [context, setContext] = useState("");
     const inputRef = useRef(null);
 
     const handleCreate = async () => {
         try {
-            const conversation = await createConversation({
-                title,
-                instructions
-            });
+           const conversation = await createConversation({
+
+    title,
+
+    workspace: {
+
+        context
+
+    }
+
+});
             onCreate(conversation);
             onClose();
         } catch(error) {
@@ -24,7 +31,7 @@ function NewChatModal({ isOpen, onClose, onCreate }) {
     useEffect(() => {
         if (isOpen) {
             setTitle("");
-            setInstructions("");
+            setContext("");;
             setTimeout(() => {
                 inputRef.current?.focus();
             }, 100);
@@ -60,12 +67,12 @@ function NewChatModal({ isOpen, onClose, onCreate }) {
                     rows={5}
                     maxLength={1000}
                     placeholder="Define the tone, target audience, or specific constraints..."
-                    value={instructions}
-                    onChange={(e) => setInstructions(e.target.value)}
+                    value={context}
+                    onChange={(e) => setContext(e.target.value)}
                 />
                 
                 <div className="instruction-count">
-                    {instructions.length}/1000
+                    {context.length}/1000
                 </div>
                 
                 <div className="modal-actions">

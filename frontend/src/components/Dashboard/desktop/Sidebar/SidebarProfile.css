@@ -1,56 +1,63 @@
-.compact-profile {
+.dash-profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #18181B; /* Distinct dark card background */
+    border: 1px solid #27272A;
+    border-radius: 12px;
+}
+
+.dash-profile-left {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: background 0.2s;
 }
 
-.compact-profile:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.compact-avatar {
-    width: 24px;
-    height: 24px;
+.dash-profile-avatar {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background-color: #333;
+    background-color: #27272A;
+    border: 1px solid #3B82F6; /* Distinct blue outline */
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #fff;
-    font-size: 0.75rem;
+    justify-content: center;
+    color: #E2E8F0;
+    font-size: 14px;
     font-weight: 600;
-    overflow: hidden;
 }
 
-.compact-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.dash-profile-info {
+    display: flex;
+    flex-direction: column;
 }
 
-.compact-profile-info {
-    flex: 1;
-    color: #a3a3a3;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.dash-profile-name {
+    color: #F8FAFC;
+    font-size: 13px;
+    font-weight: 500;
 }
 
-.profile-notification-btn {
+.dash-profile-status {
+    color: #10B981; /* Emerald green */
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.dash-notification-btn {
     background: transparent;
     border: none;
-    color: #a3a3a3;
+    color: #A1A1AA;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 4px;
+    border-radius: 6px;
+    transition: color 0.2s ease;
 }
 
-.profile-notification-btn:hover {
-    color: #f5f5f5;
+.dash-notification-btn:hover {
+    color: #F8FAFC;
 }

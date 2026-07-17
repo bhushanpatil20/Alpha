@@ -1,19 +1,19 @@
 import "./SidebarHistory.css";
 import SidebarHistoryItem from "./SidebarHistoryItem";
 import { useChat } from "../../../../context/ChatContext";
-import { BsChatLeftDotsFill } from "react-icons/bs";
+import { BsChatSquareTextFill } from "react-icons/bs";
 
 function SidebarHistory() {
     const { conversations, activeConversation, handleConversationClick } = useChat();
 
     return (
-        <div className="desktop-history">
-            <div className="history-header">
-                <BsChatLeftDotsFill size={16} />
-                <span>CHATS</span>
+        <div className="dash-history-wrapper">
+            <div className="dash-history-header">
+                <BsChatSquareTextFill size={12} />
+                <span>RECENT CHATS</span>
             </div>
             
-            <div className="history-list">
+            <div className="dash-history-list">
                 {conversations.map((chat) => (
                     <SidebarHistoryItem
                         key={chat._id}

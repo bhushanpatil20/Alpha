@@ -3,10 +3,11 @@ import "./SidebarHistoryItem.css";
 function SidebarHistoryItem({ chat, onClick }) {
     return (
         <button
-            className={`history-item ${chat.active ? "active" : ""}`}
+            className={`dash-history-item ${chat.active ? "active" : ""}`}
             onClick={onClick}
+            title={chat.title}
         >
-            <span className="history-text">{chat.title}</span>
+            <span className="dash-history-text">{chat.title}</span>
         </button>
     );
 }
