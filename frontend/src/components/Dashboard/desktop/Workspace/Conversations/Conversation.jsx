@@ -82,11 +82,9 @@ useEffect(() => {
             {isGenerating && (
 
                 <>
-
-                   {/* <ThinkingMessage /> */}
     
 <div className="thinking-indicator">
-     <ThinkingIndicator />
+        <ThinkingIndicator />
 </div>
 
 

@@ -111,112 +111,147 @@ const sendStreamingMessage = async () => {
 
     if (!prompt.trim()) return;
 
-    const content = prompt;
-
-    setPrompt("");
-
-    const now = new Date().toISOString();
-
-    const tempUserMessage = {
-
-    _id: `user-${Date.now()}`,
-
-    role: "user",
-
-    content,
-
-    createdAt: now
-
-};
-
-const streamingId = `streaming-${Date.now()}`;
-
-const tempAssistantMessage = {
-    _id: streamingId,
-    role: "assistant",
-    content: "",
-    createdAt: now
-};
-
-setMessages(prev => [
-
-    ...prev,
-
-    tempUserMessage,
-
-    tempAssistantMessage
-
-]);
-
-const response = await streamMessage(activeConversation._id, content);
-
-const reader = response.body.getReader();
-
-const decoder = new TextDecoder();
-
-let assistantText = "";
-
-while (true) {
-
-    const { done, value } = await reader.read();
-
-    const chunk = decoder.decode(value, { stream: true });
-
-const lines = chunk.split("\n");
-
-for (const line of lines) {
-
-    if (!line.startsWith("data: ")) continue;
-
-    const json = line.replace("data: ", "");
-
-    if (!json) continue;
-
     try {
 
-       const data = JSON.parse(json);
+        const content = prompt;
+        setPrompt("");
 
-            if (data.done) {
+        // Optimistically add the user's message
+        const tempUserMessage = {
+            _id: `user-${Date.now()}`,
+            role: "user",
+            content,
+            createdAt: new Date().toISOString()
+        };
 
-    await fetchMessages(activeConversation._id);
+        setMessages(prev => [
+            ...prev,
+            tempUserMessage
+        ]);
 
-    return;
+        // Show thinking indicator
+        setIsGenerating(true);
 
-}
+        // Start streaming
+        const response = await streamMessage(activeConversation, content);
 
-assistantText += data.text;
+        if (!response.ok || !response.body) {
+            throw new Error("Unable to start streaming.");
+        }
 
-        setMessages(prev => {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
 
-    console.log(
-        "Streaming messages:",
-        prev.filter(message => message._id.startsWith("streaming"))
-    );
+        let assistantText = "";
+        let assistantCreated = false;
+        let streamingId = "";
+        let streamFinished = false;
 
-    return prev.map(message =>
-        message._id === streamingId
-            ? {
-                ...message,
-                content: assistantText
+        while (true) {
+
+            const { done, value } = await reader.read();
+
+            if (done) {
+                break;
             }
-            : message
-    );
 
-});
+            const chunk = decoder.decode(value, { stream: true });
+
+            const lines = chunk.split("\n");
+
+            for (const line of lines) {
+
+                if (!line.startsWith("data: ")) continue;
+
+                const json = line.replace("data: ", "").trim();
+
+                if (!json) continue;
+
+                let data;
+
+                try {
+
+                    data = JSON.parse(json);
+
+                }
+
+                catch {
+
+                    continue;
+
+                }
+
+                // End event
+                if (data.done) {
+
+                    streamFinished = true;
+                    break;
+
+                }
+
+                // Create assistant message only when first token arrives
+                if (!assistantCreated) {
+
+                    assistantCreated = true;
+
+                    streamingId = `assistant-${Date.now()}`;
+
+                    setIsGenerating(false);
+
+                    setMessages(prev => [
+
+                        ...prev,
+
+                        {
+                            _id: streamingId,
+                            role: "assistant",
+                            content: "",
+                            createdAt: new Date().toISOString()
+                        }
+
+                    ]);
+
+                }
+
+                assistantText += data.text ?? "";
+
+                setMessages(prev =>
+                    prev.map(message =>
+                        message._id === streamingId
+                            ? {
+                                  ...message,
+                                  content: assistantText
+                              }
+                            : message
+                    )
+                );
+
+            }
+
+            if (streamFinished) {
+                break;
+            }
+
+        }
+
+        // Synchronize with database
+        await fetchMessages(activeConversation);
 
     }
 
-    catch(error){
+    catch (error) {
 
-        console.error(error);
-
-    }
-
-} 
+        console.error("Streaming message error:", error);
 
     }
 
-}
+    finally {
+
+        setIsGenerating(false);
+
+    }
+
+};
 
     return (
 

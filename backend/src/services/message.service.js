@@ -19,50 +19,23 @@ export const getMessages = async (conversationId) => {
 
 export const createMessage = async (conversationId, role, content) => {
 
-    const userMessage = await Message.create({
-
+    const message = await Message.create({
         conversation: conversationId,
-
         role,
-
         content
-
     });
 
-    if (role === "assistant") {
+    const conversation = await Conversation.findById(conversationId);
 
-        return userMessage;
+    if (conversation) {
+
+        conversation.lastMessage = content;
+        conversation.lastMessageAt = new Date();
+
+        await conversation.save();
 
     }
 
-    
-
-    const conversation = await Conversation.findById(
-        conversationId
-    );
-
-
-
-    const aiReply = await generateResponse(content, conversation.instructions);
-
-
-    await Message.create({
-
-        conversation: conversationId,
-
-        role: "assistant",
-
-        content: aiReply
-
-    });
-
-
-    conversation.lastMessage = aiReply;
-
-    conversation.lastMessageAt = new Date();
-
-    await conversation.save();
-
-    return userMessage;
+    return message;
 
 };
