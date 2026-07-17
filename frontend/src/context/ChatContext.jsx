@@ -107,30 +107,116 @@ const sendMessage = async (content) => {
 
 };
 
-const sendStreamingMessage = async (content) => {
+const sendStreamingMessage = async () => {
 
-    if (!activeConversation || isGenerating) return;
+    if (!prompt.trim()) return;
+
+    const content = prompt;
+
     setPrompt("");
-    setIsGenerating(true);
-    try {
-        await streamMessage(activeConversation, "user", content);
-        await fetchMessages(activeConversation);
-        await fetchConversations();
-    }
 
-    catch (error) {
+    const now = new Date().toISOString();
 
-        console.error("sendStreamingMessage Error:", error);
+    const tempUserMessage = {
 
-    }
+    _id: `user-${Date.now()}`,
 
-    finally {
+    role: "user",
 
-        setIsGenerating(false);
+    content,
 
-    }
+    createdAt: now
 
 };
+
+const streamingId = `streaming-${Date.now()}`;
+
+const tempAssistantMessage = {
+    _id: streamingId,
+    role: "assistant",
+    content: "",
+    createdAt: now
+};
+
+setMessages(prev => [
+
+    ...prev,
+
+    tempUserMessage,
+
+    tempAssistantMessage
+
+]);
+
+const response = await streamMessage(activeConversation._id, content);
+
+const reader = response.body.getReader();
+
+const decoder = new TextDecoder();
+
+let assistantText = "";
+
+while (true) {
+
+    const { done, value } = await reader.read();
+
+    const chunk = decoder.decode(value, { stream: true });
+
+const lines = chunk.split("\n");
+
+for (const line of lines) {
+
+    if (!line.startsWith("data: ")) continue;
+
+    const json = line.replace("data: ", "");
+
+    if (!json) continue;
+
+    try {
+
+       const data = JSON.parse(json);
+
+            if (data.done) {
+
+    await fetchMessages(activeConversation._id);
+
+    return;
+
+}
+
+assistantText += data.text;
+
+        setMessages(prev => {
+
+    console.log(
+        "Streaming messages:",
+        prev.filter(message => message._id.startsWith("streaming"))
+    );
+
+    return prev.map(message =>
+        message._id === streamingId
+            ? {
+                ...message,
+                content: assistantText
+            }
+            : message
+    );
+
+});
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+} 
+
+    }
+
+}
 
     return (
 
@@ -138,7 +224,7 @@ const sendStreamingMessage = async (content) => {
             {
             conversations, activeConversation, setActiveConversation, messages, 
             isGenerating, showWorkspace, fetchConversations, fetchMessages, handleConversationClick,
-            sendMessage, sendStreamingMessage, setShowWorkspace, prompt, setPrompt, isGenerating
+            sendMessage, sendStreamingMessage, setShowWorkspace, prompt, setPrompt
             }
         }>
 
@@ -148,7 +234,7 @@ const sendStreamingMessage = async (content) => {
 
     );
 
-}
+};
 
 export function useChat() {
 

@@ -71,7 +71,9 @@ export const streamMessageController = async (req, res) => {
 
     try {
 
-        const { prompt } = req.body;
+        const { conversationId, prompt } = req.body;
+
+        await createMessage(conversationId, "user", prompt);
 
         res.setHeader("Content-Type", "text/event-stream");
         res.setHeader( "Cache-Control", "no-cache");
@@ -79,19 +81,21 @@ export const streamMessageController = async (req, res) => {
 
         const stream = await generateStreamingResponse(prompt);
 
+        let fullResponse = "";
+
         for await (const chunk of stream) {
 
             const text = chunk.text || "";
 
-            console.log(text);
+            fullResponse += text;
 
-            res.write(
-                `data: ${JSON.stringify({text})}\n\n`
-            );
+            res.write(`data: ${JSON.stringify({text})}\n\n`);
 
         }
 
-        res.write("event: end\ndata: done\n\n");
+        await createMessage(conversationId, "assistant", fullResponse);
+
+        res.write(`event: end\n` + `data: ${JSON.stringify({ done: true })}\n\n`);
 
         res.end();
 

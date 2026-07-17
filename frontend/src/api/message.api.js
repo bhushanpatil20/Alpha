@@ -17,30 +17,33 @@ export const createMessage = async ( conversationId, role, content) => {
 };
 
 
-export const streamMessage = async (prompt) => {
+export const streamMessage = async (conversationId, prompt) => {
 
-    const response = await fetch("http://localhost:5000/api/messages/stream", {
+    const response = await fetch(
 
+        "http://localhost:5000/api/messages/stream",
+
+        {
             method: "POST",
 
+            // credentials: "include",
+
             headers: {
-
-                "Content-Type": "application/json",
-
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-
+                "Content-Type": "application/json"
             },
 
             body: JSON.stringify({
-
+                conversationId,
                 prompt
-
             })
 
         }
 
     );
 
-    return response;
+    if (!response.ok) {
+        throw new Error("Streaming failed.");
+    }
 
+    return response;
 };

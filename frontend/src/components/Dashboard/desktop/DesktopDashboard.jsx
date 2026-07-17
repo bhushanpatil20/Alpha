@@ -13,7 +13,7 @@ function DesktopDashboard() {
     const [showNewChatModal, setShowNewChatModal] = useState("");
 
     const { 
-        sendMessage, 
+        sendStreamingMessage, 
         prompt,
         conversations, 
         setConversations, 
@@ -25,7 +25,7 @@ function DesktopDashboard() {
 
     const handleGenerate = async () => {
         if (!prompt.trim()) return;
-        await sendMessage(prompt);
+        await sendStreamingMessage(prompt);
         console.log("sendMessage called");
     };
 
