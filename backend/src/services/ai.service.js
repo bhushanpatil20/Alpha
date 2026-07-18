@@ -51,19 +51,30 @@ export const generateStreamingResponse = async (conversationId, prompt) => {
     ],
 }));
 
-console.log(history);
     const instructions = conversation?.workspace?.context || "";
-    const systemPrompt = `${alphaIdentity} ${instructions ? `Workspace Context: ${instructions}` : ""}`;
-    const finalPrompt = `${systemPrompt} User: ${prompt}`;
+    const chat = ai.chats.create({
 
+    model: "models/gemma-4-26b-a4b-it",
 
-    return await ai.models.generateContentStream({
+    history,
 
-        model: "models/gemma-4-26b-a4b-it",
+    config: {
 
-        contents: finalPrompt
+        systemInstruction: `
+${alphaIdentity}
 
-    });
+${instructions ? `Workspace Context:\n${instructions}` : ""}
+`
+
+    }
+
+});
+
+return await chat.sendMessageStream({
+
+    message: prompt
+
+});
 
 };
 

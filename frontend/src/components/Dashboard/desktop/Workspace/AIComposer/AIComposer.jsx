@@ -87,10 +87,6 @@ function AIComposer({ onSubmit, onWritingChange }) {
                     </div>
                 </div>
             </div>
-            <div className="disclaimer">
-                <h5>Alpha can make mistakes.</h5>
-                <p>use it on your own terms.</p>
-            </div>
         </section>
     );
 }

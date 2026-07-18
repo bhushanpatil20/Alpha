@@ -1,65 +1,51 @@
-.auth-input-group{
+/* Update just these specific blocks in your AuthInput.css */
 
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-
-    margin-bottom:22px;
-
+.auth-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px; /* Tightened from 16px */
 }
 
-.auth-input-group label{
-
-    font-size:.95rem;
-
-    font-weight:600;
-
-    color:#334155;
-
+.auth-input-group input {
+    height: 44px; /* Reduced from 48px */
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    font-size: .95rem;
+    transition: all 0.25s ease;
+    outline: none;
+    background: #0f0f11;
+    color: #ffffff;
+}
+.auth-input-group label {
+    font-size: .9rem;
+    font-weight: 500;
+    color: #e4e4e7;
+    letter-spacing: 0.3px;
 }
 
-.auth-input-group label span{
-
-    color:#EF4444;
-
-    margin-left:4px;
-
+.auth-input-group label span {
+    color: #f87171;
+    margin-left: 4px;
 }
 
-.auth-input-group input{
-
-    height:52px;
-
-    padding:0 18px;
-
-    border:1px solid #CBD5E1;
-
-    border-radius:14px;
-
-    font-size:1rem;
-
-    transition:.25s;
-
-    outline:none;
-
-    background:white;
-
+.auth-input-group input::placeholder {
+    color: #52525b;
 }
 
-.auth-input-group input:focus{
-
-    border-color:#2DA7BE;
-
-    box-shadow:0 0 0 4px rgba(45,167,190,.12);
-
+.auth-input-group input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-.auth-input-group small{
+.auth-input-group input:focus {
+    border-color: #22d3ee;
+    background: #09090b;
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15);
+}
 
-    color:#EF4444;
-
-    font-size:.82rem;
-
+.auth-input-group small {
+    color: #f87171;
+    font-size: .85rem;
+    margin-top: 2px;
 }

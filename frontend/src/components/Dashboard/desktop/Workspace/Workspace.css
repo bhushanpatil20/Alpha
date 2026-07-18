@@ -14,8 +14,7 @@
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 24px 48px 180px;
-    /* Removed display: flex and flex-direction: column to prevent top cutoff */
+    padding: 0 48px 180px;
 }
 
 .workspace-content ::-webkit-scrollbar {
@@ -49,11 +48,5 @@
     .workspace-content {
         /* Restored the 180px bottom padding so the composer doesn't hide text */
         padding: 16px 24px 180px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .workspace-content {
-        padding: 16px 24px 0;
     }
 }
