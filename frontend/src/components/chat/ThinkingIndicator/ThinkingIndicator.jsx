@@ -29,10 +29,6 @@ function ThinkingIndicator() {
 
         <div className="assistant-message thinking-message">
 
-            <div className="assistant-avatar">
-                A
-            </div>
-
             <div className="thinking-container">
 
                 <span className="thinking-text">
