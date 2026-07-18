@@ -1,6 +1,8 @@
 import ai from "../config/gemini.js";
 import { generateCerebras } from "../config/open.js";
 import { Conversation } from "../models/conversation.model.js";
+import { alphaIdentity } from "../prompt/alphaIdentity.js";
+import { getMessages } from "./message.service.js";
 
 export const generateResponse = async (prompt, instructions = "") => {
 
@@ -36,18 +38,24 @@ export const generateAIResponse = async (prompt) => {
 };
 
 
-export const generateStreamingResponse = async (
-    conversationId,
-    prompt
-) => {
+export const generateStreamingResponse = async (conversationId, prompt) => {
 
     const conversation = await Conversation.findById(conversationId);
+    const previousMessages = await getMessages(conversationId);
+    const history = previousMessages.map((message) => ({
+    role: message.role === "assistant" ? "model" : "user",
+    parts: [
+        {
+            text: message.content,
+        },
+    ],
+}));
 
+console.log(history);
     const instructions = conversation?.workspace?.context || "";
+    const systemPrompt = `${alphaIdentity} ${instructions ? `Workspace Context: ${instructions}` : ""}`;
+    const finalPrompt = `${systemPrompt} User: ${prompt}`;
 
-    const finalPrompt = instructions
-        ? `${instructions}\n\nUser: ${prompt}`
-        : prompt;
 
     return await ai.models.generateContentStream({
 

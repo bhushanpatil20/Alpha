@@ -15,9 +15,8 @@
 
 .mobile-content {
     width: 100%;
-    max-width: 480px;
+    /* max-width: 480px; */
     margin: 0 auto;
-    padding: 16px 20px 80px; /* Reduced padding for wider workspace, added bottom padding for composer */
     flex: 1;
     box-sizing: border-box;
     overflow-y: auto;

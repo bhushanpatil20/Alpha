@@ -14,6 +14,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     transition: all 0.2s ease;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .dash-history-item:hover {

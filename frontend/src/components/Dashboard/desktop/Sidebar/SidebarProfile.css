@@ -3,9 +3,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px;
-    background-color: #18181B; /* Distinct dark card background */
-    border: 1px solid #27272A;
-    border-radius: 12px;
+    background: transparent; /* Distinct dark card background */
+    border: none;
 }
 
 .dash-profile-left {
@@ -15,8 +14,8 @@
 }
 
 .dash-profile-avatar {
-    width: 34px;
-    height: 34px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-color: #27272A;
     border: 1px solid #3B82F6; /* Distinct blue outline */
@@ -31,11 +30,12 @@
 .dash-profile-info {
     display: flex;
     flex-direction: column;
+    font-size: 2rem;
 }
 
 .dash-profile-name {
     color: #F8FAFC;
-    font-size: 13px;
+    font-size: 17px;
     font-weight: 500;
 }
 

@@ -38,7 +38,9 @@
 
 @media (max-width: 768px) {
     .message-row.user {
+        margin-top: 20px;
         margin-bottom: 20px;
+        padding-right: 20px;
     }
     
     .user-bubble {

@@ -97,12 +97,13 @@
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .assistant-message {
-        width: 353px;
+        width: fit-content;
         gap: 12px;
         margin-top: 16px;
         margin-bottom: 24px;
         text-align: left;
-        margin-left: -40px;
+        margin-left: -42px;
+        padding-right: 10px;
     }
 
     .assistant-avatar {
@@ -116,6 +117,6 @@
     }
     
     .assistant-content-wrapper {
-        max-width: 100%;
+        padding-left: 15px;
     }
 }
