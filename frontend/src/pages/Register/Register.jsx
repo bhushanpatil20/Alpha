@@ -1,220 +1,185 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-
-import useAuth from "../../hooks/useAuth";
-
-// import {
-//     AuthLayout,
-//     AuthInput,
-//     PasswordInput,
-//     AuthButton
-// } from "../../components/auth";
-
 import "./Register.css";
+import {AuthLayout, AuthCard, SocialLogin, AuthDivider, AuthInput} from "../../components/auth/components/index"
+import { useRef, useState, useContext, use } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
+
 
 function Register() {
 
     const navigate = useNavigate();
-
-    const { register: registerUser } = useAuth();
-
+    const [formData, setFormData] = useState({ fullName: "", email: "", password: "", confirmPassword: "" });
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const { register } = useAuth();
 
-    const {
+    const handleRegister = async (e) => {
 
-        register,
+    e.preventDefault();
 
-        handleSubmit,
+    setError("");
 
-        watch,
+    if (
+        !formData.fullName.trim() ||
+        !formData.email.trim() ||
+        !formData.password.trim() ||
+        !formData.confirmPassword.trim()
+    ) {
 
-        formState: { errors }
+        setError("Please fill in all fields.");
 
-    } = useForm();
+        return;
+    }
 
-    const password = watch("password");
+    if (formData.password !== formData.confirmPassword) {
 
-    const onSubmit = async (data) => {
+        setError("Passwords do not match.");
 
-        try {
+        return;
+    }
 
-            setLoading(true);
+    try {
 
-            await registerUser({
+        setLoading(true);
 
-                fullName: data.fullName,
-                email: data.email,
-                password: data.password
+        await register({
 
-            });
+            fullName: formData.fullName,
+            email: formData.email,
+            password: formData.password
 
-            toast.success("Account created successfully!");
+        });
 
-            navigate("/dashboard");
+        toast.success("Account created successfully!");
 
-        }
+        navigate("/dashboard");
 
-        catch (error) {
+    } catch (err) {
 
-            toast.error(
+        const message =
+            err.response?.data?.message ||
+            "Registration failed.";
 
-                error.response?.data?.message ||
+        setError(message);
 
-                "Registration failed."
+        toast.error(message);
 
-            );
+    } finally {
 
-        }
+        setLoading(false);
 
-        finally {
+    }
 
-            setLoading(false);
+};
 
-        }
+    const handleChange = (e) => {
 
-    };
+    const { name, value } = e.target;
+
+    setFormData(prev => ({
+        ...prev,
+        [name]: value
+    }));
+
+};
+
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
 
     return (
 
-        <AuthLayout
+        <AuthLayout>
 
-            title="Create Account"
+     <AuthCard
+    title="Create Account"
+    subtitle="Start creating with Alpha."
+>
 
-            subtitle="Join Alpha and start generating AI content."
+    <form onSubmit={handleRegister}>
 
-        >
+  <AuthInput
+    label="Full Name"
+    name="fullName"
+    type="text"
+    value={formData.fullName}
+    onChange={handleChange}
+    placeholder="Enter your full name"
+/>
 
-            <form
+<AuthInput
+    label="Email Address"
+    name="email"
+    type="email"
+    value={formData.email}
+    onChange={handleChange}
+    placeholder="Enter your email"
+/>
 
-                className="login-form"
+<AuthInput
+    label="Password"
+    name="password"
+    type="password"
+    value={formData.password}
+    onChange={handleChange}
+    placeholder="Create a password"
+/>
 
-                onSubmit={handleSubmit(onSubmit)}
+<AuthInput
+    label="Confirm Password"
+    name="confirmPassword"
+    type="password"
+    value={formData.confirmPassword}
+    onChange={handleChange}
+    placeholder="Confirm your password"
+/>
 
-            >
+   <button
+    className="primary-btn"
+    type="submit"
+    disabled={loading}
+>
 
-                <AuthInput
+    {
 
-                    label="Full Name"
+        loading
 
-                    placeholder="Enter your full name"
+            ? "Creating Account..."
 
-                    error={errors.fullName?.message}
+            : "Create Account"
 
-                    {...register("fullName", {
+    }
 
-                        required: "Full name is required.",
+</button>
 
-                        minLength: {
+    </form>
 
-                            value: 3,
+    <div className="auth-footer">
 
-                            message: "Minimum 3 characters."
+        <span>
+            Already have an account?
+        </span>
 
-                        }
+        <Link to="/login">
+            Sign In
+        </Link>
 
-                    })}
+    </div>
 
-                />
+      {
+    error && (
 
-                <AuthInput
+        <p className="auth-error">
 
-                    label="Email"
+            {error}
 
-                    type="email"
+        </p>
 
-                    placeholder="Enter your email"
+    )
+}
 
-                    error={errors.email?.message}
-
-                    {...register("email", {
-
-                        required: "Email is required.",
-
-                        pattern: {
-
-                            value: /^\S+@\S+\.\S+$/,
-
-                            message: "Invalid email."
-
-                        }
-
-                    })}
-
-                />
-
-                <PasswordInput
-
-                    label="Password"
-
-                    placeholder="Create a password"
-
-                    error={errors.password?.message}
-
-                    {...register("password", {
-
-                        required: "Password is required.",
-
-                        minLength: {
-
-                            value: 8,
-
-                            message: "Minimum 8 characters."
-
-                        }
-
-                    })}
-
-                />
-
-                <PasswordInput
-
-                    label="Confirm Password"
-
-                    placeholder="Confirm your password"
-
-                    error={errors.confirmPassword?.message}
-
-                    {...register("confirmPassword", {
-
-                        required: "Please confirm your password.",
-
-                        validate: value =>
-
-                            value === password ||
-
-                            "Passwords do not match."
-
-                    })}
-
-                />
-
-                <AuthButton
-
-                    type="submit"
-
-                    loading={loading}
-
-                >
-
-                    Create Account
-
-                </AuthButton>
-
-            </form>
-
-            <p className="auth-switch">
-
-                Already have an account?{" "}
-
-                <Link to="/login">
-
-                    Sign In
-
-                </Link>
-
-            </p>
+</AuthCard>
 
         </AuthLayout>
 

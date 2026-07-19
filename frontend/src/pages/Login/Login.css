@@ -87,10 +87,48 @@
 .auth-error{
     text-align: center;
 
-    color:#ef4444 !important;
+    color:#ef4444;
 
     font-size:.9rem;
 
+    font-weight: bold;
+
     margin-top:10px;
+
+}
+
+.primary-btn:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+}
+
+.spinner{
+
+    width:18px;
+
+    height:18px;
+
+    border:2px solid rgba(255,255,255,.3);
+
+    border-top:2px solid white;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+    margin-right:10px;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
 
 }

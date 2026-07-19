@@ -1,8 +1,10 @@
 import "./Login.css";
 import {AuthLayout, AuthCard, SocialLogin, AuthDivider, AuthInput} from "../../components/auth/components/index"
-import { useRef, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState, useContext, use } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 function Login() {
@@ -11,17 +13,27 @@ function Login() {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const { login } = useContext(AuthContext);
+    const {login} = useAuth();
 
     const handleLogin = async (e) => {
 
     e.preventDefault();
 
+    if (loading) return;
+
     setError("");
 
-    if (!formData.email.trim() || !formData.password.trim()) {
+    if (!formData.email.trim()) {
 
-        setError("Please fill in all fields.");
+        setError("Email is required.");
+
+        return;
+
+    }
+
+    if (!formData.password.trim()) {
+
+        setError("Password is required.");
 
         return;
 
@@ -33,19 +45,19 @@ function Login() {
 
         await login(formData);
 
-        navigate("/dashboard");
+        toast.success(`Welcome back!`);
 
-        console.log(user);
+        navigate("/dashboard");
 
     } catch (err) {
 
-        setError(
-
+        const message =
             err.response?.data?.message ||
+            "Unable to login.";
 
-            "Login failed."
+        setError(message);
 
-        );
+        toast.error(message);
 
     } finally {
 
@@ -55,7 +67,7 @@ function Login() {
 
 };
 
-const handleChange = (e) => {
+    const handleChange = (e) => {
 
     const { name, value } = e.target;
 
@@ -99,6 +111,7 @@ const handleChange = (e) => {
             passwordRef.current?.focus();
         }
     }}
+    disabled={loading}
     />
 
     <AuthInput
@@ -108,20 +121,49 @@ const handleChange = (e) => {
         type="password"
         value={formData.password}
         onChange={handleChange}
+        disabled={loading}
         placeholder="Enter your password"
     />
 
-    <button className="primary-btn" type="submit">
-        {loading ? "Signing In..." : "Sign In"}
-    </button>
+    <button
+    className="primary-btn"
+    disabled={loading}
+>
+
+    {
+
+        loading ? (
+
+            <>
+
+                <span className="spinner"></span>
+
+                Signing In...
+
+            </>
+
+        ) : (
+
+            "Sign In"
+
+        )
+
+    }
+
+</button>
 
     </form>
 
     
 
-    <button className="forgot-btn">
-        Forgot Password?
-    </button>
+  <Link
+    to="/forgot-password"
+    className="forgot-btn"
+>
+
+    Forgot Password?
+
+</Link>
 
     <div className="auth-footer">
 
@@ -129,9 +171,9 @@ const handleChange = (e) => {
             Don't have an account?
         </span>
 
-        <a href="/register">
+        <Link to="http://localhost:5173/register">
             Create Account
-        </a>
+        </Link>
 
     </div>
 

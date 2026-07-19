@@ -2,15 +2,8 @@ import "./AuthInput.css";
 import { forwardRef, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-const AuthInput = forwardRef(({
-    label,
-    name,
-    type = "text",
-    placeholder,
-    value,
-    onChange,
-    onKeyDown
-}, ref) => {
+const AuthInput = forwardRef(({ label, name, type = "text", placeholder,
+value, onChange, onKeyDown, disabled }, ref) => {
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -35,6 +28,7 @@ const AuthInput = forwardRef(({
                     value={value}
                     onChange={onChange}
                     onKeyDown={onKeyDown}
+                    disabled={disabled}
                 />
 
                 {isPassword && (
