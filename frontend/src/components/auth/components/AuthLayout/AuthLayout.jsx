@@ -1,4 +1,5 @@
 import "./AuthLayout.css";
+import "../auth-responsive.css"
 import AuthHero from "../AuthHero/AuthHero";
 
 function AuthLayout({ children }) {

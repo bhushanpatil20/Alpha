@@ -1,4 +1,5 @@
 import "./SocialLogin.css";
+import "../auth-responsive.css";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 

@@ -1,0 +1,136 @@
+/* ==========================================
+   DESKTOP
+========================================== */
+
+@media (min-width:992px){
+
+    .auth-container{
+        position: fixed;
+
+        justify-content:space-between;
+
+        gap:72px;
+
+        padding:48px;
+
+    }
+
+    .auth-left{
+
+        display:block;
+
+        flex:1;
+
+        max-width:560px;
+
+    }
+
+    .auth-right{
+
+        flex:1;
+
+        justify-content:flex-end;
+
+        align-items: center;
+
+    }
+
+    .auth-card{
+        max-width:480px;
+
+    }
+
+}
+
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media (min-width:1400px){
+
+    .auth-container{
+
+        gap:100px;
+
+        padding:64px;
+
+    }
+
+}
+
+/* ==========================================
+   TABLET + MOBILE
+========================================== */
+
+@media (max-width:991px){
+
+    .auth-left{
+
+        display:none;
+
+    }
+
+    .auth-container{
+
+        justify-content:center;
+
+        align-items:center;
+
+        padding:24px;
+
+    }
+
+    .auth-right{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .auth-card{
+
+        width:100%;
+
+        max-width:430px;
+
+    }
+
+}
+
+/* ==========================================
+   PHONE
+========================================== */
+
+@media (max-width:480px){
+
+    .auth-container{
+
+        padding:16px;
+
+    }
+
+    .auth-card{
+        border: none !important;
+
+        background-color: transparent !important;
+
+        padding:22px;
+
+    }
+
+    .auth-card-header h2{
+
+        font-size:2rem;
+
+    }
+
+    .social-btn,
+    .primary-btn,
+    .auth-input-wrapper input{
+
+        height:50px;
+
+    }
+
+}

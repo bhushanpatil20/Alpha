@@ -1,4 +1,5 @@
 import "./AuthCard.css";
+import "../auth-responsive.css"
 
 function AuthCard({ title, subtitle, children }) {
     return (

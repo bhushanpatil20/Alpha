@@ -1,4 +1,5 @@
 import "./AuthInput.css";
+import "../auth-responsive.css"
 import { forwardRef, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 

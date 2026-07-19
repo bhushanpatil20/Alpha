@@ -1,4 +1,5 @@
 import "./AuthBackground.css";
+import "../auth-responsive.css"
 
 function AuthBackground() {
     return (

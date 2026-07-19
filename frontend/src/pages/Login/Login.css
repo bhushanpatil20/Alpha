@@ -40,6 +40,10 @@
 
 .forgot-btn{
 
+    display: inline-flex;
+
+    margin-top: 12px;
+
     background:none;
 
     border:none;

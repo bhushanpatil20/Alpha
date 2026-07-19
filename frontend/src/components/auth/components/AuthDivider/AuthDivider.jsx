@@ -1,4 +1,5 @@
 import "./AuthDivider.css";
+import "../auth-responsive.css"
 
 function AuthDivider(){
 

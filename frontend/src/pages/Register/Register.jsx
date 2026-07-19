@@ -1,7 +1,7 @@
 import "./Register.css";
 import {AuthLayout, AuthCard, SocialLogin, AuthDivider, AuthInput} from "../../components/auth/components/index"
 import { useRef, useState, useContext, use } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, redirect } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
@@ -27,7 +27,7 @@ function Register() {
         !formData.password.trim() ||
         !formData.confirmPassword.trim()
     ) {
-
+        
         setError("Please fill in all fields.");
 
         return;
@@ -54,7 +54,7 @@ function Register() {
 
         toast.success("Account created successfully!");
 
-        navigate("/dashboard");
+        navigate("/login");
 
     } catch (err) {
 

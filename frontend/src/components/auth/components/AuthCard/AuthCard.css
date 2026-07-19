@@ -2,40 +2,60 @@
 
     width:100%;
 
-    background:#111114;
+    max-width:430px;
 
-    border-radius:24px;
+    background:#111114;
 
     border:1px solid rgba(255,255,255,.08);
 
-    box-shadow:0 25px 60px rgba(0,0,0,.45);
+    border-radius:22px;
 
-    padding:28px;
+    padding: 32px;
 
-    max-height:90dvh;
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
 
-    overflow-y:auto;
-
-    scrollbar-width:thin;
-
-    scrollbar-color:#2DA7BE transparent;
 }
-
 .auth-card-header{
     text-align: center;
+
+    color: #fff;
 
     margin-bottom: 24px;
 }
 
 .auth-card-header h2{
 
-    color:white;
-
     font-size:2rem;
 
-    margin-bottom:8px;
 }
 
+@media (max-width:480px){
+
+    .auth-card-header h2{
+
+        font-size:1.8rem;
+
+    }
+
+    .primary-btn{
+
+        height:50px;
+
+    }
+
+    .social-btn{
+
+        height:50px;
+
+    }
+
+    .auth-input-wrapper input{
+
+        height:50px;
+
+    }
+
+}
 .auth-card-header p{
 
     color:#9ca3af;
@@ -104,9 +124,13 @@
 
     justify-content:center;
 
+    align-items:center;
+
+    flex-wrap:wrap;
+
     gap:6px;
 
-    font-size:.95rem;
+    text-align:center;
 
     color:#9ca3af;
 
@@ -145,3 +169,5 @@
     background:transparent;
 
 }
+
+

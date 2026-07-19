@@ -1,4 +1,5 @@
 import "./AuthHero.css";
+import "../auth-responsive.css"
 
 function AuthHero() {
     return (
