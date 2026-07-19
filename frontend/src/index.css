@@ -5,12 +5,15 @@
 }
 
 body {
+  overflow-x: hidden;
   font-family: "Manrope", sans-serif;
   background: #ffffff;
 }
 
 html,
-body {
+body, #root {
+    height: 100%;
+    width: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -35,10 +38,4 @@ button {
 img {
   max-width: 100%;
   display: block;
-}
-
-main{
-
-    padding-top:80px;
-
 }

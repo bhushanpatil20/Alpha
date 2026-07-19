@@ -1,0 +1,35 @@
+.auth-card{
+
+    width:100%;
+
+    background:#111114;
+
+    border-radius:24px;
+
+    padding:40px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.45);
+}
+
+.auth-card-header{
+
+    margin-bottom:32px;
+}
+
+.auth-card-header h2{
+
+    color:white;
+
+    font-size:2rem;
+
+    margin-bottom:8px;
+}
+
+.auth-card-header p{
+
+    color:#9ca3af;
+
+    line-height:1.6;
+}

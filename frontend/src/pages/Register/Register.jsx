@@ -5,12 +5,12 @@ import toast from "react-hot-toast";
 
 import useAuth from "../../hooks/useAuth";
 
-import {
-    AuthLayout,
-    AuthInput,
-    PasswordInput,
-    AuthButton
-} from "../../components/auth";
+// import {
+//     AuthLayout,
+//     AuthInput,
+//     PasswordInput,
+//     AuthButton
+// } from "../../components/auth";
 
 import "./Register.css";
 

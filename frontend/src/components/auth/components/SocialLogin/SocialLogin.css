@@ -1,0 +1,61 @@
+.social-login{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-bottom:28px;
+
+}
+
+.social-btn{
+
+    height:56px;
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:#18181b;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s ease;
+
+}
+
+.social-btn:hover{
+
+    background:#202024;
+
+    border-color:#2DA7BE;
+
+    transform:translateY(-2px);
+
+}
+
+.social-btn svg{
+
+    font-size:22px;
+
+}

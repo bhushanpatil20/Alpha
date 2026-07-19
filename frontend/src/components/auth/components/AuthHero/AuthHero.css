@@ -1,0 +1,36 @@
+.auth-hero h1{
+
+    font-size:3.5rem;
+
+    line-height:1.1;
+
+    margin:24px 0;
+
+    color:white;
+}
+
+.auth-hero p{
+
+    margin-top:20px;
+
+    font-size:1.05rem;
+
+    color:#9ca3af;
+
+    line-height:1.8;
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    padding:10px 20px;
+
+    border-radius:999px;
+
+    background:rgba(45,167,190,.15);
+
+    color:#2DA7BE;
+
+    border:1px solid rgba(45,167,190,.3);
+}
