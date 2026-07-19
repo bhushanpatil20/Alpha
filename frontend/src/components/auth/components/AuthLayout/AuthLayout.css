@@ -1,32 +1,31 @@
 .auth-layout {
+    height: 100dvh;
+    overflow: hidden;
     width: 100%;
     min-height: 100vh;
     background: #050608;
 }
 
 .auth-container {
+    height: 100%;
+    box-sizing: border-box;
     max-width: 1440px;
-    min-height: 100vh;
-
     margin: 0 auto;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 80px;
-
     padding: 48px 64px;
 }
 
 .auth-left {
     flex: 1;
-    max-width: 620px;
+    max-width: 560px;
 }
 
 .auth-right {
     width: 100%;
-    max-width: 460px;
+    max-width: 500px;
 }
 
 /* Tablet */

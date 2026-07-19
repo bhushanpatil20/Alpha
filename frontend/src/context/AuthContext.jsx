@@ -57,53 +57,27 @@ if (!token) {
 
 //login function
 const login = async (credentials) => {
-
     const response = await loginAPI(credentials);
-
-    localStorage.setItem(
-
-        "token",
-
-        response.data.token
-
-    );
-
+    localStorage.setItem("token", response.data.token);
     setUser(response.data.user);
-
     setIsAuthenticated(true);
-
+    return response;
 };
 
 //register function
 const register = async (data) => {
-
     const response = await registerAPI(data);
-
-    localStorage.setItem(
-
-        "token",
-
-        response.data.token
-
-    );
-
+    localStorage.setItem("token", response.data.token);
     setUser(response.data.user);
-
     setIsAuthenticated(true);
-
 };
 
 //logout function
 const logout = async () => {
-
     await logoutAPI();
-
     localStorage.removeItem("token");
-
     setUser(null);
-
     setIsAuthenticated(false);
-
 };
 
 //context provider
@@ -136,5 +110,11 @@ return (
 );
 
 }
+
+export const useAuth = () => {
+
+    return useContext(AuthContext);
+
+};
 
 export default AuthContext;

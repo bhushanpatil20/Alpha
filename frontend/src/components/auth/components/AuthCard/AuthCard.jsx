@@ -1,10 +1,6 @@
 import "./AuthCard.css";
 
-function AuthCard({
-    title,
-    subtitle,
-    children
-}) {
+function AuthCard({ title, subtitle, children }) {
     return (
         <section className="auth-card">
 

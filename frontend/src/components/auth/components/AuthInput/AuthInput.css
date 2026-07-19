@@ -1,0 +1,89 @@
+.auth-input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.auth-input-group label{
+
+    color:white;
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+}
+
+.auth-input-wrapper{
+
+    position:relative;
+
+}
+
+.auth-input-wrapper input{
+
+    width:100%;
+
+    height:56px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:#18181b;
+
+    color:white;
+
+    padding:0 18px;
+
+    padding-right: 52px;
+
+    font-size:15px;
+
+    transition:.25s;
+}
+
+.auth-input-wrapper input:focus{
+
+    outline:none;
+
+    border-color:#2DA7BE;
+
+    box-shadow:
+        0 0 0 4px rgba(45,167,190,.12);
+
+}
+
+.toggle-password{
+    position:absolute;
+    top:50%;
+    right:16px;
+    transform:translateY(-50%);
+
+    width:32px;
+    height:32px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:transparent;
+    border:none;
+
+    color:#8b8b8b;
+    cursor:pointer;
+
+    transition:color .2s ease;
+}
+
+.toggle-password:hover{
+    color:#2DA7BE;
+}
+
+.toggle-password svg{
+    font-size:18px;
+}

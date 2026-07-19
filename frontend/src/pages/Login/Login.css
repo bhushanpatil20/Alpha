@@ -83,3 +83,14 @@
     text-decoration:underline;
 
 }
+
+.auth-error{
+    text-align: center;
+
+    color:#ef4444 !important;
+
+    font-size:.9rem;
+
+    margin-top:10px;
+
+}
