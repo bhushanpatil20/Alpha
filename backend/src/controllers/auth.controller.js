@@ -4,6 +4,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 import ApiError from "../utils/ApiError.js";
 import generateToken from "../utils/generateToken.js";
 import { registerService, loginService } from "../services/auth.service.js";
+import { verifyGoogleToken, findOrCreateGoogleUser } from "../services/googleAuth.service.js";
 
 //Register
 
@@ -115,3 +116,67 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
     );
 
 });
+
+//Google Login
+export const googleLogin = async (req, res) => {
+
+        console.log("✅ Google login endpoint hit");
+    console.log(req.body);
+
+    try {
+
+        const { credential } = req.body;
+
+        if (!credential) {
+
+            return res.status(400).json({
+
+                success:false,
+
+                message:"Google credential is required."
+
+            });
+
+        }
+
+        const payload = await verifyGoogleToken(credential);
+
+        const user = await findOrCreateGoogleUser(payload);
+
+        const token = generateToken(user._id);
+
+        return res.status(200).json({
+
+            success:true,
+
+            statusCode:200,
+
+            message:"Login Successful.",
+
+            data:{
+
+                token,
+
+                user
+
+            }
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        return res.status(401).json({
+
+            success:false,
+
+            message:error.message || "Google authentication failed."
+
+        });
+
+    }
+
+};

@@ -51,3 +51,11 @@ export const logout = async () => {
     return response.data;
 
 };
+
+//Social Login - GOOGLE
+export const googleLogin = async (credential) => {
+
+    const response = await api.post("/auth/google", { credential });
+
+    return response.data;
+};

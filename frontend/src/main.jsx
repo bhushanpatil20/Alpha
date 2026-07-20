@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from 'react-router-dom';
 import "highlight.js/styles/github-dark.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -26,7 +27,11 @@ createRoot(document.getElementById('root')).render(
 
         />
 
-            <App />
+            <GoogleOAuthProvider
+    clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
+>
+    <App />
+</GoogleOAuthProvider>
 
         </BrowserRouter>
 

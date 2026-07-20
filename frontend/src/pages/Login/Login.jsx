@@ -9,11 +9,40 @@ import { toast } from "react-toastify";
 
 function Login() {
 
+    console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID);
+    console.log(import.meta.env.VITE_API_URL);
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const {login} = useAuth();
+    const {login, googleLogin} = useAuth();
+
+    const handleGoogleLogin = async (credential) => {
+
+    try {
+
+        setLoading(true);
+
+        await googleLogin(credential);
+
+        toast.success("Welcome to Alpha!");
+
+        navigate("/dashboard");
+
+    } catch (err) {
+
+        toast.error(
+            err.response?.data?.message || "Google Login Failed."
+        );
+
+    } finally {
+
+        setLoading(false);
+
+    }
+
+};
 
     const handleLogin = async (e) => {
 
@@ -90,7 +119,7 @@ function Login() {
     subtitle="Sign in to continue to Alpha."
 >
 
-    <SocialLogin />
+    <SocialLogin onGoogleSuccess={handleGoogleLogin} />
 
     <AuthDivider />
 

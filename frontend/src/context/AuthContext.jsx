@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState} from "react";
-import { login as loginAPI, register as registerAPI, logout as logoutAPI, getCurrentUser} from "../api/auth.api";
+import { login as loginAPI, register as registerAPI, logout as logoutAPI, googleLogin as googleLoginAPI, getCurrentUser} from "../api/auth.api";
 
 const AuthContext = createContext();
 
@@ -80,26 +80,28 @@ const logout = async () => {
     setIsAuthenticated(false);
 };
 
+//Google Login
+const googleLogin = async (credential) => {
+
+    const response = await googleLoginAPI(credential);
+
+    const { token, user } = response.data;
+
+    localStorage.setItem("token", token);
+
+    setUser(user);
+
+    setAuthenticated(true);
+
+    return response;
+};
+
 //context provider
 return (
 
     <AuthContext.Provider
 
-        value={{
-
-            user,
-
-            loading,
-
-            isAuthenticated,
-
-            login,
-
-            register,
-
-            logout
-
-        }}
+        value={{ user, loading, isAuthenticated, login, register, logout, googleLogin }}
 
     >
 

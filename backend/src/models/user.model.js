@@ -19,13 +19,13 @@ const userSchema = new mongoose.Schema(
 
         password: {
             type: String,
-            required: true,
+            default: null,
             minlength: 8,
         },
 
         avatar: {
             type: String,
-            default: "",
+            default: null,
         },
 
         role: {
@@ -38,20 +38,39 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+
+        provider: {
+
+    type: [String],
+
+    enum: ["local", "google"],
+
+    default: ["local"],
+
+},
     },
     {
         timestamps: true,
     }
 );
 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
 
     if (!this.isModified("password")) {
+
         return next();
+
+    }
+
+    if (!this.password) {
+
+        return next();
+
     }
 
     this.password = await bcrypt.hash(this.password, 10);
 
+    next();
 
 });
 

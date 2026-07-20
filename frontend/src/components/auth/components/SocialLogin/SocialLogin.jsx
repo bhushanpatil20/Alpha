@@ -2,24 +2,26 @@ import "./SocialLogin.css";
 import "../auth-responsive.css";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
+import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 
-function SocialLogin() {
+function SocialLogin({onGoogleSuccess}) {
 
     return (
 
         <div className="social-login">
 
-            <button className="social-btn">
-
-                <FcGoogle />
-
-                <span>
-
-                    Continue with Google
-
-                </span>
-
-            </button>
+            <GoogleLogin
+    theme="filled_black"
+    shape="pill"
+    text="continue_with"
+    onSuccess={(credentialResponse) => {
+        onGoogleSuccess(credentialResponse.credential);
+    }}
+    onError={() => {
+        console.log("Google Login Failed");
+    }}
+/>
 
             <button className="social-btn">
 
