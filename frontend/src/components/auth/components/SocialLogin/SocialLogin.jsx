@@ -21,7 +21,7 @@ function SocialLogin({ onGoogleSuccess }) {
 window.location.href =
     `https://accounts.google.com/o/oauth2/v2/auth` +
     `?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}` +
-    `&redirect_uri=http://localhost:5173/auth/google/callback` +
+    `&redirect_uri=http://localhost:3000/auth/google/callback` +
     `&response_type=code` +
     `&scope=openid%20email%20profile` +
     `&access_type=offline` +
@@ -41,7 +41,7 @@ window.location.href =
                 onClick={() => {
 
                     window.location.href =
-                        `https://github.com/login/oauth/authorize?client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}&redirect_uri=http://localhost:5173/auth/github/callback&scope=read:user user:email`;
+                        `https://github.com/login/oauth/authorize?client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}&redirect_uri=http://localhost:3000/auth/github/callback&scope=read:user user:email`;
 
                 }}
             >
