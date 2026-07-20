@@ -53,10 +53,8 @@ export const logout = async () => {
 };
 
 //GOOGLE Login
-export const googleLogin = async (credential) => {
-
-    const response = await api.post("/auth/google", { credential });
-
+export const googleLogin = async (code) => {
+    const response = await api.post("/auth/google", { code });
     return response.data;
 };
 

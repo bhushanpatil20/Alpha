@@ -1,22 +1,62 @@
-import { OAuth2Client } from "google-auth-library";
+import axios from "axios";
+import qs from "qs";
 import User from "../models/user.model.js";
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+export const getGoogleAccessToken = async (code) => {
 
-export const verifyGoogleToken = async (credential) => {
+    const { data } = await axios.post(
 
-    const ticket = await client.verifyIdToken({
+        "https://oauth2.googleapis.com/token",
 
-        idToken: credential,
-        audience: process.env.GOOGLE_CLIENT_ID,
+        qs.stringify({
 
-    });
+            code,
+            client_id: process.env.GOOGLE_CLIENT_ID,
+            client_secret: process.env.GOOGLE_CLIENT_SECRET,
+            redirect_uri: process.env.GOOGLE_CALLBACK_URL,
+            grant_type: "authorization_code"
 
-    return ticket.getPayload();
+        }),
+
+        {
+
+            headers: {
+
+                "Content-Type": "application/x-www-form-urlencoded"
+
+            }
+
+        }
+
+    );
+
+    return data.access_token;
 
 };
 
-export const findOrCreateGoogleUser = async (payload) => {
+export const getGoogleUser = async (accessToken) => {
+
+    const { data } = await axios.get(
+
+        "https://www.googleapis.com/oauth2/v3/userinfo",
+
+        {
+
+            headers: {
+
+                Authorization: `Bearer ${accessToken}`
+
+            }
+
+        }
+
+    );
+
+    return data;
+
+};
+
+export const findOrCreateGoogleUser = async (googleUser) => {
 
     const {
 
@@ -25,7 +65,7 @@ export const findOrCreateGoogleUser = async (payload) => {
         picture,
         email_verified
 
-    } = payload;
+    } = googleUser;
 
     if (!email_verified) {
 
@@ -37,23 +77,19 @@ export const findOrCreateGoogleUser = async (payload) => {
 
     if (user) {
 
+        if (!user.provider.includes("google")) {
+
+            user.provider.push("google");
+
+        }
+
         if (!user.avatar && picture) {
 
             user.avatar = picture;
 
         }
 
-        if (!user.isVerified) {
-
-            user.isVerified = true;
-
-        }
-
-        if (user.provider !== "google") {
-
-            user.provider = "google";
-
-        }
+        user.isVerified = true;
 
         await user.save();
 
@@ -69,7 +105,7 @@ export const findOrCreateGoogleUser = async (payload) => {
 
         avatar: picture,
 
-        provider: "google",
+        provider: ["google"],
 
         isVerified: true
 

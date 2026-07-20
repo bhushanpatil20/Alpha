@@ -4,20 +4,21 @@ import qs from "qs";
 
 export const getGithubAccessToken = async (code) => {
 
-    const { data } = await axios.post(
-        "https://github.com/login/oauth/access_token",
-        qs.stringify({
-            client_id: process.env.GITHUB_CLIENT_ID,
-            client_secret: process.env.GITHUB_CLIENT_SECRET,
-            code
-        }),
-        {
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
+  const { data } = await axios.post(
+    "https://github.com/login/oauth/access_token",
+    qs.stringify({
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        code,
+        redirect_uri: process.env.GITHUB_CALLBACK_URL
+    }),
+    {
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
         }
-    );
+    }
+);
 
     console.log("Full GitHub Token Response:", data);
 

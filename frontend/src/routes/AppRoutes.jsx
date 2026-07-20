@@ -10,6 +10,7 @@ import Pricing from "../pages/Pricing";
 import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute"
 import GithubCallback from "../pages/auth/GithubCallback";
+import GoogleCallback from "../pages/auth/GoogleCallback";
 
 function AppRoutes() {
     return (
@@ -30,6 +31,8 @@ function AppRoutes() {
                 <Route path="*" element={<NotFound />} />
 
                 <Route path="/auth/github/callback" element={<GithubCallback />} />
+
+                <Route path="/auth/google/callback" element={<GoogleCallback />} />
 
             </Routes>
     );

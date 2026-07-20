@@ -4,7 +4,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 import ApiError from "../utils/ApiError.js";
 import generateToken from "../utils/generateToken.js";
 import { registerService, loginService } from "../services/auth.service.js";
-import { verifyGoogleToken, findOrCreateGoogleUser } from "../services/googleAuth.service.js";
+import { getGoogleAccessToken, getGoogleUser, findOrCreateGoogleUser } from "../services/googleAuth.service.js";
 import { getGithubAccessToken, getGithubUser, findOrCreateGithubUser } from "../services/githubAuth.service.js";
 
 //Register
@@ -120,40 +120,41 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
 //Google Login
 export const googleLogin = async (req, res) => {
+
     try {
 
-        const { credential } = req.body;
+        console.log("Google Controller Hit");
 
-        if (!credential) {
+        const { code } = req.body;
+
+        if (!code) {
 
             return res.status(400).json({
 
-                success:false,
-
-                message:"Google credential is required."
+                success: false,
+                message: "Authorization code is required."
 
             });
 
         }
 
-        const payload = await verifyGoogleToken(credential);
+        const accessToken = await getGoogleAccessToken(code);
 
-        const user = await findOrCreateGoogleUser(payload);
+        console.log("Google Access Token:", accessToken);
+
+        const googleUser = await getGoogleUser(accessToken);
+
+        const user = await findOrCreateGoogleUser(googleUser);
 
         const token = generateToken(user._id);
 
         return res.status(200).json({
 
-            success:true,
+            success: true,
 
-            statusCode:200,
-
-            message:"Login Successful.",
-
-            data:{
+            data: {
 
                 token,
-
                 user
 
             }
@@ -162,15 +163,15 @@ export const googleLogin = async (req, res) => {
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
-        return res.status(401).json({
+        return res.status(500).json({
 
-            success:false,
+            success: false,
 
-            message:error.message || "Google authentication failed."
+            message: error.message
 
         });
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState} from "react";
-import { login as loginAPI, register as registerAPI, logout as logoutAPI, googleLogin as googleLoginAPI, getCurrentUser} from "../api/auth.api";
+import { login as loginAPI, register as registerAPI, logout as logoutAPI, googleLogin as googleLoginAPI, githubLogin as githubLoginAPI, getCurrentUser} from "../api/auth.api";
 
 const AuthContext = createContext();
 
@@ -37,14 +37,14 @@ if (!token) {
 
         }
 
-        catch {
-                console.log(error.response);
+      catch (error) {
+
+    console.log(error.response);
 
     console.log("Removing token");
 
-            localStorage.removeItem("token");
-
-        }
+    localStorage.removeItem("token");
+}
 
         finally {
 
@@ -84,11 +84,26 @@ const logout = async () => {
 };
 
 //Google Login
-const googleLogin = async (credential) => {
+const googleLogin = async (code) => {
 
-    const response = await googleLoginAPI(credential);
+    const response = await googleLoginAPI(code);
 
-    
+    const { token, user } = response.data;
+
+    localStorage.setItem("token", token);
+
+    setUser(user);
+
+    setIsAuthenticated(true);
+
+    return response;
+
+};
+
+//Github Login
+const githubLogin = async (code) => {
+
+    const response = await githubLoginAPI(code);
 
     const { token, user } = response.data;
 
@@ -106,7 +121,7 @@ return (
 
     <AuthContext.Provider
 
-        value={{ user, loading, isAuthenticated, login, register, logout, googleLogin }}
+        value={{ user, loading, isAuthenticated, login, register, logout, googleLogin, githubLogin }}
 
     >
 

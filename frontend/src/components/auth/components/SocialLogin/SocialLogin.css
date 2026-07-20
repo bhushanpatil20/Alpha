@@ -60,40 +60,13 @@
 
 }
 
-.google-login-wrapper{
-
-    position:relative;
-
-    width:100%;
-
+.google-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
-.google-login-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    opacity:0;
-
-    overflow:hidden;
-
-}
-
-.google-login-overlay > div{
-
-    width:100% !important;
-
-    height:100% !important;
-
-}
-
-.google-login-overlay iframe{
-
-    width:100% !important;
-
-    height:100% !important;
-
-    cursor:pointer;
-
+.google-button > div {
+    width: 100% !important;
 }
