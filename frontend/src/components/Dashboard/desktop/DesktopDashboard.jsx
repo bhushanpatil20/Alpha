@@ -26,7 +26,7 @@ function DesktopDashboard() {
     const handleGenerate = async () => {
         if (!prompt.trim()) return;
         await sendStreamingMessage(prompt);
-        console.log("sendStreamingMessage called");
+        
     };
 
     return (

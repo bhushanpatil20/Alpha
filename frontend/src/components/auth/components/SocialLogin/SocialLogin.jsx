@@ -1,39 +1,71 @@
 import "./SocialLogin.css";
 import "../auth-responsive.css";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
-import { useGoogleLogin } from "@react-oauth/google";
+import { FaGithub } from "react-icons/fa";
 import { GoogleLogin } from "@react-oauth/google";
+import { useGoogleAuth } from "../../../../hooks/useGoogleAuth";
 
 function SocialLogin({onGoogleSuccess}) {
+
+    const googleSignIn = useGoogleAuth(onGoogleSuccess);
 
     return (
 
         <div className="social-login">
 
-            <GoogleLogin
-    theme="filled_black"
-    shape="pill"
-    text="continue_with"
-    onSuccess={(credentialResponse) => {
-        onGoogleSuccess(credentialResponse.credential);
-    }}
-    onError={() => {
-        console.log("Google Login Failed");
-    }}
-/>
+    {/* <div className="google-login-wrapper">
 
-            <button className="social-btn">
+    <button
+        className="social-btn"
+        type="button"
+    >
+        <FcGoogle />
 
-                <FaApple />
+        <span>Continue with Google</span>
 
-                <span>
+    </button>
 
-                    Continue with Apple
+    <div className="google-login-overlay">
 
-                </span>
+        <GoogleLogin
+            theme="outline"
+            text="continue_with"
+            shape="pill"
+            size="large"
+            onSuccess={(credentialResponse) => {
 
-            </button>
+                onGoogleSuccess(credentialResponse.credential);
+
+            }}
+            onError={() => {
+
+                console.error("Google Login Failed");
+
+            }}
+        />
+
+    </div>
+
+</div> */}
+
+<button
+
+    className="social-btn"
+
+    onClick={() => { window.location.href =
+`https://github.com/login/oauth/authorize?client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}&redirect_uri=http://localhost:5173/auth/github/callback&scope=read:user user:email`; }}
+
+>
+
+    <FaGithub />
+
+    <span>
+
+        Continue with GitHub
+
+    </span>
+
+</button>
 
         </div>
 

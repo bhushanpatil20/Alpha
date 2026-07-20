@@ -52,10 +52,29 @@ export const logout = async () => {
 
 };
 
-//Social Login - GOOGLE
+//GOOGLE Login
 export const googleLogin = async (credential) => {
 
     const response = await api.post("/auth/google", { credential });
 
     return response.data;
+};
+
+//Github login
+export const githubLogin = async (code) => {
+
+    const response = await api.post(
+
+        "/auth/github",
+
+        {
+
+            code
+
+        }
+
+    );
+
+    return response.data;
+
 };

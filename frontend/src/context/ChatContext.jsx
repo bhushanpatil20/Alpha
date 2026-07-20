@@ -17,9 +17,6 @@ export function ChatProvider({ children }) {
         try {
 
             const data = await getConversations();
-
-             console.log("Fetched conversations:", data);
-
             setConversations(data);
 
         }
@@ -64,7 +61,6 @@ const fetchMessages = async (conversationId) => {
 
 const handleConversationClick = async (conversationId) => {
 
-    console.log("Clicked:", conversationId);
 
     await openConversation(conversationId);
 
@@ -73,8 +69,6 @@ const handleConversationClick = async (conversationId) => {
     setConversations(updatedConversations);
 
     const loadedMessages = await getMessages(conversationId);
-
-    console.log("Loaded Messages:", loadedMessages);
 
     setMessages(loadedMessages);
 
@@ -192,7 +186,6 @@ const sendStreamingMessage = async () => {
                 // Create assistant message only when first token arrives
                 if (!assistantCreated) {
 
-                    console.log("First token received");
 
                     assistantCreated = true;
 
@@ -212,8 +205,6 @@ const sendStreamingMessage = async () => {
                         }
 
                     ]);
-
-                    console.log("Assistant bubble created");
 
                 }
 

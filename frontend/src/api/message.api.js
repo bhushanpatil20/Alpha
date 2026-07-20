@@ -19,14 +19,13 @@ export const createMessage = async ( conversationId, role, content) => {
 
 export const streamMessage = async (conversationId, prompt) => {
 
-   console.log("Conversation ID:", conversationId);
-   console.log("Prompt:", prompt);
+  
     const body = {
         conversationId,
         prompt
     };
 
-    console.log("Request body:", body);
+   
 
     const response = await fetch(
 

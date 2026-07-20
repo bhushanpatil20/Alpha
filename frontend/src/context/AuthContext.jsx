@@ -38,6 +38,9 @@ if (!token) {
         }
 
         catch {
+                console.log(error.response);
+
+    console.log("Removing token");
 
             localStorage.removeItem("token");
 
@@ -67,7 +70,7 @@ const login = async (credentials) => {
 //register function
 const register = async (data) => {
     const response = await registerAPI(data);
-    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("token", response.data);
     setUser(response.data.user);
     setIsAuthenticated(true);
 };
@@ -85,13 +88,15 @@ const googleLogin = async (credential) => {
 
     const response = await googleLoginAPI(credential);
 
+    
+
     const { token, user } = response.data;
 
     localStorage.setItem("token", token);
 
     setUser(user);
 
-    setAuthenticated(true);
+    setIsAuthenticated(true);
 
     return response;
 };

@@ -9,8 +9,7 @@ import { toast } from "react-toastify";
 
 function Login() {
 
-    console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID);
-    console.log(import.meta.env.VITE_API_URL);
+   
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -80,15 +79,17 @@ function Login() {
 
     } catch (err) {
 
-        const message =
-            err.response?.data?.message ||
-            "Unable to login.";
+    console.error("Google Login Error:", err);
 
-        setError(message);
+    console.error("Response:", err.response);
 
-        toast.error(message);
+    console.error("Data:", err.response?.data);
 
-    } finally {
+    toast.error(
+        err.response?.data?.message || err.message || "Google Login Failed."
+    );
+
+} finally {
 
         setLoading(false);
 

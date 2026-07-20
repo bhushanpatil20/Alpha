@@ -59,3 +59,41 @@
     font-size:24px;
 
 }
+
+.google-login-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+}
+
+.google-login-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    overflow:hidden;
+
+}
+
+.google-login-overlay > div{
+
+    width:100% !important;
+
+    height:100% !important;
+
+}
+
+.google-login-overlay iframe{
+
+    width:100% !important;
+
+    height:100% !important;
+
+    cursor:pointer;
+
+}

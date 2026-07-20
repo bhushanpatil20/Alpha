@@ -5,6 +5,7 @@ import ApiError from "../utils/ApiError.js";
 import generateToken from "../utils/generateToken.js";
 import { registerService, loginService } from "../services/auth.service.js";
 import { verifyGoogleToken, findOrCreateGoogleUser } from "../services/googleAuth.service.js";
+import { getGithubAccessToken, getGithubUser, findOrCreateGithubUser } from "../services/githubAuth.service.js";
 
 //Register
 
@@ -119,10 +120,6 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
 //Google Login
 export const googleLogin = async (req, res) => {
-
-        console.log("✅ Google login endpoint hit");
-    console.log(req.body);
-
     try {
 
         const { credential } = req.body;
@@ -174,6 +171,71 @@ export const googleLogin = async (req, res) => {
             success:false,
 
             message:error.message || "Google authentication failed."
+
+        });
+
+    }
+
+};
+
+//Github Login
+export const githubLogin = async (req, res) => {
+
+    console.log("GitHub Controller Hit");
+
+    try {
+
+        const { code } = req.body;
+
+        if (!code) {
+
+            return res.status(400).json({
+
+                success:false,
+
+                message:"GitHub authorization code is required."
+
+            });
+
+        }
+
+        const accessToken = await getGithubAccessToken(code);
+
+        const githubUser = await getGithubUser(accessToken);
+
+        const user = await findOrCreateGithubUser(githubUser);
+
+        const token = generateToken(user._id);
+
+        return res.status(200).json({
+
+            success:true,
+
+            statusCode:200,
+
+            message:"Login Successful.",
+
+            data:{
+
+                token,
+
+                user
+
+            }
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        return res.status(401).json({
+
+            success:false,
+
+            message:error.message || "GitHub authentication failed."
 
         });
 

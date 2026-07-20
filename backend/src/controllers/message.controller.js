@@ -97,13 +97,11 @@ export const streamMessageController = async (req, res) => {
 
             res.write(`data: ${JSON.stringify({text})}\n\n`);
 
-            console.log("Chunk:", text);
-
         }
 
         await createMessage(conversationId, "assistant", fullResponse);
 
-        console.log("Assistant saved");
+        c
 
         const conversation = await Conversation.findById(conversationId);
 

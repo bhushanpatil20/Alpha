@@ -9,6 +9,7 @@ import Features from "../pages/Features";
 import Pricing from "../pages/Pricing";
 import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute"
+import GithubCallback from "../pages/auth/GithubCallback";
 
 function AppRoutes() {
     return (
@@ -27,6 +28,8 @@ function AppRoutes() {
                 <Route path="/dashboard" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute> } />
 
                 <Route path="*" element={<NotFound />} />
+
+                <Route path="/auth/github/callback" element={<GithubCallback />} />
 
             </Routes>
     );
