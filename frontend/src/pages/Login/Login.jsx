@@ -201,7 +201,7 @@ function Login() {
             Don't have an account?
         </span>
 
-        <Link to="http://localhost:5173/register">
+        <Link to="/register">
             Create Account
         </Link>
 
