@@ -61,7 +61,6 @@ const fetchMessages = async (conversationId) => {
 
 const handleConversationClick = async (conversationId) => {
 
-
     await openConversation(conversationId);
 
     const updatedConversations = await getConversations();
@@ -72,7 +71,7 @@ const handleConversationClick = async (conversationId) => {
 
     setMessages(loadedMessages);
 
-    setActiveConversation(conversationId);
+     setActiveConversation(conversationId);
 
 };
 
@@ -102,6 +101,10 @@ const sendMessage = async (content) => {
 };
 
 const sendStreamingMessage = async () => {
+
+    if (!activeConversation || !prompt.trim() || isGenerating) {
+    return;
+}
 
     if (!prompt.trim()) return;
 

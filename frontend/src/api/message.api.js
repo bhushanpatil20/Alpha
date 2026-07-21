@@ -29,12 +29,10 @@ export const streamMessage = async (conversationId, prompt) => {
 
     const response = await fetch(
 
-        "http://localhost:5000/api/messages/stream",
+        "`${import.meta.env.VITE_API_URL}/messages/stream`",
 
         {
             method: "POST",
-
-            // credentials: "include",
 
             headers: {
                 "Content-Type": "application/json"
