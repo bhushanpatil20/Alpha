@@ -54,9 +54,6 @@ function DashboardHome({ onNewChat }) {
                         Generate blogs, orchestrate social media campaigns, and let Alpha 
                         handle the heavy lifting of copywriting. 
                     </p>
-                    <button className="home-button" onClick={onNewChat}>
-                        + Start Writing
-                    </button>
                 </div>
 
                 <div className="bento-grid">

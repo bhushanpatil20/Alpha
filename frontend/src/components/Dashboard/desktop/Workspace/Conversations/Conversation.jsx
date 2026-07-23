@@ -41,7 +41,7 @@ useEffect(() => {
 
                 <p>
 
-                    Start chatting below.
+                    Click new chat in sidebar to create a new chat and start chatting.
 
                 </p>
 
