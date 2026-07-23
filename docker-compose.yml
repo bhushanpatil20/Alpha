@@ -13,14 +13,14 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  frontend:
-    build: ./frontend
-    container_name: alpha-frontend
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-    depends_on:
-      - backend
-    restart: unless-stopped
+frontend:
+  build: ./frontend
+  container_name: alpha-frontend
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - /etc/letsencrypt:/etc/letsencrypt:ro
+  depends_on:
+    - backend
+  restart: unless-stopped
